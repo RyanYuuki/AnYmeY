@@ -3,10 +3,8 @@
 import { useEffect, useState } from "react";
 import { FetchPopularAnime, FetchTrendingAnime } from "../hooks/useApi";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowRightArrowLeft,
   faCalendar,
   faClock,
   faPlayCircle,
@@ -26,7 +24,7 @@ function Carousel() {
   useEffect(() => {
     const loadTrendingAnime = async () => {
       try {
-        const result = await FetchPopularAnime();
+        const result = await FetchTrendingAnime();
         if (result) {
           setData(result);
         }

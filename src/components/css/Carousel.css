@@ -1,29 +1,29 @@
 .carouselContainer {
     position: relative;
     top: 100px;
-    height: 540px;
-    margin: 0 2.5%;
-    width: 95%;
+    height: 400px;
+    margin: 0 1.5%;
+    width: 97%;
     display: flex;
     gap: 30px;
 }
 
 .carouselSlider-container { 
     display: flex;
-    border-radius: 30px;
+    border-radius: 15px;
 }
 
 .carouselImage-container {
     height: 100%;
     width: 100%;
-    border-radius: 30px;
+    border-radius: 15px;
 }
 
 .carouselImage {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 30px;
+    border-radius: 15px;
 }
 
 .gradient-overlay {
@@ -37,26 +37,31 @@
 }
 
 .carouselInfo-container {
-    top: 0;
+    top: 60px;
     position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-items: flex-start;
     gap: 20px;
-    height: 100%;
+    height: 90%;
     width: 50%;
     padding: 50px;
     z-index: 2;
 }
 
 .carouselInfo-container h1 {
-    font-size: 40px;
+    font-size: 30px;
 }
 
 .misc-info {
     display: flex;
     flex-direction: row;
     gap: 20px;
+    background-color: rgba(0,0,0,0.6);
+    padding: 10px 20px;
+    width: max-content;
+    border-radius: 30px;
 }
 
 .buttons-group {
@@ -74,5 +79,5 @@
 }
 
 button:hover {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255,255,255,0.3);
 }

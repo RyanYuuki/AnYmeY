@@ -2,8 +2,9 @@
 import { fetchTheme } from './providers/ThemeProvider';
 import { useThemeColors } from './constants/Colors';
 import Header from './components/Header';
-import './App.css'
+import './App.css';
 import Carousel from './components/Carousel';
+import TrendingCarousel from './components/TrendingCarousel';
 
 function App() {
   const { theme, setTheme } = fetchTheme();
@@ -13,6 +14,7 @@ function App() {
       <>      
       <Header/>
       <Carousel/>
+      <TrendingCarousel/>
       </>
     );
 }
