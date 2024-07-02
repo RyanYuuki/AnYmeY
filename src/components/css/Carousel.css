@@ -1,0 +1,78 @@
+.carouselContainer {
+    position: relative;
+    top: 100px;
+    height: 540px;
+    margin: 0 2.5%;
+    width: 95%;
+    display: flex;
+    gap: 30px;
+}
+
+.carouselSlider-container { 
+    display: flex;
+    border-radius: 30px;
+}
+
+.carouselImage-container {
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+}
+
+.carouselImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.gradient-overlay {
+    top: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(54deg, rgba(0,0,0,0.7831465349811799) 0%, rgba(255,255,255,0) 100%); 
+    z-index: 1;
+}
+
+.carouselInfo-container {
+    top: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 20px;
+    height: 100%;
+    width: 50%;
+    padding: 50px;
+    z-index: 2;
+}
+
+.carouselInfo-container h1 {
+    font-size: 40px;
+}
+
+.misc-info {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.buttons-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.buttons-group button {
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    background-color: #1a1a1a;
+}
+
+button:hover {
+    background-color: rgba(255,255,255,0.2);
+}

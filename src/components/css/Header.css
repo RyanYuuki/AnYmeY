@@ -6,12 +6,17 @@
 }
 
 .header {
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #1a1a1a;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
   padding: 20px 5%;
+  width: 100%;
+  height: 80px;
   color: white;
+  z-index: 10;
 }
 
 .logo {
@@ -33,15 +38,34 @@
   gap: 10px;
 }
 
-.nav-item:hover, .login-button:hover, .action-button:hover {
+.nav-item:hover,
+.login-button:hover,
+.action-button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 .inputBox {
+  position: relative;
   display: flex;
   align-items: center;
   width: 40%;
-  position: relative;
+}
+
+.inputBox-mobile {
+  display: none; /* Hide the mobile input box by default */
+}
+
+.inputBox-mobile-active {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  padding: 20px 5%;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 9; /* Ensure input is below header */
 }
 
 input {
@@ -50,10 +74,17 @@ input {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   border: 1px solid grey;
-  box-shadow: 0 0 10px nlack;
   color: white;
   font-size: 1em;
   outline: none;
+}
+
+.input {
+  width: 100%;
+}
+
+.input-active {
+  padding-left: 50px;
 }
 
 .searchIcon {
@@ -65,13 +96,44 @@ input {
   color: white;
 }
 
+.search-active {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  left: 15px;
+}
+
+.closeIcon {
+  display: none;
+}
+
+.closeIcon-active {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+}
+
+.closeIcon-mobile, .searchIcon-mobile {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 .action-buttons {
   display: flex;
   gap: 20px;
 }
 
 .action-button {
-  background-color: rgb(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border: none;
   cursor: pointer;
   color: white;
@@ -88,42 +150,41 @@ input {
   font-weight: bold;
 }
 
-.closeIcon {
+.searchToggle-mobile {
   display: none;
 }
 
-.input-active {
-  padding-left: 50px;
-}
-
-.search-active {
-  position: absolute;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: white;
-  left: 15px;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  input {
-    display: none;
+  .searchToggle-mobile {
+    display: block;
   }
-  .nav-links {
-   display: none; 
-  }
-  .inputBox {
-    width: 60%;
-  }
-  .searchIcon {
-    padding: 10px 15px;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
+  .nav-links,
   .login-button {
     display: none;
   }
-  .search-active {
-    
+  .inputBox {
+    display: none;
+  }
+  .inputBox-mobile {
+    display: none;
+  }
+  .inputBox-mobile-active {
+    display: flex;
+    transform: translateY(95%);
+    transition: transform 0.3s ease;
+  }
+  .input-mobile {
+    padding-left: 40px;
+  }
+  .closeIcon-mobile{
+    position: absolute;
+    right: 10%;
+  }
+  .searchIcon-mobile {
+    position: absolute;
+    left: 30px;
+  }
+  .searchIcon {
+    position: absolute;
   }
 }
