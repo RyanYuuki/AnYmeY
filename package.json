@@ -14,10 +14,13 @@
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "embla-carousel-autoplay": "^8.1.6",
+    "embla-carousel-react": "^8.1.6",
     "flatlist-react": "^1.5.14",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-ionicons": "^1.5.7",
+    "react-router-dom": "^6.24.1",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.4"
