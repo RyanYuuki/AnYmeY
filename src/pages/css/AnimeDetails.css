@@ -1,0 +1,19 @@
+.body {
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    margin-top: 100px;
+    padding: 0 10%;
+    width: 100vw;
+    height: 600px;
+}
+
+.anime-cover {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.anime-info {
+    display: flex;
+}

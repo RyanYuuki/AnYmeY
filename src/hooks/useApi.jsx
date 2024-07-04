@@ -16,6 +16,11 @@ export const FetchRandomAnime = async () => {
     const data = await response.json();
     return data.results;
 }
+export const FetchAnimeByID = async (query) => {
+    const response = await fetch(`${BASE_URL}info/${query}`);
+    const data = await response.json();
+    return data;
+}
 export const SearchAnime = async (query) => {
     const response = await fetch(`${BASE_URL}${query}`);
     const data = await response.json();
