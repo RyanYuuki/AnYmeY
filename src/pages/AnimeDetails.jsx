@@ -63,6 +63,7 @@ export default function AnimeDetails() {
             {data.description.replace(/<[^>]*>?/gm, "")}
           </div>
           <div className="anime-details-fullInfo">
+            <div className="full-info-row">
             <p>
               Japanese: <span>{data.title.native}</span>
             </p>
@@ -95,25 +96,31 @@ export default function AnimeDetails() {
                   data.startDate.day || "??"}
               </span>
             </p>
+            </div>
+            <div className="full-info-row">
             <p>
               Episodes: <span>{data.totalEpisodes || "??"}</span>{" "}
             </p>
             <p>
-              Duration: <span>{data.duration + 'Min' || "??"}</span>{" "}
+              Duration: <span>{data.duration + "Min" || "??"}</span>{" "}
             </p>
             <p>
               Status: <span>{data.status || "??"}</span>{" "}
             </p>
-            <p>MAL Score: {data.rating || "??"} </p>
             <p>
-              Genres:{" "}
-              {data.genres.map((genre, index) => (
-                <span key={index}> {genre} </span>
-              ))}
+              MAL Score: <span>{data.rating || "??"}</span>
             </p>
+            </div>
+            <div className="full-info-row">
             <p>
               Studios: <span>{data.studios[0]}</span>
             </p>
+            <div className="full-info-genre">
+            {data.genres.map((genre, index) => (
+                <span style={{ backgroundColor: data.color }} key={index}> {genre} </span>
+              ))}
+            </div>
+            </div>
           </div>
         </div>
       </div>

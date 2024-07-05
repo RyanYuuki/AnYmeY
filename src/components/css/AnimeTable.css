@@ -1,8 +1,10 @@
 .anime-table {
     display: flex;
-    height: 800px;
+    height: 750px;
     flex-direction: row;
     justify-content: space-evenly;
+    border-radius: 12px;
+    padding: 0 10px;
 }
 
 .rows {
@@ -10,7 +12,7 @@
     flex-direction: column;
     height: 100%;
     width: 25%;
-    background-color: rgb(0,0,0,0.2);
+    background-color: #111;
     gap: 10px;
     padding: 20px;
 }

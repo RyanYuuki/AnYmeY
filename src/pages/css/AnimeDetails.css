@@ -44,6 +44,10 @@
     border: none;
 }
 
+.anime-details-row button:hover {
+    background-color: indigo;
+}
+
 .anime-details-row img {
     height: 250px;
     width:  180px;
@@ -59,3 +63,40 @@
     font-size: 14px;
 }
 
+.anime-details-fullInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 2.5% 0;
+}
+
+.anime-details-fullInfo p {
+    color: grey;
+}
+
+.anime-details-fullInfo span {
+    margin-left: 5px;
+    font-weight: 600;
+    color: white;
+}
+
+.full-info-row {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+}
+
+.full-info-genre {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.full-info-genre span {
+    padding: 5px 10px;
+    border-radius: 12px;
+}
