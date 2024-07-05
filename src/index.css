@@ -9,28 +9,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --text: rgb(235, 232, 226);
-  --background: #0c0b0b;
-  --primary: rgb(26, 26, 26);
-  --secondary: rgb(153, 152, 150);
-  --accent: rgb(51, 51, 51);  
+  --text: #f1f0f1;
+  --background: #120f12;
+  --primary: rgba(189, 171, 190, 0.156);
+  --secondary: #5f4561;
+  --accent: #9a6a9e;
 }
-
-:root[data-theme="light"] {
-  --text: rgb(28, 23, 27);
-  --background: rgb(243, 237, 242);
-  --primary: rgb(85, 52, 82);
-  --secondary: rgb(200, 151, 193);
-  --accent: rgb(172, 77, 158);
-}
-:root[data-theme="dark"] {
-  --text: rgb(233, 228, 232);
-  --background: rgb(19, 13, 18);
-  --primary: rgb(202, 169, 198);
-  --secondary: rgb(104, 55, 97);
-  --accent: rgb(178, 84, 164);
-}
-
 
 body {
   background-color: var(--background);

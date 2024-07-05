@@ -1,0 +1,30 @@
+.character-item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary);
+    width: 32.5%;
+    padding: 0 10px;
+    border-radius: 12px;
+    /* border-bottom: 1px solid rgb(255,255,255,0.2); */
+}
+ 
+.character-item img {
+    height: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.character-item p {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.character-item span {
+    font-style: italic;
+    color: grey;
+}

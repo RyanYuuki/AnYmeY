@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./css/AnimeDetails.css";
 import { FetchAnimeByID } from "../hooks/useApi";
+import VerticalCharacterCards from '../components/VerticalCharacterCards';
 export default function AnimeDetails() {
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -117,12 +118,19 @@ export default function AnimeDetails() {
             </p>
             <div className="full-info-genre">
             {data.genres.map((genre, index) => (
-                <span style={{ backgroundColor: data.color }} key={index}> {genre} </span>
+                <span key={index}> {genre} </span>
               ))}
             </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="characters-section">
+        <h2>Characters</h2>
+        <div className="characters-container">
+          <VerticalCharacterCards data={data.characters} />
+        </div>
+
       </div>
     </div>
   );
