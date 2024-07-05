@@ -8,7 +8,7 @@ export default function VerticalAnimeCards({ data }) {
           src={anime.image}
         />
           <p>{anime.name.full} <span>-{anime.voiceActors[0].name.full}</span></p>
-          <img src={anime.voiceActors[0].image} />
+          <img className="anime-image" src={anime.voiceActors[0].image} />
       </div>
     )
   );

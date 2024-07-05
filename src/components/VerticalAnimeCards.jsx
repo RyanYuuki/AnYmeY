@@ -1,17 +1,20 @@
 import "./css/VerticalAnimeCards.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClosedCaptioning, faStar } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 export default function VerticalAnimeCards({ data }) {
   return data.map((anime, index) =>
     index > 4 ? null : (
       <div key={anime.mal_id} className="anime-item">
+        <Link to={`/anime/${anime.id}`}>
         <img
           className="anime-image"
           src={anime.image}
           alt={anime.title.english}
         />
+        </Link>
         <div className="anime-info">
-          <p>{anime.title.english}</p>
+          <p>{ anime.title.english.length > 60 ? anime.title.english.substring(0, 60) + '...' : anime.title.english}</p>
           <div className="row">
             <div
               style={{

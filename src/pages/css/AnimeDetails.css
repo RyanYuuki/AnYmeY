@@ -1,12 +1,11 @@
 .anime-details-body {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
     padding: 0 10%;
-    margin-top: 100px;
+    margin-top: 80px;
     gap: 10px;
-    padding-bottom: 200px;
+    padding-bottom: 100px;
 }
 
 .anime-cover-container {
@@ -117,4 +116,12 @@
     flex-wrap: wrap;
     gap: 10px;
     width: 100%;
+}
+
+.anime-details-related {
+    margin-top: 50px;
+}
+
+.anime-details-recommendation {
+    margin-top: 50px;
 }
