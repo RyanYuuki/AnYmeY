@@ -10,11 +10,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(15px);
   background-size: 30px 30px;
   padding: 20px 5%;
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 80px;
   color: white;
   z-index: 10;
@@ -58,10 +59,10 @@
 
 .inputBox-mobile-active {
   display: flex;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   background-color: #1a1a1a;
   padding: 20px 5%;
   align-items: center;
@@ -134,7 +135,7 @@ input {
 }
 
 .action-button {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #111;
   border: none;
   cursor: pointer;
   color: white;
@@ -143,7 +144,7 @@ input {
 }
 
 .login-button {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: #111;
   border: none;
   padding: 10px 30px;
   border-radius: 5px;

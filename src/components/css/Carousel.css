@@ -9,14 +9,15 @@
 }
 
 .carouselSlider-container { 
-    display: flex;
     border-radius: 15px;
+    scroll-behavior: smooth;
 }
 
 .carouselImage-container {
     height: 100%;
     width: 100%;
     border-radius: 15px;
+    scroll-behavior: smooth;
 }
 
 .carouselImage {

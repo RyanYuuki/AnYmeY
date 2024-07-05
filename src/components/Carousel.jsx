@@ -13,6 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
 import "./css/Carousel.css";
+import { Link } from "react-router-dom";
 
 function Carousel() {
   const [data, setData] = useState([]);
@@ -21,7 +22,7 @@ function Carousel() {
   useEffect(() => {
     const loadTrendingAnime = async () => {
       try {
-        const result = await FetchTrendingAnime();
+        const result = await FetchPopularAnime();
         if (result) {
           setData(result);
         }
@@ -76,7 +77,7 @@ function Carousel() {
               </div>
               <div className="buttons-group">
                 <button><FontAwesomeIcon icon={faPlayCircle}/> Watch Now</button>
-                <button>Detail {'>'}</button>
+                <Link to={`/anime/${anime.id}`} ><button>Detail {'>'}</button></Link>
               </div>
             </div>
           </SwiperSlide>

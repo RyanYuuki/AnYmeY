@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -9,13 +9,46 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1a1a1a;
+  --text: rgb(235, 232, 226);
+  --background: #0c0b0b;
+  --primary: rgb(26, 26, 26);
+  --secondary: rgb(153, 152, 150);
+  --accent: rgb(51, 51, 51);  
 }
+
+:root[data-theme="light"] {
+  --text: rgb(28, 23, 27);
+  --background: rgb(243, 237, 242);
+  --primary: rgb(85, 52, 82);
+  --secondary: rgb(200, 151, 193);
+  --accent: rgb(172, 77, 158);
+}
+:root[data-theme="dark"] {
+  --text: rgb(233, 228, 232);
+  --background: rgb(19, 13, 18);
+  --primary: rgb(202, 169, 198);
+  --secondary: rgb(104, 55, 97);
+  --accent: rgb(178, 84, 164);
+}
+
 
 body {
-  font-family: 'Poppins';
+  background-color: var(--background);
+  color: var(--text);
+  font-family: "Poppins";
 }
 
-input, button, ul, li, div, h1, h2, h3, h4, p, section, span {
-  font-family: 'Poppins';
+input,
+button,
+ul,
+li,
+div,
+h1,
+h2,
+h3,
+h4,
+p,
+section,
+span {
+  font-family: "Poppins";
 }

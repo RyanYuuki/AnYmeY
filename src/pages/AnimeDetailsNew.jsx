@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./css/AnimeDetails.css";
+import "./css/AnimeDetailsNew.css";
 import { FetchAnimeByID } from "../hooks/useApi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPlus } from "@fortawesome/free-solid-svg-icons";
 export default function AnimeDetails() {
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -25,19 +27,19 @@ export default function AnimeDetails() {
   }
 
   const Months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
 
   return (
     <div className="anime-details-body">
@@ -45,25 +47,34 @@ export default function AnimeDetails() {
         <img src={data.cover} alt="" className="anime-details-cover" />
       </div>
       <div className="anime-details-info">
-        <div className="anime-details-row">
+        <div className="anime-details-row row1">
           <img src={data.image} />
-          <button>WATCH NOW</button>
-          <button>TRAILER</button>
-          <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
-            <button style={{ width: "45%" }}>A</button>
-            <button style={{ width: "45%" }}>MAL</button>
-          </div>
         </div>
-        <div className="anime-details-row">
-          <h2>{data.title.english}</h2>
-          <p style={{ color: data.color, fontStyle: "italic" }}>
-            {data.title.romaji}
-          </p>
+        <div className="anime-details-row row2">
+          <h1>{data.title.english}</h1>
+          <div className="anime-details-tags">
+            <p style={{ backgroundColor: 'beige' }} >PG-13</p>
+            <p>HD</p>
+            <p>1110</p>
+            <p>23M</p>
+            <p>TV</p>
+          </div>
+          <div className="anime-details-buttons">
+            <button>
+              <FontAwesomeIcon icon={faPlay} />
+              Watch Now
+            </button>
+            <button>
+              <FontAwesomeIcon icon={faPlus} />
+              Add To List
+            </button>
+          </div>
           <div className="anime-details-description">
             {data.description.replace(/<[^>]*>?/gm, "")}
           </div>
-          <div className="anime-details-fullInfo">
-            <p>
+        </div>
+        <div className="anime-details-row row3">
+        <p>
               Japanese: <span>{data.title.native}</span>
             </p>
             <p>
@@ -114,7 +125,6 @@ export default function AnimeDetails() {
             <p>
               Studios: <span>{data.studios[0]}</span>
             </p>
-          </div>
         </div>
       </div>
     </div>
