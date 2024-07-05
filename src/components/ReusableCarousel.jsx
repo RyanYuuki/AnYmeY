@@ -18,13 +18,10 @@ export default function TrendingCarousel({ data }) {
             <img
               src={anime.image}
               draggable="false"
-              alt={anime.title.english}
             />
             </Link>
             <h4>
-              {anime.title.english.length < 20
-                ? anime.title.english
-                : anime.title.english.substring(0, 40) + "..."}
+              {anime?.title?.english || anime?.title?.romaji || anime?.title?.userPreffered}
             </h4>
             {/* <div className="carousel-item-hover"></div> */}
           </SwiperSlide>
