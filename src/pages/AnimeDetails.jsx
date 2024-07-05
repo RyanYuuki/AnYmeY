@@ -4,6 +4,7 @@ import "./css/AnimeDetails.css";
 import { FetchAnimeByID } from "../hooks/useApi";
 import VerticalCharacterCards from '../components/VerticalCharacterCards';
 import ReusableCarousel from '../components/ReusableCarousel';
+
 export default function AnimeDetails() {
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -21,6 +22,10 @@ export default function AnimeDetails() {
       }
     };
     loadData();
+  }, [id]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [id]);
 
   if (isLoading) {
@@ -100,7 +105,7 @@ export default function AnimeDetails() {
             </div>
             <div className="full-info-row">
               <p>
-                Studios: <span>{data.studios?.[0] || "??"}</span>
+                Studios: <span style={{ textTransform: 'capitalize' }} >{data.studios?.[0] || "??"}</span>
               </p>
               <div className="full-info-genre">
                 {data.genres?.map((genre, index) => (
@@ -117,9 +122,9 @@ export default function AnimeDetails() {
           <VerticalCharacterCards data={data.characters || []} />
         </div>
       </div>
-      <h2 className="anime-details-related" >Related</h2>
+      <h2 className="anime-details-related">Related</h2>
       <ReusableCarousel data={data.relations || []} />
-      <h2 className="anime-details-recommendation" >Recommendation</h2>
+      <h2 className="anime-details-recommendation">Recommendation</h2>
       <ReusableCarousel data={data.recommendations || []} />
     </div>
   );

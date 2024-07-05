@@ -31,7 +31,7 @@ export default function TrendingCarousel() {
       <Swiper
         className="carousel-container"
         spaceBetween={30}
-        slidesPerView={6}
+        slidesPerView={5}
         style={{ cursor: "grab" }}
       >
         {data.map((anime, index) => (
