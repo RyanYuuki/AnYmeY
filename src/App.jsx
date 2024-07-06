@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import AnimeDetails from './pages/AnimeDetails';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./pages/Error";
+import Streaming from "./pages/Streaming";
 function App() {
   const { theme, setTheme } = fetchTheme();
   const themeColors = useThemeColors();
@@ -20,6 +21,10 @@ function App() {
       path: '/anime/:id',
       element: <AnimeDetails/>
     },
+    {
+      path: '/watch/:id',
+      element: <Streaming/>,
+    }
   ])
 
   return (

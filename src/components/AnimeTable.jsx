@@ -14,16 +14,12 @@ export default function AnimeTable() {
       try {
         const TopAiringData = await FetchTrendingAnime();
         const MostPopularData = await FetchPopularAnime();
-        // const favouriteResponse = await fetch("https://api.jikan.moe/v3/user/favorites/anime/1");
-        // const latestCompletedResponse = await fetch("https://api.jikan.moe/v3/user/animelist/1/completed");
-
-        // const FavouriteData = await favouriteResponse.json();
-        // const LatestCompletedData = await latestCompletedResponse.json();
-
+        const FavouriteData = await FetchPopularAnime(2);
+        const LatestCompletedData = await FetchPopularAnime(3);
         setTopAiringData(TopAiringData);
         setMostPopularData(MostPopularData);
-        // setFavouriteData(FavouriteData.favorites);
-        // setLatestCompletedData(LatestCompletedData.anime);
+        setFavouriteData(FavouriteData)
+        setLatestCompletedData(LatestCompletedData);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -62,13 +58,13 @@ export default function AnimeTable() {
         <div className="row-title">
           <h2>Most Favourite</h2>
         </div>
-        <VerticalAnimeCards data={topAiringData} />
+        <VerticalAnimeCards data={favouriteData} />
       </div>
       <div className="rows">
         <div className="row-title">
           <h2>Latest Completed</h2>
         </div>
-        <VerticalAnimeCards data={mostPopularData} />
+        <VerticalAnimeCards data={latestCompletedData} />
       </div>
     </div>
   );

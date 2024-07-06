@@ -5,9 +5,9 @@ export default function VerticalAnimeCards({ data = [] }) {
     <div key={anime.id} className="character-item">
       <img
         className="anime-image"
-        src={anime.image || "/path/to/default-anime-image.jpg"} // Default image
+        src={anime.image || "/path/to/default-anime-image.jpg"}
         alt={anime.name?.full || "Anime Character"}
-        onError={(e) => e.target.src = "/path/to/default-anime-image.jpg"} // Fallback for broken images
+        onError={(e) => e.target.src = "/path/to/default-anime-image.jpg"}
       />
       <p>
         {anime.name?.full || "Unknown Name"}{" "}

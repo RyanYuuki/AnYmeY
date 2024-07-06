@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./css/AnimeDetails.css";
 import { FetchAnimeByID } from "../hooks/useApi";
 import VerticalCharacterCards from '../components/VerticalCharacterCards';
@@ -45,7 +45,8 @@ export default function AnimeDetails() {
       <div className="anime-details-info">
         <div className="anime-details-row">
           <img src={data.image || ""} alt="" />
-          <button>WATCH NOW</button>
+          
+          <button><Link style={{ textDecoration: 'none', color: 'white' }} to={`/watch/${data.id}`} >WATCH NOW</Link></button>
           <button>TRAILER</button>
           <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
             <button style={{ width: "45%" }}>A</button>
