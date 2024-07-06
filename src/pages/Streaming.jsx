@@ -1,10 +1,15 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useCallback } from "react";
-import { useParams } from "react-router-dom";
-import { FetchEpisodesData, FetchStreamingData } from "../hooks/useApi";
-import { MediaPlayer, MediaProvider } from "@vidstack/react";
+import { Link, useParams } from "react-router-dom";
+import {
+  FetchAnimeByID,
+  FetchEpisodesData,
+  FetchStreamingData,
+} from "../hooks/useApi";
+import { MediaPlayer, MediaProvider, Poster } from "@vidstack/react";
 import {
   defaultLayoutIcons,
   DefaultVideoLayout,
@@ -12,10 +17,13 @@ import {
 import "@vidstack/react/player/styles/default/theme.css";
 import "@vidstack/react/player/styles/default/layouts/video.css";
 import "./css/Streaming.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function Streaming() {
   const { id } = useParams();
   const [data, setData] = useState(null);
+  const [animeData, setAnimeData] = useState(null);
   const [streamingData, setStreamingData] = useState(null);
   const [currentEpisode, setCurrentEpisode] = useState(1);
   const [currentEpisodeID, setCurrentEpisodeID] = useState(null);
@@ -26,7 +34,9 @@ function Streaming() {
   useEffect(() => {
     const loadData = async () => {
       try {
+        const AnimeData = await FetchAnimeByID(id);
         const EpisodesData = await FetchEpisodesData(id);
+        setAnimeData(AnimeData);
         setData(EpisodesData);
         setCurrentEpisodeID(EpisodesData[0].id);
       } catch (err) {
@@ -61,7 +71,22 @@ function Streaming() {
     setCurrentEpisodeID(episode.id);
   };
 
-  if (isLoading || episodeLoading) return <h1>Loading...</h1>;
+  const Months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  if (isLoading) return <h1>Loading...</h1>;
   if (error) return <h1>{error}</h1>;
 
   return (
@@ -72,12 +97,13 @@ function Streaming() {
             <MediaPlayer
               title={data[currentEpisode - 1]?.title}
               src={streamingData[4]?.url}
+              playsInline={true}
+              crossOrigin={true}
+              streamType="on-demand"
+              viewType="video"
             >
               <MediaProvider />
-              <DefaultVideoLayout
-                thumbnails={data[currentEpisode]?.image}
-                icons={defaultLayoutIcons}
-              />
+              <DefaultVideoLayout icons={defaultLayoutIcons} />
             </MediaPlayer>
           ) : (
             "Loading..."
@@ -101,6 +127,107 @@ function Streaming() {
             </div>
           ))}
         </div>
+      </div>
+      <div className="streaming-anime-details">
+        <div className="streaming-details-row ">
+          <img src={animeData.image || ""} alt="" />
+          <button style={{ width: "100%" }}>TRAILER</button>
+          <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
+            <button style={{ width: "45%" }}>A</button>
+            <button style={{ width: "45%" }}>MAL</button>
+          </div>
+        </div>
+        <div style={{ width: '59%' }} className="streaming-details-row">
+          <h2>{animeData.title.english || "??"}</h2>
+          <p
+            style={{ color: animeData.color || "inherit", fontStyle: "italic" }}
+          >
+            {animeData.title.romaji || "??"}
+          </p>
+          <div className="anime-details-description">
+            {(animeData.description &&
+              animeData.description.replace(/<[^>]*>?/gm, "")) ||
+              "??"}
+          </div>
+          <div className="anime-details-fullInfo">
+            <div className="full-info-row">
+              <p>
+                Japanese: <span>{animeData.title?.native || "??"}</span>
+              </p>
+              <p>
+                Season:{" "}
+                <span>
+                  {animeData.season || "??"} {animeData.startDate?.year || "??"}
+                </span>
+              </p>
+              <p>
+                Aired:{" "}
+                <span>
+                  {animeData.startDate?.year || "??"}{" "}
+                  {Months[animeData.startDate?.month - 1] || "??"}{" "}
+                  {animeData.startDate?.day || "??"} -{" "}
+                  {(animeData.endDate?.year || "??") +
+                    " " +
+                    (Months[animeData.endDate?.month - 1] || "??") +
+                    " " +
+                    (animeData.endDate?.day || "??")}
+                </span>
+              </p>
+              <p>
+                Premiered:{" "}
+                <span>
+                  {animeData.startDate?.year || "??"}{" "}
+                  {Months[animeData.startDate?.month - 1] || "??"}{" "}
+                  {animeData.startDate?.day || "??"}
+                </span>
+              </p>
+            </div>
+            <div className="full-info-row">
+              <p>
+                Episodes: <span>{animeData.totalEpisodes || "??"}</span>{" "}
+              </p>
+              <p>
+                Duration:{" "}
+                <span>
+                  {animeData.duration ? `${animeData.duration} Min` : "??"}
+                </span>{" "}
+              </p>
+              <p>
+                Status: <span>{animeData.status || "??"}</span>{" "}
+              </p>
+              <p>
+                MAL Score: <span>{animeData.rating || "??"}</span>
+              </p>
+            </div>
+            <div className="full-info-row">
+              <p>
+                Studio:{" "}
+                <span style={{ textTransform: "capitalize" }}>
+                  {animeData.studios?.[0] || "??"}
+                </span>
+              </p>
+              <div className="full-info-genre">
+                {animeData.genres?.map((genre, index) => (
+                  <span key={index}> {genre || "??"} </span>
+                )) || "??"}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="related-section">
+        <h2>Related</h2>
+        {animeData?.relations?.map((anime) => (
+          <Link key={anime.mal_id} to={`/anime/${anime.id}`} >
+          <div className="related-anime">
+            <img src={anime.image} alt={anime.title.english} />
+            <div className="related-anime-details">
+              <h4>{anime.title.english || "??"}</h4>
+              <p>{animeData.type} <span><FontAwesomeIcon icon={faStar} />{animeData.rating}</span></p>
+            </div>
+          </div>
+          </Link>
+        ))}
+      </div>
       </div>
     </div>
   );

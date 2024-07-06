@@ -106,7 +106,7 @@ export default function AnimeDetails() {
             </div>
             <div className="full-info-row">
               <p>
-                Studios: <span style={{ textTransform: 'capitalize' }} >{data.studios?.[0] || "??"}</span>
+                Studio: <span style={{ textTransform: 'capitalize' }} >{data.studios?.[0] || "??"}</span>
               </p>
               <div className="full-info-genre">
                 {data.genres?.map((genre, index) => (

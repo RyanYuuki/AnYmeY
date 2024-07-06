@@ -6,6 +6,7 @@ import {
   faBook,
   faFilm,
   faMagnifyingGlass,
+  faMoon,
   faShuffle,
   faSun,
   faXmark,
@@ -14,9 +15,14 @@ import {
 function Header() {
   const [toggleSearch, setToggleSearch] = useState(false);
   const [inputValue, setInputValue] = useState("");
-
+  const [isDarkMode, setDarkMode] = useState(true);
   const handleInput = (e) => {
     setInputValue(e.target.value);
+  };
+
+  const toggleTheme = () => {
+    setDarkMode(!isDarkMode);
+    document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
   };
 
   return (
@@ -68,8 +74,8 @@ function Header() {
           <button className="action-button">
             <FontAwesomeIcon icon={faShuffle} />
           </button>
-          <button className="action-button">
-            <FontAwesomeIcon icon={faSun} />
+          <button onClick={toggleTheme} className="action-button">
+            <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
           </button>
           <button className="login-button">Login</button>
         </div>

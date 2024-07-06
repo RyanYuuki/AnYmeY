@@ -76,7 +76,7 @@ function Carousel() {
                 </p>
               </div>
               <div className="buttons-group">
-                <button><FontAwesomeIcon icon={faPlayCircle}/> Watch Now</button>
+                <Link to={`/watch/${anime.id}`} ><button><FontAwesomeIcon icon={faPlayCircle}/> Watch Now</button></Link>
                 <Link to={`/anime/${anime.id}`} ><button>Detail {'>'}</button></Link>
               </div>
             </div>
