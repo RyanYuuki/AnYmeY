@@ -9,14 +9,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --text: #f1f0f1;
-  --background: #120f12;
-  --primary: rgba(189, 171, 190, 0.156);
-  --secondary: #5f4561;
-  --accent: #9a6a9e;
 }
 
 body[data-theme="light"] {
+  --tags: grey;
+  --card-bg: #a796cf;
+  --universal-bg: #ada3c2;
   --text-50: #f2f1f3;
   --text-100: #e5e3e8;
   --text-200: #cac7d1;
@@ -79,6 +77,9 @@ body[data-theme="light"] {
 
 }
 body[data-theme="dark"] {
+
+  --tags: black;
+
   --text-50: #0c0c0e;
   --text-100: #19171c;
   --text-200: #322f37;
@@ -99,8 +100,8 @@ body[data-theme="dark"] {
   --background-500: #776699;
   --background-600: #9285ad;
   --background-700: #ada3c2;
-  --background-800: #c9c2d6;
-  --background-900: #e4e0eb;
+  --background-800: #a696cf;
+  --background-900: #9c7ee7;
   --background-950: #f1f0f5;
 
   --primary-50: #0b0811;
@@ -143,8 +144,8 @@ body[data-theme="dark"] {
 
 
 body {
-  background-color: var(--background);
-  color: var(--text);
+  background-color: var(--background-900);
+  color: var(--text-50);
   font-family: "Poppins";
 }
 

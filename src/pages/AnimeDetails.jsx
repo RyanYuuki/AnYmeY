@@ -110,7 +110,7 @@ export default function AnimeDetails() {
               </p>
               <div className="full-info-genre">
                 {data.genres?.map((genre, index) => (
-                  <span key={index}> {genre || "??"} </span>
+                  <span className="genre" key={index}> {genre || "??"} </span>
                 )) || "??"}
               </div>
             </div>

@@ -5,6 +5,7 @@
     justify-content: space-evenly;
     border-radius: 12px;
     padding: 0 10px;
+    background-color: var(--background-800);
 }
 
 .rows {
@@ -12,7 +13,6 @@
     flex-direction: column;
     height: 100%;
     width: 25%;
-    background-color: var(--background);
     gap: 10px;
     padding: 20px;
 }
@@ -22,6 +22,7 @@
     flex-direction: row;
     align-items: center;
     height: 20%;
+    background-color: var(--background-700);
 }
 
 .anime-item img {

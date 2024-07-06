@@ -6,6 +6,7 @@
     width: 97%;
     display: flex;
     gap: 30px;
+    color: white;
 }
 
 .carouselSlider-container { 
@@ -60,7 +61,7 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-    background-color: var(--background);
+    background-color: var(--accent-400);
     padding: 10px 20px;
     width: max-content;
     border-radius: 30px;
@@ -77,9 +78,9 @@
     border-radius: 30px;
     border: none;
     font-size: 16px;
-    background-color: var(--background);
+    background-color: var(--accent-500);
 }
 
 button:hover {
-    background-color: var(--secondary);
+    background-color: var(--secondary-900);
 }

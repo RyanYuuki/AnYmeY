@@ -17,8 +17,13 @@
   left: 0;
   right: 0;
   height: 80px;
-  color: white;
+  color: var(--text-50);
   z-index: 10;
+}
+
+.header span {
+  color: var(--accent-400);
+  font-size: 40px;
 }
 
 .logo {
@@ -135,7 +140,7 @@ input {
 }
 
 .action-button {
-  background-color: #111;
+  background-color: var(--accent-600);
   border: none;
   cursor: pointer;
   color: white;
@@ -144,7 +149,7 @@ input {
 }
 
 .login-button {
-  background-color: #111;
+  background-color: var(--accent-600);
   border: none;
   padding: 10px 30px;
   border-radius: 5px;

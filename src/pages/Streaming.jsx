@@ -128,106 +128,118 @@ function Streaming() {
           ))}
         </div>
       </div>
-      <div className="streaming-anime-details">
-        <div className="streaming-details-row ">
-          <img src={animeData.image || ""} alt="" />
-          <button style={{ width: "100%" }}>TRAILER</button>
-          <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
-            <button style={{ width: "45%" }}>A</button>
-            <button style={{ width: "45%" }}>MAL</button>
-          </div>
-        </div>
-        <div style={{ width: '59%' }} className="streaming-details-row">
-          <h2>{animeData.title.english || "??"}</h2>
-          <p
-            style={{ color: animeData.color || "inherit", fontStyle: "italic" }}
-          >
-            {animeData.title.romaji || "??"}
-          </p>
-          <div className="anime-details-description">
-            {(animeData.description &&
-              animeData.description.replace(/<[^>]*>?/gm, "")) ||
-              "??"}
-          </div>
-          <div className="anime-details-fullInfo">
-            <div className="full-info-row">
-              <p>
-                Japanese: <span>{animeData.title?.native || "??"}</span>
-              </p>
-              <p>
-                Season:{" "}
-                <span>
-                  {animeData.season || "??"} {animeData.startDate?.year || "??"}
-                </span>
-              </p>
-              <p>
-                Aired:{" "}
-                <span>
-                  {animeData.startDate?.year || "??"}{" "}
-                  {Months[animeData.startDate?.month - 1] || "??"}{" "}
-                  {animeData.startDate?.day || "??"} -{" "}
-                  {(animeData.endDate?.year || "??") +
-                    " " +
-                    (Months[animeData.endDate?.month - 1] || "??") +
-                    " " +
-                    (animeData.endDate?.day || "??")}
-                </span>
-              </p>
-              <p>
-                Premiered:{" "}
-                <span>
-                  {animeData.startDate?.year || "??"}{" "}
-                  {Months[animeData.startDate?.month - 1] || "??"}{" "}
-                  {animeData.startDate?.day || "??"}
-                </span>
-              </p>
+      <div className="mid-section">
+        <div className="streaming-anime-details">
+          <div className="streaming-details-row ">
+            <img src={animeData.image || ""} alt="" />
+            <button style={{ width: "100%" }}>TRAILER</button>
+            <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
+              <button style={{ width: "45%" }}>A</button>
+              <button style={{ width: "45%" }}>MAL</button>
             </div>
-            <div className="full-info-row">
-              <p>
-                Episodes: <span>{animeData.totalEpisodes || "??"}</span>{" "}
-              </p>
-              <p>
-                Duration:{" "}
-                <span>
-                  {animeData.duration ? `${animeData.duration} Min` : "??"}
-                </span>{" "}
-              </p>
-              <p>
-                Status: <span>{animeData.status || "??"}</span>{" "}
-              </p>
-              <p>
-                MAL Score: <span>{animeData.rating || "??"}</span>
-              </p>
+          </div>
+          <div style={{ width: "59%" }} className="streaming-details-row">
+            <h2>{animeData.title.english || "??"}</h2>
+            <p
+              style={{
+                color: animeData.color || "inherit",
+                fontStyle: "italic",
+              }}
+            >
+              {animeData.title.romaji || "??"}
+            </p>
+            <div className="anime-details-description">
+              {(animeData.description &&
+                animeData.description.replace(/<[^>]*>?/gm, "").substring(0, 350) + '...') ||
+                "??"}
             </div>
-            <div className="full-info-row">
-              <p>
-                Studio:{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {animeData.studios?.[0] || "??"}
-                </span>
-              </p>
-              <div className="full-info-genre">
-                {animeData.genres?.map((genre, index) => (
-                  <span key={index}> {genre || "??"} </span>
-                )) || "??"}
+            <div className="anime-details-fullInfo">
+              <div className="full-info-row">
+                <p>
+                  Japanese: <span>{animeData.title?.native || "??"}</span>
+                </p>
+                <p>
+                  Season:{" "}
+                  <span>
+                    {animeData.season || "??"}{" "}
+                    {animeData.startDate?.year || "??"}
+                  </span>
+                </p>
+                <p>
+                  Aired:{" "}
+                  <span>
+                    {animeData.startDate?.year || "??"}{" "}
+                    {Months[animeData.startDate?.month - 1] || "??"}{" "}
+                    {animeData.startDate?.day || "??"} -{" "}
+                    {(animeData.endDate?.year || "??") +
+                      " " +
+                      (Months[animeData.endDate?.month - 1] || "??") +
+                      " " +
+                      (animeData.endDate?.day || "??")}
+                  </span>
+                </p>
+                <p>
+                  Premiered:{" "}
+                  <span>
+                    {animeData.startDate?.year || "??"}{" "}
+                    {Months[animeData.startDate?.month - 1] || "??"}{" "}
+                    {animeData.startDate?.day || "??"}
+                  </span>
+                </p>
+              </div>
+              <div className="full-info-row">
+                <p>
+                  Episodes: <span>{animeData.totalEpisodes || "??"}</span>{" "}
+                </p>
+                <p>
+                  Duration:{" "}
+                  <span>
+                    {animeData.duration ? `${animeData.duration} Min` : "??"}
+                  </span>{" "}
+                </p>
+                <p>
+                  Status: <span>{animeData.status || "??"}</span>{" "}
+                </p>
+                <p>
+                  MAL Score: <span>{animeData.rating || "??"}</span>
+                </p>
+              </div>
+              <div className="full-info-row">
+                <p>
+                  Studio:{" "}
+                  <span style={{ textTransform: "capitalize" }}>
+                    {animeData.studios?.[0] || "??"}
+                  </span>
+                </p>
+                <div className="full-info-genre">
+                  {animeData.genres?.map((genre, index) => (
+                    <span className="genre" key={index}> {genre || "??"} </span>
+                  )) || "??"}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="related-section">
-        <h2>Related</h2>
-        {animeData?.relations?.map((anime) => (
-          <Link key={anime.mal_id} to={`/anime/${anime.id}`} >
-          <div className="related-anime">
-            <img src={anime.image} alt={anime.title.english} />
-            <div className="related-anime-details">
-              <h4>{anime.title.english || "??"}</h4>
-              <p>{animeData.type} <span><FontAwesomeIcon icon={faStar} />{animeData.rating}</span></p>
-            </div>
+          <div className="streaming-related-section">
+            <h2>Related</h2>
+            {animeData?.relations?.map((anime) => (
+              <Link key={anime.mal_id} to={`/anime/${anime.id}`}>
+                <div className="related-anime">
+                  <img src={anime.image} alt={anime.title.english} />
+                  <div className="related-anime-details">
+                    <h4>{anime.title.english || "??"}</h4>
+                    <p>
+                      {animeData.type}{" "}
+                      <span>
+                        <FontAwesomeIcon icon={faStar} />
+                        {animeData.rating}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
-          </Link>
-        ))}
-      </div>
+        </div>
       </div>
     </div>
   );

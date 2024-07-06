@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./css/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,15 +20,18 @@ function Header() {
     setInputValue(e.target.value);
   };
 
+  useEffect( () => {
+    document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode])
+
   const toggleTheme = () => {
     setDarkMode(!isDarkMode);
-    document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
   };
 
   return (
     <>
       <nav className="header">
-        <h1 className="logo">AnymeY</h1>
+        <h1 className="logo">An<span>Y</span>meY</h1>
         <div className="nav-links">
           <div className="nav-item">
             <FontAwesomeIcon icon={faFilm} />
@@ -75,7 +78,7 @@ function Header() {
             <FontAwesomeIcon icon={faShuffle} />
           </button>
           <button onClick={toggleTheme} className="action-button">
-            <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
+            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
           </button>
           <button className="login-button">Login</button>
         </div>

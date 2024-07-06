@@ -7,6 +7,7 @@ import AnimeDetails from './pages/AnimeDetails';
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Error from "./pages/Error";
 import Streaming from "./pages/Streaming";
+import { useEffect } from "react";
 
 function App() {
   const { theme, setTheme } = fetchTheme();
