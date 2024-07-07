@@ -38,13 +38,14 @@
 
 .anime-details-row button {
     padding: 12px;
-    background-color: var(--accent-500);
+    background-color: var(--accent-900);
     border-radius: 5px;
     border: none;
+    font-weight: 600;
 }
 
 .anime-details-row button:hover {
-    background-color: var(--accent);
+    background-color: var(--accent-700);
 }
 
 .anime-details-row img {
@@ -55,7 +56,7 @@
 }
 
 .anime-details-description {
-    background-color: var(--primary);
+    background-color: var(--accent-800);
     font-style: italic;
     border-radius: 15px;
     padding: 10px;

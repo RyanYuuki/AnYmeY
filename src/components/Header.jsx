@@ -11,23 +11,26 @@ import {
   faSun,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { FetchRandomAnime } from "../hooks/useApi";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [toggleSearch, setToggleSearch] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [isDarkMode, setDarkMode] = useState(true);
+  const [isDarkMode, setDarkMode] = useState(false);
   const handleInput = (e) => {
     setInputValue(e.target.value);
   };
 
   useEffect( () => {
     document.body.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-  }, [isDarkMode])
+  }, [isDarkMode]);
 
   const toggleTheme = () => {
     setDarkMode(!isDarkMode);
   };
-
+  const randomNum = Math.floor(Math.random() * 10000) + 1;
+ 
   return (
     <>
       <nav className="header">
@@ -78,9 +81,9 @@ function Header() {
             <FontAwesomeIcon icon={faShuffle} />
           </button>
           <button onClick={toggleTheme} className="action-button">
-            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
+            <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
           </button>
-          <button className="login-button">Login</button>
+          <button className="login-button"><Link to={`/anime/${randomNum}`} >Login</Link></button>
         </div>
       </nav>
       <div

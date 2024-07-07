@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   FetchAnimeByID,
@@ -18,7 +18,8 @@ import "@vidstack/react/player/styles/default/theme.css";
 import "@vidstack/react/player/styles/default/layouts/video.css";
 import "./css/Streaming.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faStar } from "@fortawesome/free-solid-svg-icons";
+import SeasonCard from "../components/SeasonCard";
 
 function Streaming() {
   const { id } = useParams();
@@ -28,6 +29,7 @@ function Streaming() {
   const [currentEpisode, setCurrentEpisode] = useState(1);
   const [currentEpisodeID, setCurrentEpisodeID] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
   const [episodeLoading, setEpisodeLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -71,6 +73,17 @@ function Streaming() {
     setCurrentEpisodeID(episode.id);
   };
 
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  const filteredEpisodes = data?.filter((episode) => {
+    return (
+      episode.title.toLowerCase().includes(searchTerm) ||
+      episode.number.toString().includes(searchTerm)
+    );
+  });
+
   const Months = [
     "January",
     "February",
@@ -110,12 +123,31 @@ function Streaming() {
           )}
         </div>
         <div className="streaming-episodes">
-          <h2>Episodes</h2>
-          {data.map((episode) => (
+          <div className="streaming-episodes-header">
+            <select>
+              <option value={`${data[0].number} - ${data.length - 1}`}>
+                Episodes{` ${data[0].number} - ${data.length - 1}`}
+              </option>
+            </select>
+            <div className="streaming-input-box">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={handleInputChange}
+                placeholder="Filter Episodes..."
+              />
+              <FontAwesomeIcon
+                className="search-icon"
+                icon={faMagnifyingGlass}
+              />
+            </div>
+          </div>
+
+          {filteredEpisodes?.map((episode) => (
             <div
               key={episode.id}
               className={`episode ${
-                currentEpisode == episode.number ? "episode-active" : ""
+                currentEpisode === episode.number ? "episode-active" : ""
               } `}
               onClick={() => handleEpisode(episode)}
             >
@@ -130,91 +162,100 @@ function Streaming() {
       </div>
       <div className="mid-section">
         <div className="streaming-anime-details">
-          <div className="streaming-details-row ">
-            <img src={animeData.image || ""} alt="" />
-            <button style={{ width: "100%" }}>TRAILER</button>
-            <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
-              <button style={{ width: "45%" }}>A</button>
-              <button style={{ width: "45%" }}>MAL</button>
-            </div>
-          </div>
-          <div style={{ width: "59%" }} className="streaming-details-row">
-            <h2>{animeData.title.english || "??"}</h2>
-            <p
-              style={{
-                color: animeData.color || "inherit",
-                fontStyle: "italic",
-              }}
-            >
-              {animeData.title.romaji || "??"}
-            </p>
-            <div className="anime-details-description">
-              {(animeData.description &&
-                animeData.description.replace(/<[^>]*>?/gm, "").substring(0, 350) + '...') ||
-                "??"}
-            </div>
-            <div className="anime-details-fullInfo">
-              <div className="full-info-row">
-                <p>
-                  Japanese: <span>{animeData.title?.native || "??"}</span>
-                </p>
-                <p>
-                  Season:{" "}
-                  <span>
-                    {animeData.season || "??"}{" "}
-                    {animeData.startDate?.year || "??"}
-                  </span>
-                </p>
-                <p>
-                  Aired:{" "}
-                  <span>
-                    {animeData.startDate?.year || "??"}{" "}
-                    {Months[animeData.startDate?.month - 1] || "??"}{" "}
-                    {animeData.startDate?.day || "??"} -{" "}
-                    {(animeData.endDate?.year || "??") +
-                      " " +
-                      (Months[animeData.endDate?.month - 1] || "??") +
-                      " " +
-                      (animeData.endDate?.day || "??")}
-                  </span>
-                </p>
-                <p>
-                  Premiered:{" "}
-                  <span>
-                    {animeData.startDate?.year || "??"}{" "}
-                    {Months[animeData.startDate?.month - 1] || "??"}{" "}
-                    {animeData.startDate?.day || "??"}
-                  </span>
-                </p>
+          <div className="streaming-details-container">
+            <div style={{ width: '20%'}} className="streaming-details-row ">
+              <img src={animeData.image || ""} alt="" />
+              <button style={{ width: "100%" }}>TRAILER</button>
+              <div
+                style={{ display: "flex", flexDirection: "row", gap: "10%" }}
+              >
+                <button style={{ width: "45%" }}>A</button>
+                <button style={{ width: "45%" }}>MAL</button>
               </div>
-              <div className="full-info-row">
-                <p>
-                  Episodes: <span>{animeData.totalEpisodes || "??"}</span>{" "}
-                </p>
-                <p>
-                  Duration:{" "}
-                  <span>
-                    {animeData.duration ? `${animeData.duration} Min` : "??"}
-                  </span>{" "}
-                </p>
-                <p>
-                  Status: <span>{animeData.status || "??"}</span>{" "}
-                </p>
-                <p>
-                  MAL Score: <span>{animeData.rating || "??"}</span>
-                </p>
+            </div>
+            <div style={{ width: "80%" }} className="streaming-details-row">
+              <h2>{animeData.title.english || "??"}</h2>
+              <p
+                style={{
+                  color: animeData.color || "inherit",
+                  fontStyle: "italic",
+                }}
+              >
+                {animeData.title.romaji || "??"}
+              </p>
+              <div className="anime-details-description">
+                {(animeData.description &&
+                  animeData.description
+                    .replace(/<[^>]*>?/gm, "")
+                    .substring(0, 350) + "...") ||
+                  "??"}
               </div>
-              <div className="full-info-row">
-                <p>
-                  Studio:{" "}
-                  <span style={{ textTransform: "capitalize" }}>
-                    {animeData.studios?.[0] || "??"}
-                  </span>
-                </p>
-                <div className="full-info-genre">
-                  {animeData.genres?.map((genre, index) => (
-                    <span className="genre" key={index}> {genre || "??"} </span>
-                  )) || "??"}
+              <div className="anime-details-fullInfo">
+                <div className="full-info-row">
+                  <p>
+                    Japanese: <span>{animeData.title?.native || "??"}</span>
+                  </p>
+                  <p>
+                    Season:{" "}
+                    <span>
+                      {animeData.season || "??"}{" "}
+                      {animeData.startDate?.year || "??"}
+                    </span>
+                  </p>
+                  <p>
+                    Aired:{" "}
+                    <span>
+                      {animeData.startDate?.year || "??"}{" "}
+                      {Months[animeData.startDate?.month - 1] || "??"}{" "}
+                      {animeData.startDate?.day || "??"} -{" "}
+                      {(animeData.endDate?.year || "??") +
+                        " " +
+                        (Months[animeData.endDate?.month - 1] || "??") +
+                        " " +
+                        (animeData.endDate?.day || "??")}
+                    </span>
+                  </p>
+                  <p>
+                    Premiered:{" "}
+                    <span>
+                      {animeData.startDate?.year || "??"}{" "}
+                      {Months[animeData.startDate?.month - 1] || "??"}{" "}
+                      {animeData.startDate?.day || "??"}
+                    </span>
+                  </p>
+                </div>
+                <div className="full-info-row">
+                  <p>
+                    Episodes: <span>{animeData.totalEpisodes || "??"}</span>{" "}
+                  </p>
+                  <p>
+                    Duration:{" "}
+                    <span>
+                      {animeData.duration ? `${animeData.duration} Min` : "??"}
+                    </span>{" "}
+                  </p>
+                  <p>
+                    Status: <span>{animeData.status || "??"}</span>{" "}
+                  </p>
+                  <p>
+                    MAL Score: <span>{animeData.rating || "??"}</span>
+                  </p>
+                </div>
+                <div className="full-info-row">
+                  <p>
+                    Studio:{" "}
+                    <span style={{ textTransform: "capitalize" }}>
+                      {animeData.studios?.[0] || "??"}
+                    </span>
+                  </p>
+                  <div className="full-info-genre">
+                    {animeData.genres?.map((genre, index) => (
+                      <span className="genre" key={index}>
+                        {" "}
+                        {genre || "??"}{" "}
+                      </span>
+                    )) || "??"}
+                  </div>
                 </div>
               </div>
             </div>
@@ -228,7 +269,7 @@ function Streaming() {
                   <div className="related-anime-details">
                     <h4>{anime.title.english || "??"}</h4>
                     <p>
-                      {animeData.type}{" "}
+                      <span> {animeData.type} </span>
                       <span>
                         <FontAwesomeIcon icon={faStar} />
                         {animeData.rating}
@@ -238,6 +279,18 @@ function Streaming() {
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="streaming-anime-seasons">
+            <h2>Seasons</h2>
+            <div className="season-card-container">
+            {animeData?.relations?.map((anime) =>
+              anime.relationType == "PREQUEL" ? (
+                <SeasonCard data={anime} />
+              ) : anime?.relationType == "SEQUEL" ? (
+                <SeasonCard data={anime} />
+              ) : null
+            )}
+            </div>
           </div>
         </div>
       </div>

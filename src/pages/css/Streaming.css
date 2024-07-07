@@ -1,5 +1,5 @@
 .streaming-body {
-  margin-top: 100px;
+  margin-top: 90px;
   width: 100%;
   height: 700px;
   padding: 0 20px;
@@ -25,13 +25,44 @@
   flex-direction: column;
   background-color: var(--background-700);
   gap: 10px;
-  width: 27%;
+  width: 25%;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
   overflow: scroll;
   scrollbar-width: none;
   scroll-behavior: smooth;
+}
+
+.streaming-episodes-header {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.streaming-episodes-header select {
+  background-color: var(--background-800);
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 35%;
+}
+
+.streaming-episodes-header input {
+  width: 100%;
+  padding-left: 40px;
+  background-color: var(--background-800);
+}
+
+.streaming-input-box {
+  display: flex;
+  width: 60%;
+  position: relative;
+  align-items: center;
+}
+
+.streaming-input-box .search-icon {
+  position: absolute;
+  left: 10px;
 }
 
 .episode {
@@ -41,7 +72,7 @@
   width: 100%;
   background-color: var(--background-800);
   filter: brightness(0.8);
-  border-radius: 7px;
+  border-radius: 5px;
   gap: 10px;
 }
 
@@ -90,14 +121,18 @@
 
 .streaming-anime-details {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
-  height: 420px;
-  padding-top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
   border-radius: 5px;
   margin-top: 10px;
+}
+
+.streaming-details-container {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: 430px;
+  border-radius: 10px;
 }
 
 .streaming-details-row {
@@ -124,14 +159,6 @@
   width: 180px;
   object-fit: cover;
   border-radius: 20px;
-}
-
-.anime-details-description {
-  background-color: var(--primary);
-  font-style: italic;
-  border-radius: 15px;
-  padding: 10px;
-  font-size: 14px;
 }
 
 .anime-details-fullInfo {
@@ -178,11 +205,11 @@
 .streaming-related-section {
   display: flex;
   flex-direction: column;
-  width: 26%;
-  height: 100%;
+  width: 25%;
+  height: 500px;
+  margin-left: 5%;
   overflow: scroll;
   scrollbar-width: none;
-  margin-left: 35px;
   gap: 5px;
   padding: 15px;
   background-color: var(--background-700);
@@ -201,7 +228,7 @@
   flex-direction: row;
   gap: 5%;
   border-radius: 5px;
-  padding: 5px;
+  padding: 0 5px;
   background-color: var(--background-800);
   margin-top: 10px;
   color: var(--text);
@@ -227,6 +254,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: var(--accent-600);
 }
 
 a {
@@ -236,8 +266,26 @@ a {
 
 .mid-section {
   display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-bottom: 200px;
+}
+
+.streaming-anime-seasons {
+  display: flex;
+  width: 70%;
+  height: 400px;
+  flex-direction: column;
+  padding: 20px;
+  background-color: var(--background-800);
+}
+
+.season-card-container {
+  display: flex;
+  height: 100%;
   flex-direction: row;
-  height: 500px;
-  padding-bottom: 100px;
-  margin-top: 50px;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: var(--background-800);
 }

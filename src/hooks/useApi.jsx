@@ -23,11 +23,6 @@ export const FetchPopularAnime = async (page) => {
         return data.results;
       }
 };
-export const FetchRandomAnime = async () => {
-  const response = await fetch(`${FALLBACK_URL}anime/random`);
-  const data = await response.json();
-  return data.results;
-};
 export const FetchAnimeByID = async (query) => {
   const response = await fetch(`${BASE_URL}info/${query}`);
   const data = await response.json();
@@ -48,3 +43,9 @@ export const FetchEpisodesData = async (query) => {
   const data = await response.json();
   return data;
 }
+export const FetchRandomAnime = async () => {
+  const randomNum = Math.floor(Math.random() * 10000) + 1;
+  const response = await fetch(`${BASE_URL}info/${randomNum}`);
+  const data = await response.json();
+  return data.id;
+} 
