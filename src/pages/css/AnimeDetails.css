@@ -121,10 +121,35 @@
     width: 100%;
 }
 
-.anime-details-related {
+.related-section, .recommendation-section {
     margin-top: 50px;
+    background-color: var(--background-800);
+    padding: 20px;
 }
 
-.anime-details-recommendation {
-    margin-top: 50px;
+
+@media screen and (max-width: 768px) {
+    .anime-details-body {
+        padding: 0;
+    }
+    .anime-details-body button {
+        padding: 10px 5px;
+    }
+    .anime-details-description {
+        display: none;
+    }
+    .anime-details-fullInfo {
+        flex-direction: column;
+        font-size: 10px;
+        padding: 0px;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .anime-details-row img {
+        width: 120px;
+        height: 200px;
+    }
+    .full-info-row span {
+        font-size: 10px;
+    }
 }

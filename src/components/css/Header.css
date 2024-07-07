@@ -14,8 +14,7 @@
   background-size: 30px 30px;
   padding: 20px 5%;
   top: 0;
-  left: 0;
-  right: 0;
+  width: 100vw;
   height: 80px;
   color: var(--text-50);
   z-index: 10;
@@ -68,7 +67,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: #1a1a1a;
+  background-color: var(--accent-800);
   padding: 20px 5%;
   align-items: center;
   justify-content: space-between;

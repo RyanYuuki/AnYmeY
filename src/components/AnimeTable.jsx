@@ -45,7 +45,9 @@ export default function AnimeTable() {
   return (
     <div className="anime-table">
       <div className="rows">
-        <h2>Top Airing</h2>
+        <div className="row-title">
+          <h2>Top Airing</h2>
+        </div>
         <VerticalAnimeCards data={topAiringData} />
       </div>
       <div className="rows">

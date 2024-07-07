@@ -151,10 +151,10 @@ function Streaming() {
               } `}
               onClick={() => handleEpisode(episode)}
             >
-              <img src={episode.image} alt={episode.title} />
+              <img src={episode.image} alt={episode.title || episode.number} />
               <span className="episode-tag">Ep {episode.number}</span>
               <div className="textContainer">
-                <span>Episode {episode.number}</span> {episode.title}
+                <span>Episode {episode.number}</span> {episode.title || episode.id}
               </div>
             </div>
           ))}
@@ -163,7 +163,7 @@ function Streaming() {
       <div className="mid-section">
         <div className="streaming-anime-details">
           <div className="streaming-details-container">
-            <div style={{ width: '20%'}} className="streaming-details-row ">
+            <div className="streaming-details-row first-row">
               <img src={animeData.image || ""} alt="" />
               <button style={{ width: "100%" }}>TRAILER</button>
               <div

@@ -289,3 +289,59 @@ a {
   padding: 10px;
   background-color: var(--background-800);
 }
+
+.first-row {
+  width: 20%;
+}
+
+@media screen and (max-width: 768px) {
+  .streaming-anime-details {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .streaming-section {
+    flex-direction: column;
+  }
+  .video-player-container {
+    width: 100%;
+  }
+  .streaming-episodes {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .streaming-details-container {
+    width: 100%;
+    height: fit-content;
+  }
+  .streaming-details-container h2 {
+    font-size: 18px;
+  }
+  .full-info-row {
+    justify-content: flex-start;
+  }
+  .first-row {
+    width: fit-content;
+  }
+  .first-row img {
+    width: 100px;
+    height: 160px;
+  }
+  .streaming-related-section {
+    width: 100%;
+    margin-left: 0;
+  }
+  .streaming-anime-seasons {
+    width: 100%;
+    height: auto;
+    gap: 10px;
+  }
+  .streaming-anime-seasons h2 {
+    margin-left: 5px;
+  }
+  .season-card-container {
+    height: auto;
+    width: fit-content;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

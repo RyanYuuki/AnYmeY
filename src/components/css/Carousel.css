@@ -84,3 +84,22 @@
 button:hover {
     background-color: var(--secondary-900);
 }
+
+@media (max-width: 768px) {
+
+    .carouselInfo-container {
+        align-items: left;
+        padding: 10px;
+        padding-bottom: 60px;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .description-container {
+        display: none;
+    }
+
+    .carouselContainer h1 {
+        font-size: 24px;
+    }
+}

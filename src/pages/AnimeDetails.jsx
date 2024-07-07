@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./css/AnimeDetails.css";
 import { FetchAnimeByID } from "../hooks/useApi";
-import VerticalCharacterCards from '../components/VerticalCharacterCards';
-import ReusableCarousel from '../components/ReusableCarousel';
+import VerticalCharacterCards from "../components/VerticalCharacterCards";
+import ReusableCarousel from "../components/ReusableCarousel";
 
 export default function AnimeDetails() {
   const { id } = useParams();
@@ -25,7 +25,7 @@ export default function AnimeDetails() {
   }, [id]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 
   if (isLoading) {
@@ -33,8 +33,18 @@ export default function AnimeDetails() {
   }
 
   const Months = [
-    "January", "February", "March", "April", "May", "June", 
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
   return (
@@ -45,8 +55,14 @@ export default function AnimeDetails() {
       <div className="anime-details-info">
         <div className="anime-details-row">
           <img src={data.image || ""} alt="" />
-          
-          <button><Link style={{ textDecoration: 'none', color: 'white' }} to={`/watch/${data.id}`} >WATCH NOW</Link></button>
+          <button>
+            <Link
+              style={{ textDecoration: "none", color: "white" }}
+              to={`/watch/${data.id}`}
+            >
+              WATCH NOW
+            </Link>
+          </button>
           <button>TRAILER</button>
           <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
             <button style={{ width: "45%" }}>A</button>
@@ -59,7 +75,8 @@ export default function AnimeDetails() {
             {data.title.romaji || "??"}
           </p>
           <div className="anime-details-description">
-            {(data.description && data.description.replace(/<[^>]*>?/gm, "")) || "??"}
+            {(data.description && data.description.replace(/<[^>]*>?/gm, "")) ||
+              "??"}
           </div>
           <div className="anime-details-fullInfo">
             <div className="full-info-row">
@@ -67,18 +84,22 @@ export default function AnimeDetails() {
                 Japanese: <span>{data.title?.native || "??"}</span>
               </p>
               <p>
-                Season: <span>{data.season || "??"} {data.startDate?.year || "??"}</span>
+                Season:{" "}
+                <span>
+                  {data.season || "??"} {data.startDate?.year || "??"}
+                </span>
               </p>
               <p>
                 Aired:{" "}
                 <span>
                   {data.startDate?.year || "??"}{" "}
                   {Months[data.startDate?.month - 1] || "??"}{" "}
-                  {data.startDate?.day || "??"}{" "}
-                  -{" "}
-                  {(data.endDate?.year || "??") + " " +
-                   (Months[data.endDate?.month - 1] || "??") + " " + 
-                   (data.endDate?.day || "??")}
+                  {data.startDate?.day || "??"} -{" "}
+                  {(data.endDate?.year || "??") +
+                    " " +
+                    (Months[data.endDate?.month - 1] || "??") +
+                    " " +
+                    (data.endDate?.day || "??")}
                 </span>
               </p>
               <p>
@@ -95,7 +116,8 @@ export default function AnimeDetails() {
                 Episodes: <span>{data.totalEpisodes || "??"}</span>{" "}
               </p>
               <p>
-                Duration: <span>{data.duration ? `${data.duration} Min` : "??"}</span>{" "}
+                Duration:{" "}
+                <span>{data.duration ? `${data.duration} Min` : "??"}</span>{" "}
               </p>
               <p>
                 Status: <span>{data.status || "??"}</span>{" "}
@@ -106,11 +128,17 @@ export default function AnimeDetails() {
             </div>
             <div className="full-info-row">
               <p>
-                Studio: <span style={{ textTransform: 'capitalize' }} >{data.studios?.[0] || "??"}</span>
+                Studio:{" "}
+                <span style={{ textTransform: "capitalize" }}>
+                  {data.studios?.[0] || "??"}
+                </span>
               </p>
               <div className="full-info-genre">
                 {data.genres?.map((genre, index) => (
-                  <span className="genre" key={index}> {genre || "??"} </span>
+                  <span className="genre" key={index}>
+                    {" "}
+                    {genre || "??"}{" "}
+                  </span>
                 )) || "??"}
               </div>
             </div>
@@ -123,10 +151,12 @@ export default function AnimeDetails() {
           <VerticalCharacterCards data={data.characters || []} />
         </div>
       </div>
-      <h2 className="anime-details-related">Related</h2>
-      <ReusableCarousel data={data.relations || []} />
-      <h2 className="anime-details-recommendation">Recommendation</h2>
-      <ReusableCarousel data={data.recommendations || []} />
+      <div className="related-section">
+      <ReusableCarousel title={'Related'} data={data.relations || []} />
+      </div>
+      <div className="recommendation-section">
+      <ReusableCarousel title={'Recommendation'}  data={data.recommendations || []} />
+      </div>
     </div>
   );
 }

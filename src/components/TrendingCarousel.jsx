@@ -30,8 +30,36 @@ export default function TrendingCarousel() {
       <h2 className="carousel-heading">Trending Anime</h2>
       <Swiper
         className="carousel-container"
-        spaceBetween={30}
-        slidesPerView={5}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          300: {
+            slidesPerView: 2,
+            spaceBetween: 10,
+          },
+          350: {
+            slidesPerView: 2,
+            spaceBetween: 15,
+          },
+          400: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+          992: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+          1200: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+          },
+        }}
         style={{ cursor: "grab" }}
       >
         {data.map((anime, index) => (

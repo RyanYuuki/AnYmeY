@@ -1,62 +1,69 @@
 .anime-table {
-    display: flex;
-    height: 750px;
-    flex-direction: row;
-    justify-content: space-evenly;
-    border-radius: 12px;
-    padding: 0 10px;
-    background-color: var(--background-800);
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 12px;
+  padding: 0 10px;
+  background-color: var(--background-800);
 }
 
 .rows {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 25%;
-    gap: 10px;
-    padding: 20px;
+  flex: 1 1 25%;
+  padding: 20px;
 }
 
 .anime-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height: 20%;
-    background-color: var(--background-700);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--background-700);
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .anime-item img {
-    height: 100px;
-    height: 100px;
-    object-fit: contain;
-    border-radius: 10px;
+  max-width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .anime-info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 10px;
-    gap: 10px;
+  flex: 1;
+  margin-left: 10px;
 }
 
 .anime-info .row {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.row-title {
+  margin-bottom: 20px;
 }
 
 .anime-info-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    border-radius: 10px;
-    padding: 5px 10px;
-    font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
 }
 
 .anime-item p {
-    font-size: 15px;
-    font-weight: 700;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .anime-table {
+    flex-direction: column;
+  }
+
+  .rows {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }
