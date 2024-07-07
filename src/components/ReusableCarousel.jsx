@@ -10,16 +10,16 @@ export default function TrendingCarousel({ title,  data = [] }) {
   if (!Array.isArray(data) || data.length === 0) {
     return (
       <div className="carousel-error">
-        <p>No trending anime available at the moment.</p>
+        <p>No {title} anime available at the moment.</p>
       </div>
     );
   }
 
   return (
-    <div className="resuable-carousel-container" >
+    <div className="reusable-carousel-container" >
       <h2>{title}</h2>
     <Swiper
-      className="carousel-container reusable"
+      className="reusable-carousel"
       breakpoints={{
         0: {
           slidesPerView: 1,
@@ -53,7 +53,7 @@ export default function TrendingCarousel({ title,  data = [] }) {
       style={{ cursor: "grab" }}
     >
       {data.map((anime, index) => (
-        <SwiperSlide key={index} className="carousel-item">
+        <SwiperSlide key={index} className="reusable-carousel-item">
           <Link to={`/anime/${anime.id}`}>
             <img
               src={anime.image || "/path/to/default-image.jpg"} // Default image

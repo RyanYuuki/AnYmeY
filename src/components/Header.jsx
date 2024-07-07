@@ -12,7 +12,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FetchRandomAnime } from "../hooks/useApi";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 function Header() {
   const [toggleSearch, setToggleSearch] = useState(false);
@@ -78,7 +78,9 @@ function Header() {
             <FontAwesomeIcon size="1x" icon={faMagnifyingGlass} />
           </button>
           <button className="action-button">
+            <Link to={'/anime/random'} >
             <FontAwesomeIcon icon={faShuffle} />
+            </Link>
           </button>
           <button onClick={toggleTheme} className="action-button">
             <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />

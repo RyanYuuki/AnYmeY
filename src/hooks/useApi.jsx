@@ -44,8 +44,7 @@ export const FetchEpisodesData = async (query) => {
   return data;
 }
 export const FetchRandomAnime = async () => {
-  const randomNum = Math.floor(Math.random() * 10000) + 1;
-  const response = await fetch(`${BASE_URL}info/${randomNum}`);
+  const response = await fetch(`${BASE_URL}random-anime`);
   const data = await response.json();
-  return data.id;
+  return data;
 } 

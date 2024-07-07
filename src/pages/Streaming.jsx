@@ -154,7 +154,8 @@ function Streaming() {
               <img src={episode.image} alt={episode.title || episode.number} />
               <span className="episode-tag">Ep {episode.number}</span>
               <div className="textContainer">
-                <span>Episode {episode.number}</span> {episode.title || episode.id}
+                <span>Episode {episode.number}</span>{" "}
+                {episode.title || episode.id}
               </div>
             </div>
           ))}
@@ -262,35 +263,67 @@ function Streaming() {
           </div>
           <div className="streaming-related-section">
             <h2>Related</h2>
-            {animeData?.relations?.map((anime) => (
-              <Link key={anime.mal_id} to={`/anime/${anime.id}`}>
-                <div className="related-anime">
-                  <img src={anime.image} alt={anime.title.english} />
-                  <div className="related-anime-details">
-                    <h4>{anime.title.english || "??"}</h4>
-                    <p>
-                      <span> {animeData.type} </span>
-                      <span>
-                        <FontAwesomeIcon icon={faStar} />
-                        {animeData.rating}
-                      </span>
-                    </p>
+            {animeData?.relations.length > 0 ? (
+              animeData?.relations?.map((anime) => (
+                <Link key={anime.mal_id} to={`/anime/${anime.id}`}>
+                  <div className="related-anime">
+                    <img src={anime.image} alt={anime.title.english} />
+                    <div className="related-anime-details">
+                      <h4>{anime.title.english || "??"}</h4>
+                      <p>
+                        <span> {animeData.type} </span>
+                        <span>
+                          <FontAwesomeIcon icon={faStar} />
+                          {animeData.rating}
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ))
+            ) : (
+              <p>No Related Anime Available...</p>
+            )}
           </div>
           <div className="streaming-anime-seasons">
             <h2>Seasons</h2>
             <div className="season-card-container">
-            {animeData?.relations?.map((anime) =>
-              anime.relationType == "PREQUEL" ? (
-                <SeasonCard data={anime} />
-              ) : anime?.relationType == "SEQUEL" ? (
-                <SeasonCard data={anime} />
-              ) : null
-            )}
+              {animeData.relations.length > 0 ? (
+                animeData?.relations?.map((anime) =>
+                  anime.relationType == "PREQUEL" ? (
+                    <SeasonCard data={anime} />
+                  ) : anime?.relationType == "SEQUEL" ? (
+                    <SeasonCard data={anime} />
+                  ) : null
+                )
+              ) : (
+                <p>No Sequels / Prequels Available...</p>
+              )}
             </div>
+          </div>
+          <div style={{ marginTop: '40px' }} className="streaming-related-section">
+            <h2>Recommendation</h2>
+            {animeData?.recommendations.length > 0 ? (
+              animeData?.recommendations?.map((anime) => (
+                <Link key={anime.mal_id} to={`/anime/${anime.id}`}>
+                  <div className="related-anime">
+                    <img src={anime.image} alt={anime.title.english} />
+                    <div className="related-anime-details">
+                      <h4>{anime.title.english || "??"}</h4>
+                      <p>
+                        <span> {animeData.type} </span>
+                        <span>
+                          <FontAwesomeIcon icon={faStar} />
+                          {animeData.rating}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p>No Recommendation Anime Available...</p>
+            )}
           </div>
         </div>
       </div>

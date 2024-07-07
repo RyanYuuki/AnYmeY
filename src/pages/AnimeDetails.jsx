@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./css/AnimeDetails.css";
-import { FetchAnimeByID } from "../hooks/useApi";
+import { FetchAnimeByID, FetchRandomAnime } from "../hooks/useApi";
 import VerticalCharacterCards from "../components/VerticalCharacterCards";
 import ReusableCarousel from "../components/ReusableCarousel";
 
@@ -13,8 +13,14 @@ export default function AnimeDetails() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const data = await FetchAnimeByID(id);
-        setData(data);
+        if (id == "random") {
+          const data = await FetchRandomAnime();
+          setData(data);
+          console.log(id);
+        } else {
+          const data = await FetchAnimeByID(id);
+          setData(data);
+        }
       } catch (error) {
         console.error(error);
       } finally {
@@ -152,10 +158,13 @@ export default function AnimeDetails() {
         </div>
       </div>
       <div className="related-section">
-      <ReusableCarousel title={'Related'} data={data.relations || []} />
+        <ReusableCarousel title={"Related"} data={data.relations || []} />
       </div>
       <div className="recommendation-section">
-      <ReusableCarousel title={'Recommendation'}  data={data.recommendations || []} />
+        <ReusableCarousel
+          title={"Recommendation"}
+          data={data.recommendations || []}
+        />
       </div>
     </div>
   );
