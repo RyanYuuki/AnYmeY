@@ -3,12 +3,14 @@
   justify-content: space-evenly;
   border-radius: 12px;
   padding: 0 10px;
-  background-color: var(--background-800);
+  gap: 20px;
 }
 
 .rows {
   flex: 1 1 25%;
   padding: 20px;
+  background-color: var(--background-800);
+  border-radius: 10px;
 }
 
 .anime-item {

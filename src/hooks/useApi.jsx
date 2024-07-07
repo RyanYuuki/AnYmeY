@@ -29,7 +29,8 @@ export const FetchAnimeByID = async (query) => {
   return data;
 };
 export const SearchAnime = async (query) => {
-  const response = await fetch(`${BASE_URL}${query}`);
+  const newQuery = query.trim();
+  const response = await fetch(`${BASE_URL}${newQuery}`);
   const data = await response.json();
   return data.results;
 };

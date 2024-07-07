@@ -2,14 +2,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   FetchAnimeByID,
   FetchEpisodesData,
   FetchStreamingData,
 } from "../hooks/useApi";
-import { MediaPlayer, MediaProvider, Poster } from "@vidstack/react";
+import { MediaPlayer, MediaProvider, Poster, useMediaState } from "@vidstack/react";
 import {
   defaultLayoutIcons,
   DefaultVideoLayout,
@@ -32,6 +32,8 @@ function Streaming() {
   const [searchTerm, setSearchTerm] = useState("");
   const [episodeLoading, setEpisodeLoading] = useState(true);
   const [error, setError] = useState(null);
+  const mediaPlayer = useRef(null);
+  const isPlaying = useMediaState('playing', mediaPlayer);
 
   useEffect(() => {
     const loadData = async () => {
@@ -67,6 +69,7 @@ function Streaming() {
     };
     loadStreamingData();
   }, [currentEpisodeID]);
+
 
   const handleEpisode = (episode) => {
     setCurrentEpisode(episode.number);
@@ -108,6 +111,7 @@ function Streaming() {
         <div className="video-player-container">
           {streamingData ? (
             <MediaPlayer
+              ref={mediaPlayer}
               aspectRatio="16/9"
               title={data[currentEpisode - 1]?.title}
               src={streamingData[4]?.url}
@@ -119,7 +123,7 @@ function Streaming() {
               <MediaProvider />
               <DefaultVideoLayout icons={defaultLayoutIcons} />
               <Poster
-              className="poster"
+                className={`${isPlaying ? 'poster-disabled' : 'poster'}`}
                 src={data[currentEpisode - 1].image}
               />
             </MediaPlayer>
@@ -306,7 +310,10 @@ function Streaming() {
               )}
             </div>
           </div>
-          <div style={{ marginTop: '40px' }} className="streaming-related-section">
+          <div
+            style={{ marginTop: "40px" }}
+            className="streaming-related-section"
+          >
             <h2>Recommendation</h2>
             {animeData?.recommendations.length > 0 ? (
               animeData?.recommendations?.map((anime) => (

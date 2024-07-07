@@ -8,9 +8,10 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState('light');
+    const [toggleSearch, setToggleSearch] = useState(false);
 
     return (
-        <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ThemeContext.Provider value={{ theme, setTheme, toggleSearch, setToggleSearch }}>
             {children}
         </ThemeContext.Provider>
     );

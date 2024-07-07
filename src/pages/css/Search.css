@@ -1,0 +1,25 @@
+/* src/css/Search.css */
+.search-body {
+    position: relative;
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; 
+  }
+
+  .search-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .search-option {
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    background-color: red;
+  }
+
+  
