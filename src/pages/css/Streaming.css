@@ -20,6 +20,12 @@
   border-radius: 10px;
 }
 
+.poster {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .streaming-episodes {
   display: flex;
   flex-direction: column;

@@ -108,6 +108,7 @@ function Streaming() {
         <div className="video-player-container">
           {streamingData ? (
             <MediaPlayer
+              aspectRatio="16/9"
               title={data[currentEpisode - 1]?.title}
               src={streamingData[4]?.url}
               playsInline={true}
@@ -117,6 +118,10 @@ function Streaming() {
             >
               <MediaProvider />
               <DefaultVideoLayout icons={defaultLayoutIcons} />
+              <Poster
+              className="poster"
+                src={data[currentEpisode - 1].image}
+              />
             </MediaPlayer>
           ) : (
             "Loading..."
