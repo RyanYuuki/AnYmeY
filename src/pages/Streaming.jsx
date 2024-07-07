@@ -122,10 +122,10 @@ function Streaming() {
             >
               <MediaProvider />
               <DefaultVideoLayout icons={defaultLayoutIcons} />
-              <Poster
+              {/* <Poster
                 className={`${isPlaying ? 'poster-disabled' : 'poster'}`}
                 src={data[currentEpisode - 1].image}
-              />
+              /> */}
             </MediaPlayer>
           ) : (
             "Loading..."
