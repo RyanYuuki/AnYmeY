@@ -4,6 +4,7 @@ import "../Styling/TrendingCarousel.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Link } from "react-router-dom";
+import { SkeletonCard, SkeletonCarouselItem, SkeletonSlide } from "../General/Skeleton";
 
 export default function TrendingCarousel() {
   const [data, setData] = useState([]);
@@ -23,7 +24,22 @@ export default function TrendingCarousel() {
     fetchData();
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  const arr = [
+    1,
+    2,
+    3,
+  ];
+
+  if (isLoading)
+    return (
+      <div className="body">
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '50px'}} >
+          {arr.map((index) => (
+              <SkeletonCarouselItem key={index} />
+          ))}
+        </div>
+      </div>
+    );
 
   return (
     <div className="body">
@@ -64,12 +80,12 @@ export default function TrendingCarousel() {
       >
         {data.map((anime, index) => (
           <SwiperSlide key={index} className="carousel-item">
-            <Link to={`/anime/${anime.id}`} >
-            <img
-              src={anime.image}
-              draggable="false"
-              alt={anime.title.english}
-            />
+            <Link to={`/anime/${anime.id}`}>
+              <img
+                src={anime.image}
+                draggable="false"
+                alt={anime.title.english}
+              />
             </Link>
             <h4>
               {anime.title.english.length < 20

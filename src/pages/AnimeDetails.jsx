@@ -7,7 +7,7 @@ import CharactersSection from "../components/AnimeDetails/CharactersSection";
 import RelatedSection from "../components/AnimeDetails/RelatedSection";
 import RecommendationSection from "../components/AnimeDetails/RecommendationSection";
 import "./css/AnimeDetails.css";
-
+import { SkeletonCard } from "../components/General/Skeleton";
 const AnimeDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
@@ -37,7 +37,11 @@ const AnimeDetails = () => {
   }, [id]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ width: '100% ', height: '100%', marginTop: '100px' }} >
+        <SkeletonCard />
+      </div>
+    );
   }
 
   const Months = [

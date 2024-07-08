@@ -1,5 +1,34 @@
-import React from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import React from "react";
+import styled, { keyframes, css } from "styled-components";
+
+const BaseSkeleton = styled.div`
+  background: var(--global-primary-skeleton);
+  border-radius: var(--global-border-radius);
+`;
+
+export const SkeletonCarousel = React.memo(() => (
+  <SkeletonCarouselCards />
+));
+
+const SkeletonCarouselSlide = styled(BaseSkeleton)<{ loading?: boolean }>`
+  width: 30%;
+  height: 100%;
+  ${({ loading }) => !loading && animationMixin}
+  @media (max-width: 1000px) {
+    height: 20rem;
+  }
+  @media (max-width: 500px) {
+    height: 18rem;
+  }
+`;
+
+export const SkeletonCarouselItem: React.FC<{ loading?: boolean }> = React.memo(
+  ({ loading }) => (
+    <SkeletonCarouselSlide loading={loading}>
+      <SkeletonImage />
+    </SkeletonCarouselSlide>
+  )
+);
 
 const pulseAnimation = keyframes`
   0%, 100% { background-color: var(--global-primary-skeleton); }
@@ -24,14 +53,7 @@ const SkeletonPulse = keyframes`
 `;
 
 const animationMixin = css`
-  animation:
-    ${pulseAnimation} 1s infinite,
-    ${popInAnimation} 1s infinite;
-`;
-
-const BaseSkeleton = styled.div`
-  background: var(--global-primary-skeleton);
-  border-radius: var(--global-border-radius);
+  animation: ${pulseAnimation} 1s infinite, ${popInAnimation} 1s infinite;
 `;
 
 const SkeletonCards = styled(BaseSkeleton)`
@@ -39,6 +61,12 @@ const SkeletonCards = styled(BaseSkeleton)`
   height: 0;
   padding-top: calc(100% * 184 / 133);
   margin-bottom: 5.1rem;
+  ${animationMixin};
+`;
+
+const SkeletonCarouselCards = styled(BaseSkeleton)`
+  width: 100%;
+  height: 100%;
   ${animationMixin};
 `;
 
@@ -78,7 +106,7 @@ export const SkeletonSlide: React.FC<{ loading?: boolean }> = React.memo(
     <SkeletonSlides loading={loading}>
       <SkeletonImage />
     </SkeletonSlides>
-  ),
+  )
 );
 
 const SkeletonContainer = styled.div`
@@ -92,8 +120,7 @@ const PlayerSkeleton = styled(BaseSkeleton)`
   padding-top: 56.25%;
   width: 100%;
   height: 0;
-  animation:
-    ${SkeletonPulse} 2.5s ease-in-out infinite,
+  animation: ${SkeletonPulse} 2.5s ease-in-out infinite,
     ${playerPopInAnimation} 0.5s ease-in-out;
 `;
 
@@ -101,8 +128,7 @@ const PlayerButtons = styled(BaseSkeleton)`
   position: relative;
   height: 23px;
   width: 100%;
-  animation:
-    ${SkeletonPulse} 2.5s ease-in-out infinite,
+  animation: ${SkeletonPulse} 2.5s ease-in-out infinite,
     ${playerPopInAnimation} 0.5s ease-in-out;
 `;
 

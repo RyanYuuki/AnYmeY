@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import VerticalAnimeCards from "./VerticalAnimeCards";
 import "../Styling/AnimeTable.css";
 import { FetchPopularAnime, FetchTrendingAnime } from "../../hooks/useApi";
+import { SkeletonCard } from "../General/Skeleton";
 export default function AnimeTable() {
   const [topAiringData, setTopAiringData] = useState([]);
   const [mostPopularData, setMostPopularData] = useState([]);
@@ -18,7 +19,7 @@ export default function AnimeTable() {
         const LatestCompletedData = await FetchPopularAnime(3);
         setTopAiringData(TopAiringData);
         setMostPopularData(MostPopularData);
-        setFavouriteData(FavouriteData)
+        setFavouriteData(FavouriteData);
         setLatestCompletedData(LatestCompletedData);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -40,7 +41,12 @@ export default function AnimeTable() {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div style={{ height: "600px", width: "100%", marginTop: "20px" }}>
+        <SkeletonCard />
+      </div>
+    );
 
   return (
     <div className="anime-table">

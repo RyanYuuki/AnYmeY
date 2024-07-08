@@ -14,6 +14,7 @@ import {
 import "swiper/css";
 import "../Styling/Carousel.css";
 import { Link } from "react-router-dom";
+import { SkeletonCarousel } from '../General/Skeleton';
 
 function Carousel() {
   const [data, setData] = useState([]);
@@ -36,7 +37,9 @@ function Carousel() {
     loadTrendingAnime();
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="carouselContainer">
+    <SkeletonCarousel />
+  </div>;
 
   return (
     <div className="carouselContainer">

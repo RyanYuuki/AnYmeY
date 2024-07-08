@@ -40,15 +40,14 @@ function Header() {
         setData(searchData);
       } catch (error) {
         console.error("Search error:", error);
-        setData([]); // Clear data on error
+        setData([]);
       } finally {
         setIsLoading(false);
       }
     }, 300),
-    [] // Ensuring this function is stable and won't be recreated
+    []
   );
 
-  // Handle input change
   const handleInput = (e) => {
     const value = e.target.value;
     setInputValue(value);

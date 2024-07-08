@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -125,7 +126,7 @@ const Streaming = () => {
         </div>
         <div className="streaming-episodes">
           {isLoading ? (
-            <SkeletonSlide />
+            Months.map((index) => <SkeletonSlide /> )
           ) : (
             <EpisodeList
               data={data}
