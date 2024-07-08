@@ -344,7 +344,12 @@ a {
   .streaming-details-container h2 {
     font-size: 18px;
   }
+  .anime-details-fullInfo {
+    flex-direction: column;
+  }
   .full-info-row {
+    width: 100%;
+    flex-wrap: wrap;
     justify-content: flex-start;
   }
   .full-info-row p {
@@ -385,4 +390,5 @@ a {
     flex-direction: column;
     gap: 20px;
   }
+
 }
