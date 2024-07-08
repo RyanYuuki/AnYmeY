@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { FetchTrendingAnime } from "../hooks/useApi";
-import "./css/TrendingCarousel.css";
+import { FetchTrendingAnime } from "../../hooks/useApi";
+import "../Styling/TrendingCarousel.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Link } from "react-router-dom";

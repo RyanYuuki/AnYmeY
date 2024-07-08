@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import "./css/AnimeDetails.css";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { FetchAnimeByID, FetchRandomAnime } from "../hooks/useApi";
-import VerticalCharacterCards from "../components/VerticalCharacterCards";
-import ReusableCarousel from "../components/ReusableCarousel";
+import AnimeCover from "../components/AnimeDetails/AnimeCover";
+import AnimeFullInfo from "../components/AnimeDetails/AnimeFullInfo";
+import CharactersSection from "../components/AnimeDetails/CharactersSection";
+import RelatedSection from "../components/AnimeDetails/RelatedSection";
+import RecommendationSection from "../components/AnimeDetails/RecommendationSection";
+import "./css/AnimeDetails.css";
 
-export default function AnimeDetails() {
+const AnimeDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -13,10 +16,9 @@ export default function AnimeDetails() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        if (id == "random") {
+        if (id === "random") {
           const data = await FetchRandomAnime();
           setData(data);
-          console.log(id);
         } else {
           const data = await FetchAnimeByID(id);
           setData(data);
@@ -55,117 +57,13 @@ export default function AnimeDetails() {
 
   return (
     <div className="anime-details-body">
-      <div className="anime-cover-container">
-        <img src={data.cover || ""} alt="" className="anime-details-cover" />
-      </div>
-      <div className="anime-details-info">
-        <div className="anime-details-row">
-          <img src={data.image || ""} alt="" />
-          <button>
-            <Link
-              style={{ textDecoration: "none"}}
-              to={`/watch/${data.id}`}
-            >
-              WATCH NOW
-            </Link>
-          </button>
-          <button>TRAILER</button>
-          <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
-            <button style={{ width: "45%" }}>A</button>
-            <button style={{ width: "45%" }}>MAL</button>
-          </div>
-        </div>
-        <div className="anime-details-row">
-          <h2>{data.title.english || "??"}</h2>
-          <p style={{ color: data.color || "inherit", fontStyle: "italic" }}>
-            {data.title.romaji || "??"}
-          </p>
-          <div className="anime-details-description">
-            {(data.description && data.description.replace(/<[^>]*>?/gm, "")) ||
-              "??"}
-          </div>
-          <div className="anime-details-fullInfo">
-            <div className="full-info-row">
-              <p>
-                Japanese: <span>{data.title?.native || "??"}</span>
-              </p>
-              <p>
-                Season:{" "}
-                <span>
-                  {data.season || "??"} {data.startDate?.year || "??"}
-                </span>
-              </p>
-              <p>
-                Aired:{" "}
-                <span>
-                  {data.startDate?.year || "??"}{" "}
-                  {Months[data.startDate?.month - 1] || "??"}{" "}
-                  {data.startDate?.day || "??"} -{" "}
-                  {(data.endDate?.year || "??") +
-                    " " +
-                    (Months[data.endDate?.month - 1] || "??") +
-                    " " +
-                    (data.endDate?.day || "??")}
-                </span>
-              </p>
-              <p>
-                Premiered:{" "}
-                <span>
-                  {data.startDate?.year || "??"}{" "}
-                  {Months[data.startDate?.month - 1] || "??"}{" "}
-                  {data.startDate?.day || "??"}
-                </span>
-              </p>
-            </div>
-            <div className="full-info-row">
-              <p>
-                Episodes: <span>{data.totalEpisodes || "??"}</span>{" "}
-              </p>
-              <p>
-                Duration:{" "}
-                <span>{data.duration ? `${data.duration} Min` : "??"}</span>{" "}
-              </p>
-              <p>
-                Status: <span>{data.status || "??"}</span>{" "}
-              </p>
-              <p>
-                MAL Score: <span>{data.rating || "??"}</span>
-              </p>
-            </div>
-            <div className="full-info-row">
-              <p>
-                Studio:{" "}
-                <span style={{ textTransform: "capitalize" }}>
-                  {data.studios?.[0] || "??"}
-                </span>
-              </p>
-              <div className="full-info-genre">
-                {data.genres?.map((genre, index) => (
-                  <span className="genre" key={index}>
-                    {" "}
-                    {genre || "??"}{" "}
-                  </span>
-                )) || "??"}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="characters-section">
-        <h2>Characters</h2>
-        <div className="characters-container">
-          <VerticalCharacterCards data={data.characters || []} />
-        </div>
-      </div>
-      <div className="related-section">
-        <ReusableCarousel title={"Related"} data={data.relations || []} />
-      </div>
-      <div className="recommendation-section">
-        <ReusableCarousel
-          title={"Recommendation"}
-          data={data.recommendations || []}
-        />
-      </div>
+      <AnimeCover cover={data.cover} />
+      <AnimeFullInfo data={data} Months={Months} />
+      <CharactersSection characters={data.characters} />
+      <RelatedSection relations={data.relations} />
+      <RecommendationSection recommendations={data.recommendations} />
     </div>
   );
-}
+};
+
+export default AnimeDetails;

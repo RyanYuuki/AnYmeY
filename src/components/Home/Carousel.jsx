@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { FetchPopularAnime, FetchTrendingAnime } from "../hooks/useApi";
+import { FetchPopularAnime, FetchTrendingAnime } from "../../hooks/useApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,7 +12,7 @@ import {
   faTelevision,
 } from "@fortawesome/free-solid-svg-icons";
 import "swiper/css";
-import "./css/Carousel.css";
+import "../Styling/Carousel.css";
 import { Link } from "react-router-dom";
 
 function Carousel() {

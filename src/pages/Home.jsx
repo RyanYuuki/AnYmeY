@@ -1,6 +1,6 @@
-import Carousel from '../components/Carousel'
-import AnimeTable from '../components/AnimeTable'
-import TrendingCarousel from '../components/TrendingCarousel';
+import Carousel from '../components/Home/Carousel'
+import AnimeTable from '../components/Home/AnimeTable'
+import TrendingCarousel from '../components/Home/TrendingCarousel';
 
 export default function Home() {
   return (

@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
-import "./css/SearchItem.css";
+import "../Styling/SearchItem.css";
 import { Link } from "react-router-dom";
-import { fetchTheme } from "../providers/ThemeProvider";
+import { fetchTheme } from "../../providers/ThemeProvider";
 function SearchItem({ data }) {
   const { toggleSearch, setToggleSearch } = fetchTheme();
   return (

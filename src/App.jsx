@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { fetchTheme } from "./providers/ThemeProvider";
 import { useThemeColors } from "./constants/Colors";
-import Header from "./components/Header";
+import Header from "./components/General/Header";
 import Home from './pages/Home';
 import AnimeDetails from './pages/AnimeDetails';
 import { HashRouter, Route, Routes } from "react-router-dom";

@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 import { Link } from "react-router-dom";
-import './css/SeasonCard.css';
+import '../Styling/SeasonCard.css';
 
 function SeasonCard({ data }) {
   return (

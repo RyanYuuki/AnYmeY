@@ -1,4 +1,4 @@
-import "./css/VerticalCharacterCards.css";
+import "../Styling/VerticalCharacterCards.css";
 
 export default function VerticalAnimeCards({ data = [] }) {
   return data.map((anime) => (

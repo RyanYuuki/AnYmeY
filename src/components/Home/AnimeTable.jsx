@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import VerticalAnimeCards from "./VerticalAnimeCards";
-import "./css/AnimeTable.css";
-import { FetchPopularAnime, FetchTrendingAnime } from "../hooks/useApi";
+import "../Styling/AnimeTable.css";
+import { FetchPopularAnime, FetchTrendingAnime } from "../../hooks/useApi";
 export default function AnimeTable() {
   const [topAiringData, setTopAiringData] = useState([]);
   const [mostPopularData, setMostPopularData] = useState([]);

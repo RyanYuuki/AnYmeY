@@ -1,4 +1,4 @@
-import "./css/VerticalAnimeCards.css";
+import "../Styling/VerticalAnimeCards.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClosedCaptioning, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";

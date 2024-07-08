@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./css/TrendingCarousel.css";
-import './css/ReusableCarousel.css';
+import '../Styling/ReusableCarousel.css';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Link } from "react-router-dom";

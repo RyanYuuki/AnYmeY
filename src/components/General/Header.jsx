@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useCallback } from "react";
-import "./css/Header.css";
+import "../Styling/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
@@ -13,10 +13,10 @@ import {
   faSun,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { FetchRandomAnime, SearchAnime } from "../hooks/useApi";
+import { FetchRandomAnime, SearchAnime } from "../../hooks/useApi";
 import { Link, useNavigate } from "react-router-dom";
-import SearchItem from "./SearchItem";
-import { fetchTheme } from "../providers/ThemeProvider";
+import SearchItem from "../General/SearchItem";
+import { fetchTheme } from "../../providers/ThemeProvider";
 import debounce from "lodash.debounce";
 
 function Header() {
