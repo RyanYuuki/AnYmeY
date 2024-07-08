@@ -16,7 +16,7 @@ const AnimeDetails = ({ animeData, Months }) => {
           <button style={{ width: "45%" }}>MAL</button>
         </div>
       </div>
-      <div style={{ width: "80%" }} className="streaming-details-row second-row">
+      <div className="streaming-details-row second-row">
         <h2>{animeData.title.english || "??"}</h2>
         <p style={{ color: animeData.color || "inherit", fontStyle: "italic" }}>
           {animeData.title.romaji || "??"}

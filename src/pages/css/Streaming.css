@@ -344,9 +344,6 @@ a {
   .streaming-details-container h2 {
     font-size: 18px;
   }
-  .second-row {
-    border: 1px solid;
-  }
   .full-info-row {
     justify-content: flex-start;
   }
@@ -359,10 +356,11 @@ a {
   .full-info-row span {
     font-size: 10px;
   }
-  .full-info-genre {
-  }
   .first-row {
-    width: fit-content;
+    width: 30%;
+  }
+  .second-row {
+    width: 70%;
   }
   .first-row img {
     width: 100px;

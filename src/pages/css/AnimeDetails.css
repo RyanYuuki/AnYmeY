@@ -153,4 +153,7 @@
     .full-info-row span {
         font-size: 10px;
     }
+    .recommendation-section, .related-section {
+        margin: 0 2.5%;
+    }
 }
