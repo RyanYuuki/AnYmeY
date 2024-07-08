@@ -63,7 +63,7 @@ export default function AnimeDetails() {
           <img src={data.image || ""} alt="" />
           <button>
             <Link
-              style={{ textDecoration: "none", color: "white" }}
+              style={{ textDecoration: "none"}}
               to={`/watch/${data.id}`}
             >
               WATCH NOW

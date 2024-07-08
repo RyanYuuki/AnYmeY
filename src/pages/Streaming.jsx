@@ -2,14 +2,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   FetchAnimeByID,
   FetchEpisodesData,
   FetchStreamingData,
 } from "../hooks/useApi";
-import { MediaPlayer, MediaProvider, Poster, useMediaState } from "@vidstack/react";
+import {
+  MediaPlayer,
+  MediaProvider,
+  Poster,
+  useMediaState,
+} from "@vidstack/react";
 import {
   defaultLayoutIcons,
   DefaultVideoLayout,
@@ -31,21 +36,25 @@ function Streaming() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [episodeLoading, setEpisodeLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const mediaPlayer = useRef(null);
-  const isPlaying = useMediaState('playing', mediaPlayer);
+  const [animeError, setAnimeError] = useState(null);
+  const [episodesError, setEpisodesError] = useState(null);
+  const [streamingError, setStreamingError] = useState(null);
 
   useEffect(() => {
     const loadData = async () => {
+      setIsLoading(true);
+      setAnimeError(null);
+      setEpisodesError(null);
       try {
         const AnimeData = await FetchAnimeByID(id);
         const EpisodesData = await FetchEpisodesData(id);
         setAnimeData(AnimeData);
         setData(EpisodesData);
-        setCurrentEpisodeID(EpisodesData[0].id);
+        setCurrentEpisodeID(EpisodesData[0]?.id || null);
       } catch (err) {
-        setError("Failed to load episodes.");
-        console.log(err);
+        setAnimeError("Failed to load anime data.");
+        setEpisodesError("Failed to load episodes.");
+        console.error(err);
       } finally {
         setIsLoading(false);
       }
@@ -56,20 +65,20 @@ function Streaming() {
   useEffect(() => {
     const loadStreamingData = async () => {
       if (!currentEpisodeID) return;
+      setEpisodeLoading(true);
+      setStreamingError(null);
       try {
-        setEpisodeLoading(true);
         const StreamingData = await FetchStreamingData(currentEpisodeID);
         setStreamingData(StreamingData);
       } catch (err) {
-        setError("Failed to load streaming data.");
-        console.log(err);
+        setStreamingError("Failed to load streaming data.");
+        console.error(err);
       } finally {
         setEpisodeLoading(false);
       }
     };
     loadStreamingData();
   }, [currentEpisodeID]);
-
 
   const handleEpisode = (episode) => {
     setCurrentEpisode(episode.number);
@@ -103,32 +112,46 @@ function Streaming() {
   ];
 
   if (isLoading) return <h1>Loading...</h1>;
-  if (error) return <h1>{error}</h1>;
+  if (animeError || episodesError) {
+    return (
+      <div>
+        <h1>{animeError || "Error loading anime details"}</h1>
+        <h2>{episodesError || "Error loading episodes"}</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="streaming-body">
       <div className="streaming-section">
         <div className="video-player-container">
-          {streamingData ? (
+          {episodeLoading ? (
+            <h1>Loading...</h1>
+          ) : streamingError ? (
+            <h1>{streamingError}</h1>
+          ) : streamingData ? (
             <MediaPlayer
-              ref={mediaPlayer}
+              className="player"
               aspectRatio="16/9"
               title={data[currentEpisode - 1]?.title}
               src={streamingData[4]?.url}
-              playsInline={true}
-              crossOrigin={true}
+              playsInline
+              crossOrigin
               streamType="on-demand"
               viewType="video"
+              load="eager"
+              posterLoad="eager"
             >
-              <MediaProvider />
+              <MediaProvider>
+                <Poster
+                  className="vds-poster"
+                  src={data[currentEpisode - 1].image}
+                />
+              </MediaProvider>
               <DefaultVideoLayout icons={defaultLayoutIcons} />
-              <Poster
-                className={`${isPlaying ? 'poster-disabled' : 'poster'}`}
-                src={data[currentEpisode - 1].image}
-              />
             </MediaPlayer>
           ) : (
-            "Loading..."
+            "No streaming data available."
           )}
         </div>
         <div className="streaming-episodes">
@@ -144,6 +167,7 @@ function Streaming() {
                 value={searchTerm}
                 onChange={handleInputChange}
                 placeholder="Filter Episodes..."
+                className="input"
               />
               <FontAwesomeIcon
                 className="search-icon"
@@ -298,18 +322,27 @@ function Streaming() {
             <h2>Seasons</h2>
             <div className="season-card-container">
               {animeData.relations.length > 0 ? (
-                animeData?.relations?.map((anime) =>
-                  anime.relationType == "PREQUEL" ? (
-                    <SeasonCard data={anime} />
-                  ) : anime?.relationType == "SEQUEL" ? (
-                    <SeasonCard data={anime} />
-                  ) : null
+                animeData.relations.some(
+                  (relation) =>
+                    relation.relationType === "PREQUEL" ||
+                    relation.relationType === "SEQUEL"
+                ) ? (
+                  animeData.relations.map(
+                    (anime, index) =>
+                      (anime.relationType === "PREQUEL" ||
+                        anime.relationType === "SEQUEL") && (
+                        <SeasonCard key={index} data={anime} />
+                      )
+                  )
+                ) : (
+                  <p>No Sequels / Prequels Available...</p>
                 )
               ) : (
                 <p>No Sequels / Prequels Available...</p>
               )}
             </div>
           </div>
+
           <div
             style={{ marginTop: "40px" }}
             className="streaming-related-section"

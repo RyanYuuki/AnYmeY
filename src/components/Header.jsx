@@ -100,10 +100,10 @@ function Header() {
             onKeyDown={handleEnter}
           />
           <div
-            style={{ display: toggleSearch ? "flex" : "none" }}
+            style={{ display: toggleSearch && data.length > 0 ? "flex" : "none", zIndex: 1000 }}
             className="search-items"
           >
-            {isLoading ? (
+            {isLoading && data.length == 0 ? (
               <div>Loading...</div>
             ) : (
               data.map((anime, index) => (
@@ -116,13 +116,13 @@ function Header() {
             className={toggleSearch ? "search-active" : "searchIcon"}
             aria-label="Toggle search"
           >
-            <FontAwesomeIcon size="1x" icon={faMagnifyingGlass} />
+            <FontAwesomeIcon color={ isDarkMode ? 'black' : 'white' } size="1x" icon={faMagnifyingGlass} />
           </button>
           <button
             onClick={() => {
               setInputValue("");
               setToggleSearch(false);
-              setData([]); // Clear data on close
+              setData([]);
             }}
             className={toggleSearch ? "closeIcon-active" : "closeIcon"}
             aria-label="Close search"
@@ -140,18 +140,17 @@ function Header() {
           </button>
           <button className="action-button">
             <Link to={"/anime/random"}>
-              <FontAwesomeIcon icon={faShuffle} />
+              <FontAwesomeIcon color="white" icon={faShuffle} />
             </Link>
           </button>
           <button
             onClick={toggleTheme}
             className="action-button"
-            aria-label="Toggle theme"
           >
             <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
           </button>
           <button className="login-button">
-            <Link to={`/anime/${Math.floor(Math.random() * 10000) + 1}`}>
+            <Link style={{ color: 'white' }} to={`/anime/${Math.floor(Math.random() * 100) + 1}`}>
               Login
             </Link>
           </button>
@@ -173,10 +172,10 @@ function Header() {
         />
         { window.innerWidth < 768 ?
         <div
-          style={{ display: toggleSearch ? "flex" : "none" }}
+          style={{ display: toggleSearch && data.length > 0 ? "flex" : "none" }}
           className="search-items-mobile"
         >
-          {isLoading ? (
+          {isLoading && data.length == 0 ? (
             <div>Loading...</div>
           ) : (
             data.map((anime, index) => (
@@ -188,7 +187,7 @@ function Header() {
           onClick={() => {
             setInputValue("");
             setToggleSearch(false);
-            setData([]); // Clear data on close
+            setData([]);
           }}
           className="closeIcon-mobile"
           aria-label="Close search"

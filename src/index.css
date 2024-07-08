@@ -71,7 +71,6 @@ body[data-theme="light"] {
   --accent-800: #2f1c4a;
   --accent-900: #180e25;
   --accent-950: #0c0713;
-
 }
 body[data-theme="dark"] {
   --text-50: #0c0a10;
@@ -133,11 +132,7 @@ body[data-theme="dark"] {
   --accent-800: #c8b5e3;
   --accent-900: #e4daf1;
   --accent-950: #f1ecf8;
-
 }
-
-
-
 
 body {
   background-color: var(--background-900);
@@ -158,4 +153,9 @@ p,
 section,
 span {
   font-family: "Poppins";
+}
+
+select,
+.input {
+  color: var(--text-50);
 }

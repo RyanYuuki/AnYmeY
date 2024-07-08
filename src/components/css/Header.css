@@ -47,7 +47,7 @@
 .nav-item:hover,
 .login-button:hover,
 .action-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--accent-900);
 }
 
 .inputBox {
@@ -55,6 +55,7 @@
   display: flex;
   align-items: center;
   width: 40%;
+  color: white;
 }
 
 .inputBox-mobile {
@@ -80,7 +81,6 @@ input {
   background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   border: 1px solid grey;
-  color: white;
   font-size: 1em;
   outline: none;
 }
@@ -107,7 +107,6 @@ input {
   background: none;
   border: none;
   cursor: pointer;
-  color: white;
   left: 15px;
 }
 
@@ -119,7 +118,6 @@ input {
   display: block;
   background: none;
   border: none;
-  color: white;
   cursor: pointer;
   position: absolute;
   right: 15px;
@@ -129,7 +127,6 @@ input {
 .searchIcon-mobile {
   background: none;
   border: none;
-  color: white;
   cursor: pointer;
   margin-left: 10px;
 }
@@ -137,13 +134,17 @@ input {
 .action-buttons {
   display: flex;
   gap: 20px;
+  color: var(--text-50);
+}
+
+.action-buttons button {
+  color: white;
 }
 
 .action-button {
   background-color: var(--accent-600);
   border: none;
   cursor: pointer;
-  color: white;
   padding: 10px 15px;
   border-radius: 5px;
 }
