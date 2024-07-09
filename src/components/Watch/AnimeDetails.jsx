@@ -109,9 +109,7 @@ const AnimeDetails = ({ animeData, Months }) => {
         </div>
       </div>
       <div className="anime-details-description-mobile">
-        {(animeData.description &&
-          animeData.description.replace(/<[^>]*>?/gm, "")) ||
-          "??"}
+        {animeData.description}
       </div>
     </>
   );
