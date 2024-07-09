@@ -24,7 +24,7 @@ const AnimeDetails = () => {
           setData(data);
         }
       } catch (error) {
-        console.error(error);
+        console.error('error: ', error);
       } finally {
         setIsLoading(false);
       }

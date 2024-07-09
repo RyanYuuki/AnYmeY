@@ -4,6 +4,8 @@ import React from "react";
 import "../Styling/SearchItem.css";
 import { Link } from "react-router-dom";
 import { fetchTheme } from "../../providers/ThemeProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShield, faStar } from "@fortawesome/free-solid-svg-icons";
 function SearchItem({ data }) {
   const { toggleSearch, setToggleSearch } = fetchTheme();
   return (
@@ -20,8 +22,8 @@ function SearchItem({ data }) {
           <div className="search-item-row">
             <p>{data?.releaseDate || "??"}</p>
             <p>{data?.type || "??"}</p>
-            <p>{data?.totalEpisodes || "??"}</p>
-            <p>{data?.rating || "??"}</p>
+            <p> <FontAwesomeIcon icon={faShield} /> {data?.totalEpisodes || "??"}</p>
+            <p> <FontAwesomeIcon icon={faStar} /> {data?.rating || "??"}</p>
           </div>
         </div>
       </div>

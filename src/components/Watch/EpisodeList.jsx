@@ -22,11 +22,13 @@ const EpisodeList = ({
   return (
     <>
       <div className="streaming-episodes-header">
-        <select>
+        <div className="episodes-select-box">
+        <select style={{ width: '100%', height: '100%' }} >
           <option value={`${data[0].number} - ${data.length - 1}`}>
             Episodes{` ${data[0].number} - ${data.length - 1}`}
           </option>
         </select>
+        </div>
         <div className="streaming-input-box">
           <input
             type="text"

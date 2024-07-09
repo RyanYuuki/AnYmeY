@@ -337,6 +337,12 @@ a {
     width: 100%;
     min-height: 350px;
   }
+  .episodes-select-box {
+    width: 45%;
+  }
+  .streaming-input-box {
+    width: 55%;
+  }
   .streaming-details-container {
     width: 100%;
     height: fit-content;

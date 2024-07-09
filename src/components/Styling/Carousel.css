@@ -57,6 +57,7 @@
     font-size: 30px;
 }
 
+
 .misc-info {
     display: flex;
     flex-direction: row;
@@ -64,7 +65,7 @@
     padding: 10px 20px;
     width: max-content;
     border-radius: 30px;
-    background-color: rgb(0,0,0,0.8);
+    background-color: var(--background-700);
 }
 
 .buttons-group {
@@ -78,7 +79,7 @@
     border-radius: 30px;
     border: none;
     font-size: 16px;
-    background-color: rgb(0,0,0,0.8);
+    background-color: var(--background-600)
 }
 
 button:hover {

@@ -99,8 +99,7 @@ function Header() {
             onKeyDown={handleEnter}
           />
           <div
-            style={{ display: toggleSearch && data.length > 0 ? "flex" : "none", zIndex: 1000 }}
-            className="search-items"
+            className={`search-items ${toggleSearch && data.length > 0 ? 'search-items-active' : '' } `}
           >
             {isLoading && data.length == 0 ? (
               <div>Loading...</div>
