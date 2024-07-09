@@ -38,7 +38,7 @@ const AnimeDetails = () => {
 
   if (isLoading) {
     return (
-      <div style={{ width: '100% ', height: '100%', marginTop: '100px' }} >
+      <div style={{ width: '100%', height: '100%', marginTop: '90px', padding: '0 10%', borderRadius: '10px' }} >
         <SkeletonCard />
       </div>
     );

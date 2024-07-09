@@ -1,6 +1,6 @@
-@import '@vidstack/react/player/styles/default/theme.css';
-@import '@vidstack/react/player/styles/default/layouts/audio.css';
-@import '@vidstack/react/player/styles/default/layouts/video.css';
+@import "@vidstack/react/player/styles/default/theme.css";
+@import "@vidstack/react/player/styles/default/layouts/audio.css";
+@import "@vidstack/react/player/styles/default/layouts/video.css";
 
 .streaming-body {
   margin-top: 90px;
@@ -40,12 +40,12 @@
   /* 👉 https://vidstack.io/docs/player/components/layouts/default#css-variables for more. */
 }
 
-.player[data-view-type='audio'] .vds-poster {
+.player[data-view-type="audio"] .vds-poster {
   display: none;
   border-radius: 5rem;
 }
 
-.player[data-view-type='video'] {
+.player[data-view-type="video"] {
   aspect-ratio: 16/9;
 }
 
@@ -195,15 +195,6 @@
   border-radius: 20px;
 }
 
-.anime-details-fullInfo {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-}
-
 .anime-details-fullInfo p {
   color: grey;
 }
@@ -216,7 +207,6 @@
 .full-info-row {
   display: flex;
   flex-direction: column;
-  height: auto;
   justify-content: flex-start;
   width: 33%;
 }
@@ -259,9 +249,9 @@
 .related-anime {
   display: flex;
   flex-direction: row;
-  gap: 5%;
+  gap: 10px;
   border-radius: 5px;
-  padding: 0 5px;
+  padding: 10px;
   background-color: var(--background-800);
   margin-top: 10px;
   color: var(--text);
@@ -317,11 +307,10 @@ a {
   background-color: var(--background-800);
 }
 
-.first-row {
-  width: 20%;
-}
-
 @media screen and (max-width: 768px) {
+  .streaming-body {
+    padding: 2.5%;
+  }
   .streaming-anime-details {
     flex-direction: column;
     gap: 20px;
@@ -345,37 +334,21 @@ a {
   }
   .streaming-details-container {
     width: 100%;
-    height: fit-content;
+    height: min-content;
   }
   .streaming-details-container h2 {
-    font-size: 18px;
+    font-size: 16px;
   }
-  .anime-details-fullInfo {
-    flex-direction: column;
-  }
-  .full-info-row {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-  .full-info-row p {
-    display: flex;
-    flex-direction: row;
-    height: 30px;
+  .streaming-details-container p {
     font-size: 10px;
   }
-  .full-info-row span {
-    font-size: 10px;
+  .streaming-details-row img {
+    width: 120px;
+    height: 170px;
   }
-  .first-row {
-    width: 30%;
-  }
-  .second-row {
-    width: 70%;
-  }
-  .first-row img {
-    width: 100px;
-    height: 160px;
+  .streaming-details-row button {
+    font-size: 12px;
+    padding: 10px 5px;
   }
   .streaming-related-section {
     width: 100%;
@@ -396,5 +369,7 @@ a {
     flex-direction: column;
     gap: 20px;
   }
-
+  .second-row {
+    justify-content: space-between;
+  }
 }

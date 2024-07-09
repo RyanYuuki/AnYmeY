@@ -43,6 +43,7 @@
 
 
 body[data-theme="light"] {
+  --transparent: rgb(0, 0, 0, 0.6);
   --text-50: #f1eff5;
   --text-100: #e4e0eb;
   --text-200: #c8c0d8;
@@ -104,6 +105,7 @@ body[data-theme="light"] {
   --accent-950: #0c0713;
 }
 body[data-theme="dark"] {
+  --transparent : rgb(255, 255, 255, 0.6);
   --text-50: #0c0a10;
   --text-100: #18141f;
   --text-200: #2f273f;

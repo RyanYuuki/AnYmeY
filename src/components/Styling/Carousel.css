@@ -34,7 +34,7 @@
     height: 100%;
     width: 100%;
     background: rgb(0,0,0);
-    background: linear-gradient(54deg, rgba(0,0,0,0.7831465349811799) 0%, rgba(255,255,255,0) 100%); 
+    background: linear-gradient(40deg, rgba(0,0,0,0.9) 0%, rgba(255,255,255,0) 100%); 
     z-index: 1;
 }
 
@@ -45,16 +45,16 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
-    gap: 20px;
+    gap: 10px;
     height: 90%;
     width: 50%;
-    padding: 50px;
+    padding: 40px;
     z-index: 2;
     scroll-behavior: smooth;
 }
 
 .carouselInfo-container h1 {
-    font-size: 30px;
+    font-size: 25px;
 }
 
 
@@ -65,7 +65,8 @@
     padding: 10px 20px;
     width: max-content;
     border-radius: 30px;
-    background-color: var(--background-700);
+    background-color: var(--transparent);
+    color: var(--text-50);
 }
 
 .buttons-group {
@@ -79,7 +80,8 @@
     border-radius: 30px;
     border: none;
     font-size: 16px;
-    background-color: var(--background-600)
+    background-color: var(--transparent);
+    color: var(--text-50);
 }
 
 button:hover {
@@ -88,10 +90,14 @@ button:hover {
 
 @media (max-width: 768px) {
 
+    .carouselContainer {
+        height: 256px;
+    }
+
     .carouselInfo-container {
         align-items: left;
         padding: 10px;
-        padding-bottom: 60px;
+        padding-bottom: 40px;
         justify-content: flex-end;
         width: 100%;
     }
@@ -101,6 +107,19 @@ button:hover {
     }
 
     .carouselContainer h1 {
-        font-size: 24px;
+        font-size: 18px;
+        margin-left: 4px;
+        min-width: 40%;
+        max-width: 60%;
+    }
+    .misc-info {
+        gap: 10px;
+    }
+    .misc-info p {
+        font-size: 10px;
+    }
+    .buttons-group button {
+        font-size: 14px;
+        padding: 10px 15px;
     }
 }

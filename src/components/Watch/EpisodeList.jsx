@@ -16,6 +16,7 @@ const EpisodeList = ({
     return (
       episode.title.toLowerCase().includes(searchTerm) ||
       episode.number.toString().includes(searchTerm)
+
     );
   });
 
@@ -24,8 +25,8 @@ const EpisodeList = ({
       <div className="streaming-episodes-header">
         <div className="episodes-select-box">
         <select style={{ width: '100%', height: '100%' }} >
-          <option value={`${data[0].number} - ${data.length - 1}`}>
-            Episodes{` ${data[0].number} - ${data.length - 1}`}
+          <option value={`${data[0].number} - ${data.length}`}>
+            Episodes{` ${data[0].number} - ${data.length}`}
           </option>
         </select>
         </div>

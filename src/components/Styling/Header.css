@@ -203,7 +203,7 @@ input {
   }
   .inputBox-mobile-active {
     display: flex;
-    transform: translateY(95%);
+    transform: translateY(93%);
     transition: transform 0.3s ease;
   }
   .input-mobile {    

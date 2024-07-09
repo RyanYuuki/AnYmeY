@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { FetchPopularAnime, FetchTrendingAnime } from "../../hooks/useApi";
+import { FetchTrendingAnime } from "../../hooks/useApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -23,7 +23,7 @@ function Carousel() {
   useEffect(() => {
     const loadTrendingAnime = async () => {
       try {
-        const result = await FetchPopularAnime();
+        const result = await FetchTrendingAnime(2);
         if (result) {
           setData(result);
         }
