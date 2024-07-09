@@ -192,3 +192,8 @@ select,
 .input {
   color: var(--text-50);
 }
+
+
+button:active {
+  transform: scale(0.8);
+}

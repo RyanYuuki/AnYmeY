@@ -179,13 +179,14 @@
 
 .streaming-details-row button {
   padding: 12px;
-  background-color: var(--accent-600);
+  background-color: var(--accent-900);
   border-radius: 5px;
   border: none;
+  font-weight: 700;
 }
 
 .streaming-details-row button:hover {
-  background-color: var(--accent);
+  background-color: #8080cf;
 }
 
 .streaming-details-row img {
@@ -197,6 +198,13 @@
 
 .anime-details-fullInfo p {
   color: grey;
+}
+
+.streaming-details-container h2 {
+  font-size: 30px;
+}
+.streaming-details-container p {
+  font-size: 14px;
 }
 
 .anime-details-fullInfo span {
@@ -250,11 +258,21 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px;
   background-color: var(--background-800);
   margin-top: 10px;
   color: var(--text);
+}
+
+.related-anime:hover {
+  border-radius: 15px;
+  margin-bottom: 10px;
+  background-color: #8080cf;
+}
+
+.related-anime:active {
+  transform: scale(0.9);
 }
 
 .related-anime-details {
@@ -305,6 +323,25 @@ a {
   justify-content: space-evenly;
   padding: 10px;
   background-color: var(--background-800);
+}
+
+.current-episode-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--accent-900);
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 50px;
+  border-radius: 5px;
+  gap: 5px;
+}
+
+.current-episode-container p {
+  color: grey;
+}
+
+.episode:active {
+  transform: scale(0.9);
 }
 
 @media screen and (max-width: 768px) {
@@ -373,6 +410,7 @@ a {
     padding: 10px;
   }
   .second-row {
+    width: 65%;
     justify-content: space-between;
   }
 }

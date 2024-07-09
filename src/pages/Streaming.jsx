@@ -18,6 +18,7 @@ import {
   SkeletonCard,
   SkeletonSlide,
 } from "../components/General/Skeleton";
+import CurrentEpisode from "../components/Watch/CurrentEpisode";
 
 const Streaming = () => {
   const { id } = useParams();
@@ -58,7 +59,6 @@ const Streaming = () => {
   useEffect(() => {
     const loadStreamingData = async () => {
       if (!currentEpisodeID) return;
-      setEpisodeLoading(true);
       setStreamingError(null);
       try {
         const StreamingData = await FetchStreamingData(currentEpisodeID);
@@ -144,6 +144,7 @@ const Streaming = () => {
           <SkeletonCard />
         ) : (
           <>
+            {/* <CurrentEpisode data={data[currentEpisode - 1]} title={animeData.title.english} /> */}
             <AnimeDetails animeData={animeData} Months={Months} />
             <AnimeList title="Related" data={animeData?.relations} />
             <SeasonsList relations={animeData?.relations} />

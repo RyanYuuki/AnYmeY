@@ -168,19 +168,21 @@ input {
   align-items: center;
   border-radius: 5px;
   gap: 15px;
-  height: 0px;
+  height: auto;
+  transform: scale(0);
+  max-height: 400px;
   top: 100%;
   position: absolute;
   width: 100%;
   overflow-y: scroll;
   scrollbar-width: none;
   background-color: var(--background-800);
+  z-index: 999;
+  padding: 20px;
 }
 
 .search-items-active {
-  padding: 20px;
-  height: auto;
-  max-height: 400px;
+  transform: scale(1);
 }
 
 .search-items-mobile {
