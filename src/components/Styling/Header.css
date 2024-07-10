@@ -43,11 +43,17 @@
   padding: 10px;
   gap: 10px;
 }
-
 .nav-item:hover,
 .login-button:hover,
 .action-button:hover {
-  background-color: var(--accent-900);
+  background-color: indigo;
+  color: white;
+}
+.logo:active,
+.nav-item:active,
+.login-button:active,
+.action-button:active {
+  transform: scale(0.8);
 }
 
 .inputBox {

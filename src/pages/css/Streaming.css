@@ -183,6 +183,7 @@
   border-radius: 5px;
   border: none;
   font-weight: 700;
+  color: var(--text-50);
 }
 
 .streaming-details-row button:hover {

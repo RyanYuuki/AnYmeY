@@ -15,7 +15,7 @@ export default function AnimeTable() {
       try {
         const TopAiringData = await FetchTrendingAnime();
         const MostPopularData = await FetchPopularAnime();
-        const FavouriteData = await FetchPopularAnime(2);
+        const FavouriteData = await FetchPopularAnime(4);
         const LatestCompletedData = await FetchPopularAnime(3);
         setTopAiringData(TopAiringData);
         setMostPopularData(MostPopularData);

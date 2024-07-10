@@ -14,6 +14,10 @@
     margin-bottom: 10px;
 }
 
+.search-item-container:active {
+    transform: scale(0.8);
+}
+
 .search-item-container img {
     height: 60px;
     width: 80px;
@@ -29,9 +33,14 @@
     width: 65%;
 }
 
+.search-item-info p {
+    text-align: center;
+}
+
 .search-item-row {
     display: flex;
     flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .search-item-row p {
@@ -40,7 +49,20 @@
     align-items: center;
     font-size: 12px;
     border-radius: 10px;
-    gap: 2px;
+    gap: 5px;
     margin-left: 10px;
     color: grey;
+}
+
+@media screen and (max-width: 768px) {
+    .search-item-title {
+        font-size: 13px;
+    }
+    .search-item-row {
+        justify-content: space-evenly;
+    }
+    .search-item-row p:nth-child(3),
+    .search-item-row p:nth-child(4) {
+        display: none;
+    }
 }

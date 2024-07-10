@@ -99,7 +99,9 @@ function Header() {
             onKeyDown={handleEnter}
           />
           <div
-            className={`search-items ${toggleSearch && data.length > 0 ? 'search-items-active' : '' } `}
+            className={`search-items ${
+              toggleSearch && data.length > 0 ? "search-items-active" : ""
+            } `}
           >
             {isLoading && data.length == 0 ? (
               <div>Loading...</div>
@@ -114,7 +116,11 @@ function Header() {
             className={toggleSearch ? "search-active" : "searchIcon"}
             aria-label="Toggle search"
           >
-            <FontAwesomeIcon color={ isDarkMode ? 'black' : 'white' } size="1x" icon={faMagnifyingGlass} />
+            <FontAwesomeIcon
+              color={isDarkMode ? "black" : "white"}
+              size="1x"
+              icon={faMagnifyingGlass}
+            />
           </button>
           <button
             onClick={() => {
@@ -141,65 +147,69 @@ function Header() {
               <FontAwesomeIcon color="white" icon={faShuffle} />
             </Link>
           </button>
-          <button
-            onClick={toggleTheme}
-            className="action-button"
-          >
+          <button onClick={toggleTheme} className="action-button">
             <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
           </button>
           <button className="login-button">
-            <Link style={{ color: 'white' }} to={`/anime/${Math.floor(Math.random() * 100) + 1}`}>
+            <Link
+              style={{ color: "white" }}
+              to={`/anime/${Math.floor(Math.random() * 100) + 1}`}
+            >
               Login
             </Link>
           </button>
         </div>
+        {window.innerWidth < 768 ? (
+          <div
+            className={`inputBox-mobile ${
+              toggleSearch ? "inputBox-mobile-active" : ""
+            }`}
+          >
+            <input
+              className="input-mobile"
+              onClick={() => setToggleSearch(true)}
+              value={inputValue}
+              onChange={handleInput}
+              type="text"
+              onKeyDown={handleEnter}
+              placeholder="Search anime..."
+            />
+
+            <div
+              style={{
+                display: toggleSearch && data.length > 0 ? "flex" : "none",
+              }}
+              className="search-items-mobile"
+            >
+              {isLoading && data.length == 0 ? (
+                <div>Loading...</div>
+              ) : (
+                data.map((anime, index) => (
+                  <SearchItem key={index} data={anime} />
+                ))
+              )}
+            </div>
+            <button
+              onClick={() => {
+                setInputValue("");
+                setToggleSearch(false);
+                setData([]);
+              }}
+              className="closeIcon-mobile"
+              aria-label="Close search"
+            >
+              <FontAwesomeIcon size="1x" icon={faXmark} />
+            </button>
+            <button
+              onClick={() => setToggleSearch(false)}
+              className="searchIcon-mobile"
+              aria-label="Search"
+            >
+              <FontAwesomeIcon size="1x" icon={faMagnifyingGlass} />
+            </button>
+          </div>
+        ) : null}
       </nav>
-      <div
-        className={`inputBox-mobile ${
-          toggleSearch ? "inputBox-mobile-active" : ""
-        }`}
-      >
-        <input
-          className="input-mobile"
-          onClick={() => setToggleSearch(true)}
-          value={inputValue}
-          onChange={handleInput}
-          type="text"
-          onKeyDown={handleEnter}
-          placeholder="Search anime..."
-        />
-        { window.innerWidth < 768 ?
-        <div
-          style={{ display: toggleSearch && data.length > 0 ? "flex" : "none" }}
-          className="search-items-mobile"
-        >
-          {isLoading && data.length == 0 ? (
-            <div>Loading...</div>
-          ) : (
-            data.map((anime, index) => (
-              <SearchItem key={index} data={anime} />
-            ))
-          )}
-        </div> : null }
-        <button
-          onClick={() => {
-            setInputValue("");
-            setToggleSearch(false);
-            setData([]);
-          }}
-          className="closeIcon-mobile"
-          aria-label="Close search"
-        >
-          <FontAwesomeIcon size="1x" icon={faXmark} />
-        </button>
-        <button
-          onClick={() => setToggleSearch(false)}
-          className="searchIcon-mobile"
-          aria-label="Search"
-        >
-          <FontAwesomeIcon size="1x" icon={faMagnifyingGlass} />
-        </button>
-      </div>
     </>
   );
 }

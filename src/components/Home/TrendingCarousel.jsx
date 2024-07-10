@@ -4,7 +4,7 @@ import "../Styling/TrendingCarousel.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Link } from "react-router-dom";
-import { SkeletonCard, SkeletonCarouselItem, SkeletonSlide } from "../General/Skeleton";
+import { SkeletonCarouselItem } from "../General/Skeleton";
 
 export default function TrendingCarousel() {
   const [data, setData] = useState([]);

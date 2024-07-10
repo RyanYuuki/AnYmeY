@@ -2,35 +2,78 @@ import "../Styling/VerticalAnimeCards.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClosedCaptioning, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+
 export default function VerticalAnimeCards({ data }) {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoverPosition, setHoverPosition] = useState("below");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setHoveredIndex(null);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleMouseEnter = (index, event) => {
+    const hoverItem = event.currentTarget.querySelector(".anime-item-hover");
+    const hoverItemHeight = hoverItem.offsetHeight;
+    const hoverItemTop = event.currentTarget.getBoundingClientRect().top;
+    const spaceAbove = hoverItemTop;
+    const spaceBelow =
+      window.innerHeight - (hoverItemTop + event.currentTarget.offsetHeight);
+
+    if (spaceBelow < hoverItemHeight && spaceAbove > hoverItemHeight) {
+      setHoverPosition("above");
+    } else {
+      setHoverPosition("below");
+    }
+
+    setHoveredIndex(index);
+  };
+
   return data.map((anime, index) =>
     index > 4 ? null : (
-      <div key={anime.mal_id} className="anime-item">
+      <div
+        key={anime.mal_id}
+        className={`anime-item ${hoveredIndex === index ? "hover" : ""}`}
+        onMouseEnter={(event) => handleMouseEnter(index, event)}
+        onMouseLeave={() => setHoveredIndex(null)}
+      >
         <Link to={`/anime/${anime.id}`}>
-        <img
-          className="anime-image"
-          src={anime.image}
-          alt={anime.title.english}
-        />
+          <img
+            className="anime-image"
+            src={anime.image}
+            alt={anime.title.english}
+          />
         </Link>
         <div className="anime-info">
-          <p>{ anime.title.english.length > 60 ? anime.title.english.substring(0, 60) + '...' : anime.title.english}</p>
+          <p>
+            {anime.title.english.length > 60
+              ? anime.title.english.substring(0, 60) + "..."
+              : anime.title.english}
+          </p>
           <div className="row">
-            <div
-              style={{
-                backgroundColor: anime.color
-                  ? anime.color
-                  : "rgb(255,255,255,0.6)",
-              }}
-              className="anime-info-item"
-            >
+            <div className="anime-info-item item1">
               <FontAwesomeIcon icon={faClosedCaptioning} />
-              24
+              {anime.totalEpisodes || '??'}
             </div>
-            <p className="anime-info-type">{anime.type}</p>
+            <div className="anime-info-item item2">
+              <FontAwesomeIcon icon={faStar} />
+              {anime.rating || '??'}
+            </div>
+            <p className="anime-info-type">{" " + anime.type}</p>
           </div>
         </div>
-        <div className="anime-item-hover">
+        <div className={`anime-item-hover ${hoverPosition}`}>
           <h4 className="aime-title">{anime.title.english}</h4>
           <div className="anime-tags">
             <p className="anime-rating">
@@ -53,10 +96,11 @@ export default function VerticalAnimeCards({ data }) {
               <span>Release Date: </span> {anime.releaseDate}
             </p>
             <p>
-              <span>Status:  </span> {anime.status}
+              <span>Status: </span> {anime.status}
             </p>
             <p>
-              <span>Genres:  </span> {anime.genres[0]} {anime.genres[1]} {anime.genres[2] || ''}
+              <span>Genres: </span> {anime.genres[0]} {anime.genres[1]}{" "}
+              {anime.genres[2] || ""}
             </p>
           </div>
         </div>

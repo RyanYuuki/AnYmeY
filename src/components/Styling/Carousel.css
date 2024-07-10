@@ -84,8 +84,13 @@
     color: var(--text-50);
 }
 
-button:hover {
+.buttons-group button:hover {
+    transform: scale(1.1);
     background-color: var(--secondary-900);
+}
+
+.buttons-group button:active {
+    transform: scale(0.9);
 }
 
 @media (max-width: 768px) {
@@ -97,7 +102,7 @@ button:hover {
     .carouselInfo-container {
         align-items: left;
         padding: 10px;
-        padding-bottom: 40px;
+        padding-bottom: 50px;
         justify-content: flex-end;
         width: 100%;
     }

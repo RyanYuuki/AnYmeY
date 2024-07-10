@@ -1,16 +1,16 @@
 .anime-table {
   display: flex;
   justify-content: space-evenly;
-  border-radius: 12px;
-  padding: 0 10px;
+  border-radius: 5px;
   gap: 20px;
+  padding: 10px;
 }
 
 .rows {
   flex: 1 1 25%;
   padding: 20px;
-  background-color: var(--background-800);
   border-radius: 10px;
+  background-color: var(--background-800);
 }
 
 .anime-item {
@@ -35,29 +35,11 @@
   margin-left: 10px;
 }
 
-.anime-info .row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
 
 .row-title {
   margin-bottom: 20px;
 }
 
-.anime-info-item {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border-radius: 10px;
-  padding: 5px 10px;
-  font-size: 12px;
-}
-
-.anime-item p {
-  font-size: 15px;
-  font-weight: 700;
-}
 
 @media (max-width: 768px) {
   .anime-table {
