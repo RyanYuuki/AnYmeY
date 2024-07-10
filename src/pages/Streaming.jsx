@@ -144,7 +144,7 @@ const Streaming = () => {
           <SkeletonCard />
         ) : (
           <>
-            {/* <CurrentEpisode data={data[currentEpisode - 1]} title={animeData.title.english} /> */}
+            <CurrentEpisode data={data[currentEpisode - 1]} title={animeData.title.english} />
             <AnimeDetails animeData={animeData} Months={Months} />
             <AnimeList title="Related" data={animeData?.relations} />
             <SeasonsList relations={animeData?.relations} />

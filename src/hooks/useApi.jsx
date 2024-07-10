@@ -1,6 +1,7 @@
 const BASE_URL = "https://consumet-api-two-nu.vercel.app/meta/anilist/";
 const FALLBACK_URL = "https://api.jikan.moe/v4/";
-
+const MANGA_BASE_URL = 'https://consumet-api-two-nu.vercel.app/meta/anilist-manga/';
+// ANIME
 export const FetchTrendingAnime = async (page) => {
   if (page == undefined) {
     const response = await fetch(`${BASE_URL}trending`);
@@ -49,3 +50,15 @@ export const FetchRandomAnime = async () => {
   const data = await response.json();
   return data;
 } 
+
+//MANGA
+
+export const FetchMangas = async () => {
+  const mangaArr = [];
+  for (let i = 100; i <= 110; i++) {
+    const mangaData = await fetch(`${MANGA_BASE_URL}info/${i}?provider=mangakakalot`);
+    const data = await mangaData.json();
+    mangaArr.push(data);
+  }
+  return mangaArr;
+};

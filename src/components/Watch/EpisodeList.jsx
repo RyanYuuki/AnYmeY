@@ -57,7 +57,7 @@ const EpisodeList = ({
             <span className="episode-tag">Ep {episode.number}</span>
             <div className="textContainer">
               <span>Episode {episode.number}</span>{" "}
-              {episode.title || episode.id}
+              <p>{episode.title || episode.id}</p>
             </div>
           </div>
         )

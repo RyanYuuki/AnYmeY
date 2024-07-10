@@ -9,13 +9,15 @@ import { SkeletonCarouselItem } from "../General/Skeleton";
 export default function TrendingCarousel() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await FetchTrendingAnime();
+        const result = await FetchTrendingAnime(3);
         setData(result);
       } catch (error) {
+        setError("Error while fetching trending anime.");
         console.error(error);
       } finally {
         setIsLoading(false);
@@ -24,22 +26,28 @@ export default function TrendingCarousel() {
     fetchData();
   }, []);
 
-  const arr = [
-    1,
-    2,
-    3,
-  ];
+  const loadingSkeletons = [1, 2, 3];
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="body">
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '50px'}} >
-          {arr.map((index) => (
-              <SkeletonCarouselItem key={index} />
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', marginTop: '50px' }}>
+          {loadingSkeletons.map((index) => (
+            <SkeletonCarouselItem key={index} />
           ))}
         </div>
       </div>
     );
+  }
+
+  if (error) {
+    return (
+      <div className="body">
+        <h2 className="carousel-heading">Trending Anime</h2>
+        <p>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="body">
@@ -78,23 +86,25 @@ export default function TrendingCarousel() {
         }}
         style={{ cursor: "grab" }}
       >
-        {data.map((anime, index) => (
-          <SwiperSlide key={index} className="carousel-item">
-            <Link to={`/anime/${anime.id}`}>
-              <img
-                src={anime.image}
-                draggable="false"
-                alt={anime.title.english}
-              />
-            </Link>
-            <h4>
-              {anime.title.english.length < 20
-                ? anime.title.english
-                : anime.title.english.substring(0, 20) + "..."}
-            </h4>
-            {/* <div className="carousel-item-hover"></div> */}
-          </SwiperSlide>
-        ))}
+        {data.map((anime, index) => {
+          const title = anime?.title?.english || anime?.title?.romaji || anime?.title?.userPreferred || '??';
+          return (
+            <SwiperSlide key={index} className="carousel-item">
+              <Link to={`/anime/${anime.id}`}>
+                <img
+                  src={anime.image}
+                  draggable="false"
+                  alt={title}
+                />
+              </Link>
+              <h4>
+                {title.length < 20
+                  ? title
+                  : title.substring(0, 20) + "..."}
+              </h4>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </div>
   );

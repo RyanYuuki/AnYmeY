@@ -25,7 +25,7 @@
 }
 
 .player {
-  --brand-color: #f5f5f5;
+  --brand-color: #8080cf;
   --focus-color: #4e9cf6;
 
   --audio-brand: var(--brand-color);
@@ -36,6 +36,8 @@
   --video-focus-ring-color: var(--focus-color);
   --video-border-radius: var(--global-border-radius);
   --video-border: none;
+  --video-sm-play-button-bg: #8080cf;
+  --media-menu-border-radius: 10px;
 
   /* 👉 https://vidstack.io/docs/player/components/layouts/default#css-variables for more. */
 }
@@ -111,7 +113,7 @@
 
 .episode img {
   height: 100px;
-  width: 35%;
+  width: 45%;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -132,13 +134,20 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 8px 0;
+  padding: 10px 0;
+  gap: 5px;
   width: 60%;
 }
 
 .textContainer span {
   font-weight: 600;
   filter: brightness(1.2);
+}
+
+.textContainer p {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgb(255, 255, 255, 0.9);
 }
 
 .episode-tag {
@@ -166,7 +175,6 @@
   flex-direction: row;
   width: 70%;
   border-radius: 10px;
-
 }
 
 .streaming-details-row {
@@ -328,17 +336,70 @@ a {
 
 .current-episode-container {
   display: flex;
-  flex-direction: column;
-  background-color: var(--accent-900);
-  width: 100%;
-  padding: 20px;
-  margin-bottom: 50px;
-  border-radius: 5px;
-  gap: 5px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 72%;
+  height: 100px;
+  margin-top: -20px;
+  margin-bottom: 25px;
 }
 
-.current-episode-container p {
-  color: grey;
+.current-episode-container .episodes-row {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--background-800);
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.episodes-row .sub,
+.episodes-row .dub {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+}
+
+.servers {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+}
+
+.sub .server,
+.dub .server {
+  padding: 5px 15px;
+  background-color: var(--background-900);
+  border-radius: 5px;
+  /* background-color:  #8080cf; */
+}
+
+.server-active {
+  background-color: #8080cf;
+}
+
+.episodes-row:first-child {
+  width: 58%;
+  padding: 20px;
+}
+
+.episodes-row:last-child {
+  width: 40%;
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3px;
+}
+
+.sub .label {
+  transform: translateX(-2.5px);
 }
 
 .episode:active {
