@@ -116,9 +116,9 @@ const Streaming = () => {
             <SkeletonPlayer />
           ) : (
             <VideoPlayer
-              streamingData={streamingData}
-              currentEpisodeTitle={data[currentEpisode - 1]?.title}
-              currentEpisodeImage={data[currentEpisode - 1]?.image}
+              streamingData={streamingData || []}
+              currentEpisodeTitle={data[currentEpisode - 1]?.title || '??'}
+              currentEpisodeImage={data[currentEpisode - 1]?.image || '??'}
               episodeLoading={episodeLoading}
               streamingError={streamingError}
             />
@@ -126,10 +126,10 @@ const Streaming = () => {
         </div>
         <div className="streaming-episodes">
           {isLoading ? (
-            Months.map((index) => <SkeletonSlide /> )
+            Months.map((index) => <SkeletonSlide key={index} /> )
           ) : (
             <EpisodeList
-              data={data}
+              data={data || []}
               currentEpisode={currentEpisode}
               handleEpisode={handleEpisode}
               searchTerm={searchTerm}
@@ -144,14 +144,14 @@ const Streaming = () => {
           <SkeletonCard />
         ) : (
           <>
-            <CurrentEpisode data={data[currentEpisode - 1]} title={animeData.title.english} />
-            <AnimeDetails animeData={animeData} Months={Months} />
-            <AnimeList title="Related" data={animeData?.relations} />
-            <SeasonsList relations={animeData?.relations} />
+            <CurrentEpisode data={data[currentEpisode - 1] || []} title={animeData.title.english} />
+            <AnimeDetails animeData={animeData || []} Months={Months} />
+            <AnimeList title="Related" data={animeData?.relations || []} />
+            <SeasonsList relations={animeData?.relations || []} />
             <AnimeList
               style={{ marginTop: "40px" }}
               title="Recommendation"
-              data={animeData?.recommendations}
+              data={animeData?.recommendations || []}
             />
           </>
         )}

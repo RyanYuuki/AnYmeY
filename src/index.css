@@ -127,7 +127,7 @@ body[data-theme="dark"] {
   --background-600: #957cb6;
   --background-700: #b09dc8;
   --background-800: #cabeda;
-  --background-900: #e5deed;
+  --background-900:  #080808;
   --background-950: #f2eff6;
 
   --primary-50: #0c0811;
@@ -165,6 +165,29 @@ body[data-theme="dark"] {
   --accent-800: #c8b5e3;
   --accent-900: #e4daf1;
   --accent-950: #f1ecf8;
+}
+
+:root.dark-mode {
+  --global-primary-bg: #080808;
+  --global-primary-bg-tr: rgba(8, 8, 8, 0.9);
+  --global-secondary-bg: #141414;
+  --global-tertiary-bg: #222222;
+  --global-div: #141414;
+  --global-div-tr: rgba(20, 20, 20, 0.5);
+  --global-border: rgba(245, 245, 245, 0.1);
+  --global-text: #e8e8e8;
+  --global-text-muted: #696969;
+  --global-card-bg: #181818;
+  --global-card-title-bg: #151515;
+  --global-card-shadow: rgba(0, 0, 0, 0.6);
+  --global-primary-skeleton: rgba(85, 85, 85, 0.1);
+  --global-secondary-skeleton: rgba(85, 85, 85, 0.3);
+  --global-button-bg: #202020;
+  --global-button-hover-bg: #292929;
+  --global-button-shadow: rgba(0, 0, 0, 0.6);
+  --global-button-text: #ebebeb;
+  --global-genre-button-bg: #222222;
+  --global-shadow: rgba(255, 255, 255, 0.08);
 }
 
 body {

@@ -19,7 +19,7 @@ function CurrentEpisode({ data, title }) {
     <div className="current-episode-container">
       <div className="episodes-row">
         <p>
-          You{`'`}re Watching <span style={{ fontWeight: '600' }} >Episode {data.number}</span>
+          You{`'`}re Watching <span style={{ fontWeight: '600' }} >Episode {data.number || '?'}</span>
         </p>
         <p>if current server {"doesn't"} then you can switch to different server.</p>
       </div>
