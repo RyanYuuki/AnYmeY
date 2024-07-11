@@ -5,7 +5,6 @@ import "swiper/css";
 import { Link } from "react-router-dom";
 
 export default function TrendingCarousel({ title,  data = [] }) {
-  // Check if data is not an array or is empty
   if (!Array.isArray(data) || data.length === 0) {
     return (
       <div className="carousel-error">

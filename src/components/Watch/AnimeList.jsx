@@ -20,7 +20,7 @@ const AnimeList = ({ title, data, style }) => {
                   <span>{anime.type}</span>
                   <span>
                     <FontAwesomeIcon icon={faStar} />
-                    {anime.rating}
+                    {anime.rating || '??'}
                   </span>
                 </p>
               </div>
