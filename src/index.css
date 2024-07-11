@@ -105,8 +105,8 @@ body[data-theme="light"] {
   --accent-950: #0c0713;
 }
 body[data-theme="dark"] {
-  --transparent : rgb(255, 255, 255, 0.6);
-  --text-50: #0c0a10;
+  --transparent : rgba(20, 20, 20, 0.5);
+  --text-50: white;
   --text-100: #18141f;
   --text-200: #2f273f;
   --text-300: #473b5e;
@@ -125,8 +125,8 @@ body[data-theme="dark"] {
   --background-400: #624983;
   --background-500: #7b5ca3;
   --background-600: #957cb6;
-  --background-700: #b09dc8;
-  --background-800: #cabeda;
+  --background-700: #222222;
+  --background-800: #181818;
   --background-900:  #080808;
   --background-950: #f2eff6;
 
@@ -160,11 +160,11 @@ body[data-theme="dark"] {
   --accent-300: #472970;
   --accent-400: #5e3795;
   --accent-500: #7645ba;
-  --accent-600: #916ac8;
-  --accent-700: #ad8fd6;
-  --accent-800: #c8b5e3;
-  --accent-900: #e4daf1;
-  --accent-950: #f1ecf8;
+  --accent-600: #141414;
+  --accent-700: #141414;
+  --accent-800: #222222;
+  --accent-900: #222222;
+  --accent-950: #333333;
 }
 
 :root.dark-mode {

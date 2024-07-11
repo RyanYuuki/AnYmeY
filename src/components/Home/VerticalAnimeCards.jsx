@@ -52,14 +52,30 @@ export default function VerticalAnimeCards({ data }) {
           <img
             className="anime-image"
             src={anime.image}
-            alt={anime.title.english}
+            alt={anime.title.english || anime.title.romaji || anime.title.userPreferred || anime.title.native || '??'}
           />
         </Link>
         <div className="anime-info">
           <p>
-            {anime.title.english.length > 60
-              ? anime.title.english.substring(0, 60) + "..."
-              : anime.title.english}
+            {(
+              anime.title.english ||
+              anime.title.romaji ||
+              anime.title.userPreferred ||
+              anime.title.native ||
+              '??'
+            ).length > 60
+              ? (
+                anime.title.english ||
+                anime.title.romaji ||
+                anime.title.userPreferred ||
+                anime.title.native ||
+                '??'
+              ).substring(0, 60) + "..."
+              : anime.title.english ||
+                anime.title.romaji ||
+                anime.title.userPreferred ||
+                anime.title.native ||
+                '??'}
           </p>
           <div className="row">
             <div className="anime-info-item item1">
@@ -74,32 +90,33 @@ export default function VerticalAnimeCards({ data }) {
           </div>
         </div>
         <div className={`anime-item-hover ${hoverPosition}`}>
-          <h4 className="aime-title">{anime.title.english}</h4>
+          <h4 className="anime-title">
+            {anime.title.english || anime.title.romaji || anime.title.userPreferred || anime.title.native || '??'}
+          </h4>
           <div className="anime-tags">
             <p className="anime-rating">
               <FontAwesomeIcon color="yellow" icon={faStar} />{" "}
-              {anime.rating / 10}
+              {(anime.rating ? anime.rating / 10 : '??')}
             </p>
             <p className="tag">HD</p>
-            <p className="tag">{anime.totalEpisodes}</p>
-            <p className="tag">{anime.type}</p>
+            <p className="tag">{anime.totalEpisodes || '??'}</p>
+            <p className="tag">{anime.type || '??'}</p>
           </div>
           <div className="anime-description">
-            {anime.description.replace(/<[^>]*>?/gm, "").substring(0, 100) +
-              "..."}
+            {(anime.description ? anime.description.replace(/<[^>]*>?/gm, "").substring(0, 100) + "..." : '??')}
           </div>
           <div className="anime-other-info">
             <p>
-              <span>Japanese: </span> {anime.title.native}
+              <span>Japanese: </span> {anime.title.native || '??'}
             </p>
             <p>
-              <span>Release Date: </span> {anime.releaseDate}
+              <span>Release Date: </span> {anime.releaseDate || '??'}
             </p>
             <p>
-              <span>Status: </span> {anime.status}
+              <span>Status: </span> {anime.status || '??'}
             </p>
             <p>
-              <span>Genres: </span> {anime.genres[0]} {anime.genres[1]}{" "}
+              <span>Genres: </span> {anime.genres[0] || ''} {anime.genres[1] || ''}{" "}
               {anime.genres[2] || ""}
             </p>
           </div>

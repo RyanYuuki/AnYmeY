@@ -117,7 +117,7 @@ function Header() {
             aria-label="Toggle search"
           >
             <FontAwesomeIcon
-              color={isDarkMode ? "black" : "white"}
+              color={"white"}
               size="1x"
               icon={faMagnifyingGlass}
             />
