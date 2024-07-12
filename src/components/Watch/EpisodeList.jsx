@@ -53,7 +53,7 @@ const EpisodeList = ({
             }`}
             onClick={() => handleEpisode(episode)}
           >
-            <img src={episode.image} alt={episode.title || episode.number} />
+            <img src={episode.image} alt={episode.fallback} />
             <span className="episode-tag">Ep {episode.number}</span>
             <div className="textContainer">
               <span>Episode {episode.number}</span>{" "}
