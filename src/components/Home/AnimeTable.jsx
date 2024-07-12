@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import VerticalAnimeCards from "./VerticalAnimeCards";
 import "../Styling/AnimeTable.css";
-import { FetchPopularAnime, FetchTrendingAnime } from "../../hooks/useApi";
+import { FetchPopularAnime, FetchTrendingAnime, GetMangaNew, GetMangaPopular, GetMangaTop } from "../../hooks/useApi";
 import { SkeletonCard } from "../General/Skeleton";
-export default function AnimeTable() {
+export default function AnimeTable({ isManga }) {
   const [topAiringData, setTopAiringData] = useState([]);
   const [mostPopularData, setMostPopularData] = useState([]);
   const [favouriteData, setFavouriteData] = useState([]);
@@ -13,6 +14,17 @@ export default function AnimeTable() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        if (isManga) {
+          const TopAiringData = await GetMangaTop(5);
+          const MostPopularData = await GetMangaPopular(5);
+          const FavouriteData = await GetMangaNew(5);
+          const LatestCompletedData = await GetMangaTop(5);
+          setTopAiringData(TopAiringData);
+          setMostPopularData(MostPopularData);
+          setFavouriteData(FavouriteData);
+          setLatestCompletedData(LatestCompletedData);
+        }
+        else {
         const TopAiringData = await FetchTrendingAnime();
         const MostPopularData = await FetchPopularAnime();
         const FavouriteData = await FetchPopularAnime(4);
@@ -21,6 +33,7 @@ export default function AnimeTable() {
         setMostPopularData(MostPopularData);
         setFavouriteData(FavouriteData);
         setLatestCompletedData(LatestCompletedData);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
@@ -54,25 +67,25 @@ export default function AnimeTable() {
         <div className="row-title">
           <h2>Top Airing</h2>
         </div>
-        <VerticalAnimeCards data={topAiringData} />
+        <VerticalAnimeCards isManga={isManga} data={topAiringData} />
       </div>
       <div className="rows">
         <div className="row-title">
           <h2>Most Popular</h2>
         </div>
-        <VerticalAnimeCards data={mostPopularData} />
+        <VerticalAnimeCards isManga={isManga} data={mostPopularData} />
       </div>
       <div className="rows">
         <div className="row-title">
           <h2>Most Favourite</h2>
         </div>
-        <VerticalAnimeCards data={favouriteData} />
+        <VerticalAnimeCards isManga={isManga} data={favouriteData} />
       </div>
       <div className="rows">
         <div className="row-title">
           <h2>Latest Completed</h2>
         </div>
-        <VerticalAnimeCards data={latestCompletedData} />
+        <VerticalAnimeCards isManga={isManga} data={latestCompletedData} />
       </div>
     </div>
   );

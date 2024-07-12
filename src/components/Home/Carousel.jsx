@@ -1,12 +1,15 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { FetchTrendingAnime } from "../../hooks/useApi";
+import { FetchTrendingAnime, GetMangaTrending } from "../../hooks/useApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBook,
   faCalendar,
   faClock,
+  faHeart,
   faPlayCircle,
   faStar,
   faTelevision,
@@ -16,26 +19,42 @@ import "../Styling/Carousel.css";
 import { Link } from "react-router-dom";
 import { SkeletonCarousel } from "../General/Skeleton";
 
-function Carousel() {
+function Carousel({ isManga }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadTrendingAnime = async () => {
-      try {
-        const result = await FetchTrendingAnime(2);
-        if (result) {
-          setData(result);
+    if (!isManga) {
+      const loadTrendingAnime = async () => {
+        try {
+          const result = await FetchTrendingAnime(2);
+          if (result) {
+            setData(result);
+          }
+        } catch (error) {
+          console.log("Error while fetching data!", error);
+        } finally {
+          setIsLoading(false);
         }
-      } catch (error) {
-        console.log("Error while fetching data!", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadTrendingAnime();
-  }, []);
+      };
+      loadTrendingAnime();
+    } else {
+      const loadTrendingManga = async () => {
+        try {
+          const result = await GetMangaTrending(10);
+          console.log(result);
+          if (result) {
+            setData(result);
+          }
+        } catch (error) {
+          console.log("Error while fetching data!", error);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      loadTrendingManga();
+    }
+  }, [isManga]);
 
   if (isLoading)
     return (
@@ -58,7 +77,7 @@ function Carousel() {
             <div className="carouselImage-container">
               <img
                 className="carouselImage"
-                src={anime.cover}
+                src={anime.cover || anime.image}
                 alt={anime.title.english}
               />
             </div>
@@ -73,16 +92,18 @@ function Carousel() {
               </h1>
               <div className="misc-info">
                 <p>
-                  <FontAwesomeIcon icon={faTelevision} /> {anime.type}
+                  <FontAwesomeIcon icon={faTelevision} /> {anime.type || "??"}
                 </p>
                 <p>
-                  <FontAwesomeIcon icon={faClock} /> {anime.duration}M
+                  <FontAwesomeIcon icon={faClock} />{" "}
+                  {isManga ? anime.status : anime.duration && anime.duration + "M" || "??"}
                 </p>
                 <p>
-                  <FontAwesomeIcon icon={faCalendar} /> {anime.releaseDate}
+                  <FontAwesomeIcon icon={isManga ? faHeart : faCalendar} />{" "}
+                  {isManga ? anime.popularity : anime.releaseDate && anime.releaseDate || "??"}
                 </p>
                 <p>
-                  <FontAwesomeIcon icon={faStar} /> {anime.rating}
+                  <FontAwesomeIcon icon={faStar} /> {anime.rating || "??"}
                 </p>
               </div>
               <div className="description-container">
@@ -93,12 +114,14 @@ function Carousel() {
                 </p>
               </div>
               <div className="buttons-group">
-                <Link to={`/watch/${anime.id}`}>
+                <Link to={ isManga ? `/manga/read/${anime.id}` : `/watch/${anime.id}`}>
                   <button>
-                    <FontAwesomeIcon icon={faPlayCircle} /> Watch Now
+                    <FontAwesomeIcon icon={isManga ? faBook : faPlayCircle} />
+                    {"  "}
+                    {isManga ? "Read Now" : "Watch Now"}
                   </button>
                 </Link>
-                <Link to={`/anime/${anime.id}`}>
+                <Link to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
                   <button>Detail {">"}</button>
                 </Link>
               </div>
