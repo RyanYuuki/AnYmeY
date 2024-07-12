@@ -128,6 +128,7 @@
 
 .episode-active {
   background-color: var(--primary-accent-bg);
+  color: white;
   filter: brightness(1.2);
 }
 
@@ -142,13 +143,11 @@
 
 .textContainer span {
   font-weight: 600;
-  filter: brightness(1.2);
 }
 
 .textContainer p {
   font-size: 0.8rem;
   font-style: italic;
-  color: var(--global-text);
 }
 
 .episode-tag {
