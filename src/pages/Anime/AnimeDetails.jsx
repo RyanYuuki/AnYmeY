@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FetchAnimeByID, FetchRandomAnime } from "../hooks/useApi";
-import AnimeCover from "../components/AnimeDetails/AnimeCover";
-import AnimeFullInfo from "../components/AnimeDetails/AnimeFullInfo";
-import CharactersSection from "../components/AnimeDetails/CharactersSection";
-import RelatedSection from "../components/AnimeDetails/RelatedSection";
-import RecommendationSection from "../components/AnimeDetails/RecommendationSection";
-import "./css/AnimeDetails.css";
-import { SkeletonCard } from "../components/General/Skeleton";
+import { FetchAnimeByID, FetchRandomAnime } from "../../hooks/useApi";
+import AnimeCover from "../../components/AnimeDetails/AnimeCover";
+import AnimeFullInfo from "../../components/AnimeDetails/AnimeFullInfo";
+import CharactersSection from "../../components/AnimeDetails/CharactersSection";
+import RelatedSection from "../../components/AnimeDetails/RelatedSection";
+import RecommendationSection from "../../components/AnimeDetails/RecommendationSection";
+import "../css/AnimeDetails.css";
+import { SkeletonCard } from "../../components/General/Skeleton";
 const AnimeDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);

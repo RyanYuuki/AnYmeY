@@ -1,0 +1,74 @@
+.home-body {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--global-secondary-bg);
+    height: 100vh;
+}
+
+.home-container {
+    position: relative;
+    width: 80%;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 2;
+    padding: 20px; 
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+.home-container h1 {
+    font-size: 48px;
+}
+
+.home-body span {
+    font-size: 60px;
+    color: var(--primary-accent);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.button-group button {
+    padding: 20px 40px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid var(--global-border);
+    background-color: var(--global-div-tr);
+    backdrop-filter: blur(10px);
+    cursor: pointer; 
+}
+
+.button-group button:hover {
+    transform: scale(1.1);
+    background-color: var(--primary-accent);
+}
+
+.bg-image {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.home-body .anime-bg {
+    right: 0;
+}
+
+.home-body .manga-bg {
+    left: 0;
+}

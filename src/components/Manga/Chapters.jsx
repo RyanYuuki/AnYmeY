@@ -15,6 +15,9 @@ function Chapters({ data, title }) {
     chapter.chapterNumber.toString().includes(searchTerm)
   );
 
+  // Use a set to track rendered chapter numbers
+  const renderedChapters = new Set();
+
   return (
     <div className="chapters-body">
       <div className="chapters-header">
@@ -28,14 +31,20 @@ function Chapters({ data, title }) {
         />
       </div>
       <div className="chapters">
-        {filteredChapters.map((chapter, index) => (
-          <Link
-            key={index}
-            to={`/manga/read/${chapter.id}/${title}/${chapter.chapterNumber}/`}
-          >
-            <p className="chapter">{chapter.chapterNumber}</p>
-          </Link>
-        ))}
+        {filteredChapters.map((chapter) => {
+          if (renderedChapters.has(chapter.chapterNumber)) {
+            return null; // Skip rendering duplicate chapters
+          }
+          renderedChapters.add(chapter.chapterNumber);
+          return (
+            <Link
+              key={chapter.id}
+              to={`/manga/read/${chapter.id}/${title}/${chapter.chapterNumber}/`}
+            >
+              <p className="chapter">{chapter.chapterNumber}</p>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

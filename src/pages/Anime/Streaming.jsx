@@ -6,19 +6,19 @@ import {
   FetchAnimeByID,
   FetchEpisodesData,
   FetchStreamingData,
-} from "../hooks/useApi";
-import VideoPlayer from "../components/Watch/VideoPlayer";
-import EpisodeList from "../components/Watch/EpisodeList";
-import AnimeDetails from "../components/Watch/AnimeDetails";
-import AnimeList from "../components/Watch/AnimeList";
-import SeasonsList from "../components/Watch/SeasonsList";
-import "./css/Streaming.css";
+} from "../../hooks/useApi";
+import VideoPlayer from "../../components/Watch/VideoPlayer";
+import EpisodeList from "../../components/Watch/EpisodeList";
+import AnimeDetails from "../../components/Watch/AnimeDetails";
+import AnimeList from "../../components/Watch/AnimeList";
+import SeasonsList from "../../components/Watch/SeasonsList";
+import "../css/Streaming.css";
 import {
   SkeletonPlayer,
   SkeletonCard,
   SkeletonSlide,
-} from "../components/General/Skeleton";
-import CurrentEpisode from "../components/Watch/CurrentEpisode";
+} from "../../components/General/Skeleton";
+import CurrentEpisode from "../../components/Watch/CurrentEpisode";
 
 const Streaming = () => {
   const { id } = useParams();
