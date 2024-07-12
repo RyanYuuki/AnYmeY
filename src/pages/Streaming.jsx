@@ -117,8 +117,8 @@ const Streaming = () => {
           ) : (
             <VideoPlayer
               streamingData={streamingData || []}
-              currentEpisodeTitle={data[currentEpisode - 1]?.title || '??'}
-              currentEpisodeImage={data[currentEpisode - 1]?.image || '??'}
+              currentEpisodeTitle={data[currentEpisode - 1]?.title || "??"}
+              currentEpisodeImage={data[currentEpisode - 1]?.image || "??"}
               episodeLoading={episodeLoading}
               streamingError={streamingError}
             />
@@ -126,7 +126,7 @@ const Streaming = () => {
         </div>
         <div className="streaming-episodes">
           {isLoading ? (
-            Months.map((index) => <SkeletonSlide key={index} /> )
+            Months.map((index) => <SkeletonSlide key={index} />)
           ) : (
             <EpisodeList
               data={data || []}
@@ -144,15 +144,23 @@ const Streaming = () => {
           <SkeletonCard />
         ) : (
           <>
-            <CurrentEpisode data={data[currentEpisode - 1] || []} title={animeData.title.english} />
-            <AnimeDetails animeData={animeData || []} Months={Months} />
-            <AnimeList title="Related" data={animeData?.relations || []} />
-            <SeasonsList relations={animeData?.relations || []} />
-            <AnimeList
-              style={{ marginTop: "40px" }}
-              title="Recommendation"
-              data={animeData?.recommendations || []}
-            />
+            <div className="left-streaming-row">
+              <CurrentEpisode
+                data={data[currentEpisode - 1] || []}
+                title={animeData.title.english}
+              />
+              <AnimeDetails animeData={animeData || []} Months={Months} />
+              <SeasonsList relations={animeData?.relations || []} />
+            </div>
+            <div className="right-streaming-row">
+              <AnimeList title="Related" data={animeData?.relations || []} />
+
+              <AnimeList
+                style={{ marginTop: "40px" }}
+                title="Recommendation"
+                data={animeData?.recommendations || []}
+              />
+            </div>
           </>
         )}
       </div>
