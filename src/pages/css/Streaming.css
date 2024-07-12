@@ -377,6 +377,8 @@ a {
 }
 
 .server-active {
+  padding: 5px 15px;
+  border-radius: 5px;
   background-color: #8080cf;
 }
 
