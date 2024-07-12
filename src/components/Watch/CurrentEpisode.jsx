@@ -31,7 +31,7 @@ function CurrentEpisode({ data, title }) {
           </p>
           <div className="servers">
             <p className="server">Zoro</p>
-            <p className="server">Gogo</p>
+            <p className="server-active">Gogo</p>
             <p className="server">Vidstream</p>
           </div>
         </div>
