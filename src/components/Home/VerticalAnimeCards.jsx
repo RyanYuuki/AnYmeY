@@ -40,7 +40,7 @@ export default function VerticalAnimeCards({ data }) {
     setHoveredIndex(index);
   };
 
-  return data.map((anime, index) =>
+  return data.map((anime, index, isManga) =>
     index > 4 ? null : (
       <div
         key={anime.mal_id}
@@ -48,7 +48,7 @@ export default function VerticalAnimeCards({ data }) {
         onMouseEnter={(event) => handleMouseEnter(index, event)}
         onMouseLeave={() => setHoveredIndex(null)}
       >
-        <Link to={`/anime/${anime.id}`}>
+        <Link to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
           <img
             className="anime-image"
             src={anime.image}
