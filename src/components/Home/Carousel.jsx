@@ -14,7 +14,7 @@ import {
 import "swiper/css";
 import "../Styling/Carousel.css";
 import { Link } from "react-router-dom";
-import { SkeletonCarousel } from '../General/Skeleton';
+import { SkeletonCarousel } from "../General/Skeleton";
 
 function Carousel() {
   const [data, setData] = useState([]);
@@ -37,9 +37,12 @@ function Carousel() {
     loadTrendingAnime();
   }, []);
 
-  if (isLoading) return <div className="carouselContainer">
-    <SkeletonCarousel />
-  </div>;
+  if (isLoading)
+    return (
+      <div className="carouselContainer">
+        <SkeletonCarousel />
+      </div>
+    );
 
   return (
     <div className="carouselContainer">
@@ -53,11 +56,21 @@ function Carousel() {
         {data.map((anime, index) => (
           <SwiperSlide key={index}>
             <div className="carouselImage-container">
-              <img className="carouselImage" src={anime.cover} alt={anime.title.english} />
+              <img
+                className="carouselImage"
+                src={anime.cover}
+                alt={anime.title.english}
+              />
             </div>
             <div className="gradient-overlay" />
             <div className="carouselInfo-container">
-              <h1>{anime.title.english}</h1>
+              <h1>
+                {anime.title.english ||
+                  anime.title.romaji ||
+                  anime.title.userPreffered ||
+                  anime.title.native ||
+                  "??"}
+              </h1>
               <div className="misc-info">
                 <p>
                   <FontAwesomeIcon icon={faTelevision} /> {anime.type}
@@ -74,13 +87,20 @@ function Carousel() {
               </div>
               <div className="description-container">
                 <p>
-                  {anime.description.replace(/<[^>]*>?/gm, "").substring(0, 225) +
-                    "..."}
+                  {anime.description
+                    .replace(/<[^>]*>?/gm, "")
+                    .substring(0, 225) + "..."}
                 </p>
               </div>
               <div className="buttons-group">
-                <Link to={`/watch/${anime.id}`} ><button ><FontAwesomeIcon icon={faPlayCircle}/> Watch Now</button></Link>
-                <Link to={`/anime/${anime.id}`} ><button>Detail {'>'}</button></Link>
+                <Link to={`/watch/${anime.id}`}>
+                  <button>
+                    <FontAwesomeIcon icon={faPlayCircle} /> Watch Now
+                  </button>
+                </Link>
+                <Link to={`/anime/${anime.id}`}>
+                  <button>Detail {">"}</button>
+                </Link>
               </div>
             </div>
           </SwiperSlide>
