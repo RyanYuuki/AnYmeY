@@ -129,7 +129,7 @@ const Streaming = () => {
             Months.map((index) => <SkeletonSlide key={index} />)
           ) : (
             <EpisodeList
-              data={data || []}
+              data={data || [{ fallback: animeData.cover }]}
               currentEpisode={currentEpisode}
               handleEpisode={handleEpisode}
               searchTerm={searchTerm}
