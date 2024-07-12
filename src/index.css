@@ -9,6 +9,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body[data-theme="light"] {
   --global-primary-bg: #f5f5f5;
   --global-primary-bg-tr: rgba(245, 245, 245, 0.8);
   --global-secondary-bg: #e0e0e0;
@@ -32,142 +35,13 @@
   --global-border-radius: 0.3rem;
   --primary-accent: #8080cf;
   --primary-accent-bg: #595991;
-  --logo-text-transparent: url('/src/assets/miruro-text-transparent-black.webp');
-  --logo-transparent: url('/src/assets/miruro-transparent-black.webp');
   --ongoing-dot-color: #aaff00;
   --completed-indicator-color: #00aaff;
   --cancelled-indicator-color: #ff0000;
   --not-yet-aired-indicator-color: #ffa500;
   --default-indicator-color: #808080;
 }
-
-
-body[data-theme="light"] {
-  --transparent: rgb(0, 0, 0, 0.6);
-  --text-50: #f1eff5;
-  --text-100: #e4e0eb;
-  --text-200: #c8c0d8;
-  --text-300: #ada1c4;
-  --text-400: #9182b0;
-  --text-500: #76629d;
-  --text-600: #5e4f7d;
-  --text-700: #473b5e;
-  --text-800: #2f273f;
-  --text-900: #18141f;
-  --text-950: #0c0a10;
-
-  --background-50: #f2eff6;
-  --background-100: #e5deed;
-  --background-200: #cabeda;
-  --background-300: #b09dc8;
-  --background-400: #957cb6;
-  --background-500: #7b5ca3;
-  --background-600: #624983;
-  --background-700: #4a3762;
-  --background-800: #312541;
-  --background-900: #191221;
-  --background-950: #0c0910;
-
-  --primary-50: #f2eef7;
-  --primary-100: #e4ddee;
-  --primary-200: #c9bbdd;
-  --primary-300: #ae98cd;
-  --primary-400: #9376bc;
-  --primary-500: #7854ab;
-  --primary-600: #604389;
-  --primary-700: #483267;
-  --primary-800: #302244;
-  --primary-900: #181122;
-  --primary-950: #0c0811;
-
-  --secondary-50: #f1edf7;
-  --secondary-100: #e4dcef;
-  --secondary-200: #c9b8e0;
-  --secondary-300: #ae95d0;
-  --secondary-400: #9271c1;
-  --secondary-500: #774eb1;
-  --secondary-600: #5f3e8e;
-  --secondary-700: #482f6a;
-  --secondary-800: #301f47;
-  --secondary-900: #181023;
-  --secondary-950: #0c0812;
-
-  --accent-50: #f1ecf8;
-  --accent-100: #e4daf1;
-  --accent-200: #c8b5e3;
-  --accent-300: #ad8fd6;
-  --accent-400: #916ac8;
-  --accent-500: #7645ba;
-  --accent-600: #5e3795;
-  --accent-700: #472970;
-  --accent-800: #2f1c4a;
-  --accent-900: #180e25;
-  --accent-950: #0c0713;
-}
 body[data-theme="dark"] {
-  --transparent : rgba(20, 20, 20, 0.5);
-  --text-50: white;
-  --text-100: #18141f;
-  --text-200: #2f273f;
-  --text-300: #473b5e;
-  --text-400: #5e4f7d;
-  --text-500: #76629d;
-  --text-600: #9182b0;
-  --text-700: #ada1c4;
-  --text-800: #c8c0d8;
-  --text-900: #e4e0eb;
-  --text-950: #f1eff5;
-
-  --background-50: #0c0910;
-  --background-100: #191221;
-  --background-200: #312541;
-  --background-300: #4a3762;
-  --background-400: #624983;
-  --background-500: #7b5ca3;
-  --background-600: #957cb6;
-  --background-700: #222222;
-  --background-800: #181818;
-  --background-900:  #080808;
-  --background-950: #f2eff6;
-
-  --primary-50: #0c0811;
-  --primary-100: #181122;
-  --primary-200: #302244;
-  --primary-300: #483267;
-  --primary-400: #604389;
-  --primary-500: #7854ab;
-  --primary-600: #9376bc;
-  --primary-700: #ae98cd;
-  --primary-800: #c9bbdd;
-  --primary-900: #e4ddee;
-  --primary-950: #f2eef7;
-
-  --secondary-50: #0c0812;
-  --secondary-100: #181023;
-  --secondary-200: #301f47;
-  --secondary-300: #482f6a;
-  --secondary-400: #5f3e8e;
-  --secondary-500: #774eb1;
-  --secondary-600: #9271c1;
-  --secondary-700: #ae95d0;
-  --secondary-800: #c9b8e0;
-  --secondary-900: #e4dcef;
-  --secondary-950: #f1edf7;
-
-  --accent-50: #0c0713;
-  --accent-100: #180e25;
-  --accent-200: #2f1c4a;
-  --accent-300: #472970;
-  --accent-400: #5e3795;
-  --accent-500: #7645ba;
-  --accent-600: #141414;
-  --accent-700: #141414;
-  --accent-800: #222222;
-  --accent-900: #222222;
-  --accent-950: #333333;
-}
-
-:root.dark-mode {
   --global-primary-bg: #080808;
   --global-primary-bg-tr: rgba(8, 8, 8, 0.9);
   --global-secondary-bg: #141414;
@@ -188,11 +62,13 @@ body[data-theme="dark"] {
   --global-button-text: #ebebeb;
   --global-genre-button-bg: #222222;
   --global-shadow: rgba(255, 255, 255, 0.08);
+  --primary-accent: #8080cf;
+  --primary-accent-bg: #595991;
 }
 
 body {
-  background-color: var(--background-900);
-  color: var(--text-50);
+  background-color: var(--global-primary-bg);
+  color: var(--global-text);
   font-family: "Poppins";
 }
 
@@ -215,7 +91,6 @@ select,
 .input {
   color: var(--text-50);
 }
-
 
 button:active {
   transform: scale(0.8);

@@ -65,8 +65,8 @@
     padding: 10px 20px;
     width: max-content;
     border-radius: 30px;
-    background-color: var(--transparent);
-    color: var(--text-50);
+    background-color: var(--global-primary-bg-tr);
+    color: var(--global-text);
 }
 
 .buttons-group {
@@ -80,13 +80,13 @@
     border-radius: 30px;
     border: none;
     font-size: 16px;
-    background-color: var(--transparent);
-    color: var(--text-50);
+    background-color: var(--global-primary-bg-tr);
+    color: var(--global-text);
 }
 
 .buttons-group button:hover {
     transform: scale(1.1);
-    background-color: var(--secondary-900);
+    background-color: var(--primary-accent);
 }
 
 .buttons-group button:active {

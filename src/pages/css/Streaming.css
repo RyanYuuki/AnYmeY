@@ -58,9 +58,9 @@
 .streaming-episodes {
   display: flex;
   flex-direction: column;
-  background-color: var(--background-700);
+  background-color: var(--global-secondary-bg);
   gap: 10px;
-  width: 25%;
+  width: 27%;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
@@ -76,7 +76,7 @@
 }
 
 .streaming-episodes-header select {
-  background-color: var(--background-800);
+  background-color: var(--global-tertiary-bg);
   padding: 5px 10px;
   border-radius: 5px;
   width: 35%;
@@ -85,12 +85,13 @@
 .streaming-episodes-header input {
   width: 100%;
   padding-left: 40px;
-  background-color: var(--background-800);
+  background-color: var(--global-tertiary-bg);
+  color: var(--global-text);
 }
 
 .streaming-input-box {
   display: flex;
-  width: 60%;
+  width: 65%;
   position: relative;
   align-items: center;
 }
@@ -105,7 +106,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  background-color: var(--background-800);
+  background-color: var(--global-tertiary-bg);
   filter: brightness(0.8);
   border-radius: 5px;
   gap: 10px;
@@ -121,12 +122,12 @@
 .episode:hover {
   filter: brightness(1.2);
   cursor: pointer;
-  background-color: #8080cf;
+  background-color: var(--primary-accent);
   transform: scale(1.05);
 }
 
 .episode-active {
-  background-color: #8080cf;
+  background-color: var(--primary-accent-bg);
   filter: brightness(1.2);
 }
 
@@ -147,7 +148,7 @@
 .textContainer p {
   font-size: 0.8rem;
   font-style: italic;
-  color: rgb(255, 255, 255, 0.9);
+  color: var(--global-text);
 }
 
 .episode-tag {
@@ -156,7 +157,7 @@
   left: 8px;
   padding: 2px 10px;
   border-radius: 5px;
-  background-color: rgb(0, 0, 0, 0.8);
+  background-color: var(--global-div-tr);
   font-size: 14px;
   font-weight: 600;
 }
@@ -182,12 +183,12 @@
   flex-direction: column;
   gap: 10px;
   padding: 20px;
-  background-color: var(--background-800);
+  background-color: var(--global-secondary-bg);
 }
 
 .streaming-details-row button {
   padding: 12px;
-  background-color: var(--accent-900);
+  background-color: var(--global-tertiary-bg);
   border-radius: 5px;
   border: none;
   font-weight: 700;
@@ -195,7 +196,7 @@
 }
 
 .streaming-details-row button:hover {
-  background-color: #8080cf;
+  background-color: var(--primary-accent);
 }
 
 .streaming-details-row img {
@@ -239,7 +240,7 @@
 .full-info-genre span {
   padding: 5px 10px;
   border-radius: 12px;
-  background-color: var(--accent);
+  background-color: var(--global-tertiary-bg);
 }
 
 .streaming-related-section {
@@ -252,7 +253,7 @@
   scrollbar-width: none;
   gap: 5px;
   padding: 15px;
-  background-color: var(--background-700);
+  background-color: var(--global-secondary-bg);
   border-radius: 5px;
 }
 
@@ -270,7 +271,7 @@
   gap: 10px;
   border-radius: 10px;
   padding: 10px;
-  background-color: var(--background-800);
+  background-color: var(--global-tertiary-bg);
   margin-top: 10px;
   color: var(--text);
 }
@@ -305,9 +306,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 5px 10px;
-  border-radius: 10px;
-  background-color: var(--accent-600);
+  padding: 5px 12px;
+  border-radius: 5px;
+  background-color: var(--global-div);
 }
 
 a {
@@ -322,7 +323,7 @@ a {
   height: 430px;
   flex-direction: column;
   padding: 20px;
-  background-color: var(--background-800);
+  background-color: var(--global-secondary-bg);
 }
 
 .season-card-container {
@@ -332,7 +333,7 @@ a {
   align-items: center;
   justify-content: space-evenly;
   padding: 10px;
-  background-color: var(--background-800);
+  background-color: var(--global-secondary-bg);
 }
 
 .current-episode-container {
@@ -350,7 +351,7 @@ a {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: var(--background-800);
+  background-color: var(--global-secondary-bg);
   gap: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -374,7 +375,7 @@ a {
 .sub .server,
 .dub .server {
   padding: 5px 15px;
-  background-color: var(--background-900);
+  background-color: var(--global-tertiary-bg);
   border-radius: 5px;
   /* background-color:  #8080cf; */
 }

@@ -24,7 +24,7 @@ function Header() {
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isDarkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -117,7 +117,6 @@ function Header() {
             aria-label="Toggle search"
           >
             <FontAwesomeIcon
-              color={"white"}
               size="1x"
               icon={faMagnifyingGlass}
             />
@@ -144,15 +143,14 @@ function Header() {
           </button>
           <button className="action-button">
             <Link to={"/anime/random"}>
-              <FontAwesomeIcon color="white" icon={faShuffle} />
+              <FontAwesomeIcon icon={faShuffle} />
             </Link>
           </button>
           <button onClick={toggleTheme} className="action-button">
-            <FontAwesomeIcon icon={isDarkMode ? faMoon : faSun} />
+            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon } />
           </button>
           <button className="login-button">
             <Link
-              style={{ color: "white" }}
               to={`/anime/${Math.floor(Math.random() * 100) + 1}`}
             >
               Login

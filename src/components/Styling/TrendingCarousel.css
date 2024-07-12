@@ -8,7 +8,7 @@
 }
 
 .carousel-heading {
-    color: var(--text-50);
+    color: var(--global-primary-text);
 }
 
 .carousel-container {
@@ -19,7 +19,7 @@
     width: 100%;
     scroll-behavior: smooth;
     overflow: hidden;
-    background-color: var(--background-800);
+    background-color: var(--global-secondary-bg);
     padding: 1%;
     border-radius: 12px;
 }

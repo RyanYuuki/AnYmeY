@@ -24,7 +24,7 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  background-color: var(--background-800);
+  background-color: var(--global-secondary-bg);
   border-radius: 5px;
   padding: 5px;
 }
@@ -38,7 +38,7 @@
 
 .anime-details-row button {
   padding: 12px;
-  background-color: var(--accent-900);
+  background-color: var(--global-tertiary-bg);
   border-radius: 5px;
   color: var(--text-50);
   border: none;
@@ -46,7 +46,8 @@
 }
 
 .anime-details-row button:hover {
-  background-color: var(--accent-700);
+  background-color: var(--primary-accent);
+  color: white;
 }
 
 .anime-details-row img {
@@ -57,7 +58,7 @@
 }
 
 .anime-details-description {
-  background-color: var(--accent-800);
+  background-color: var(--global-tertiary-bg);
   font-style: italic;
   border-radius: 15px;
   padding: 10px;
@@ -74,13 +75,13 @@
 }
 
 .anime-details-fullInfo p {
-  color: var(--accent-100);
+  color: var(--global-tertiary-bg);
 }
 
 .anime-details-fullInfo span {
   margin-left: 5px;
   font-weight: 600;
-  color: var(--text-50);
+  color: var(--global-text);
 }
 
 .anime-details-fullInfo .full-info-row {
@@ -102,14 +103,14 @@
 .full-info-genre .genre {
   padding: 5px 10px;
   border-radius: 12px;
-  background-color: var(--accent-950);
+  background-color: var(--global-tertiary-bg);
 }
 
 .characters-section {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: var(--background-800);
+  background-color: var(--global-secondary-bg);
   padding: 20px;
   gap: 20px;
   border-radius: 5px;
@@ -125,7 +126,7 @@
 .related-section,
 .recommendation-section {
   margin-top: 50px;
-  background-color: var(--background-800);
+  background-color: var(--global-secondary-bg);
   padding: 20px;
   border-radius: 5px;
 }
@@ -191,7 +192,7 @@
   }
   .anime-details-description-mobile {
     display: flex;
-    background-color: var(--accent-800);
+    background-color: var(--global-tertiary-bg);
     font-style: italic;
     border-radius: 5px;
     padding: 10px;

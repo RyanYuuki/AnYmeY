@@ -16,12 +16,12 @@
   top: 0;
   width: 100vw;
   height: 80px;
-  color: var(--text-50);
+  color: var(--global-text);
   z-index: 10;
 }
 
 .header span {
-  color: var(--accent-400);
+  color: var(--primary-accent);
   font-size: 40px;
 }
 
@@ -46,7 +46,7 @@
 .nav-item:hover,
 .login-button:hover,
 .action-button:hover {
-  background-color: indigo;
+  background-color: var(--primary-accent);
   color: white;
 }
 .logo:active,
@@ -61,7 +61,6 @@
   display: flex;
   align-items: center;
   width: 40%;
-  color: white;
 }
 
 .inputBox-mobile {
@@ -74,7 +73,7 @@
   top: 0;
   left: 0;
   right: 0;
-  background-color: var(--accent-800);
+  background-color: var(--global-secondary-bg);
   padding: 20px 5%;
   align-items: center;
   justify-content: space-between;
@@ -84,11 +83,16 @@
 input {
   width: 100%;
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--global-secondary-bg);
   border-radius: 5px;
-  border: 1px solid grey;
+  border: none;
   font-size: 1em;
   outline: none;
+  color: var(--global-text);
+}
+
+input::placeholder {
+  color: var(--global-text);
 }
 
 .input {
@@ -105,7 +109,7 @@ input {
   background: none;
   border: none;
   cursor: pointer;
-  color: white;
+  color: var(--global-text);
 }
 
 .search-active {
@@ -114,6 +118,7 @@ input {
   border: none;
   cursor: pointer;
   left: 15px;
+  color: var(--global-text);
 }
 
 .closeIcon {
@@ -127,6 +132,7 @@ input {
   cursor: pointer;
   position: absolute;
   right: 15px;
+  color: var(--global-text);
 }
 
 .closeIcon-mobile,
@@ -140,15 +146,14 @@ input {
 .action-buttons {
   display: flex;
   gap: 20px;
-  color: var(--text-50);
 }
 
 .action-buttons button {
-  color: white;
+  color: var(--global-text);
 }
 
 .action-button {
-  background-color: var(--accent-600);
+  background-color: var(--global-secondary-bg);
   border: none;
   cursor: pointer;
   padding: 10px 15px;
@@ -156,7 +161,7 @@ input {
 }
 
 .login-button {
-  background-color: var(--accent-600);
+  background-color: var(--global-secondary-bg);
   border: none;
   padding: 10px 30px;
   border-radius: 5px;
@@ -182,7 +187,7 @@ input {
   width: 100%;
   overflow-y: scroll;
   scrollbar-width: none;
-  background-color: var(--background-800);
+  background-color: var(--global-secondary-bg);
   z-index: 999;
   padding: 20px;
 }
@@ -243,6 +248,6 @@ input {
     right: 20px;
     overflow-y: scroll;
     scrollbar-width: none;
-    background-color: var(--background-800);
+    background-color: var(--global-card-bg);
   }
 }
