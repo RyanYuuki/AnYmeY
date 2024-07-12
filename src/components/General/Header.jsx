@@ -20,7 +20,7 @@ import { fetchTheme } from "../../providers/ThemeProvider";
 import debounce from "lodash.debounce";
 
 function Header() {
-  const { toggleSearch, setToggleSearch } = fetchTheme();
+  const { toggleSearch, setToggleSearch, toggleHeader, setToggleHeader } = fetchTheme();
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -70,22 +70,24 @@ function Header() {
   };
 
   return (
-    <>
-      <nav className="header">
+      <nav style={{ display: toggleHeader ? 'flex' : 'none' }} className="header">
         <h1 className="logo">
           <Link to={"/"}>
-            {" "}
             An<span>Y</span>meY{" "}
           </Link>
         </h1>
         <div className="nav-links">
           <div className="nav-item">
-            <FontAwesomeIcon icon={faFilm} />
-            Anime
+            <Link to={"/"}>
+              <FontAwesomeIcon icon={faFilm} />
+              {" "}Anime
+            </Link>
           </div>
           <div className="nav-item">
-            <FontAwesomeIcon icon={faBook} />
-            Manga
+            <Link to={"/manga/"}>
+              <FontAwesomeIcon icon={faBook} />
+              {" "}Manga
+            </Link>
           </div>
         </div>
         <div className="inputBox">
@@ -116,10 +118,7 @@ function Header() {
             className={toggleSearch ? "search-active" : "searchIcon"}
             aria-label="Toggle search"
           >
-            <FontAwesomeIcon
-              size="1x"
-              icon={faMagnifyingGlass}
-            />
+            <FontAwesomeIcon size="1x" icon={faMagnifyingGlass} />
           </button>
           <button
             onClick={() => {
@@ -147,12 +146,10 @@ function Header() {
             </Link>
           </button>
           <button onClick={toggleTheme} className="action-button">
-            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon } />
+            <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
           </button>
           <button className="login-button">
-            <Link
-              to={`/anime/${Math.floor(Math.random() * 100) + 1}`}
-            >
+            <Link to={`/anime/${Math.floor(Math.random() * 100) + 1}`}>
               Login
             </Link>
           </button>
@@ -208,7 +205,6 @@ function Header() {
           </div>
         ) : null}
       </nav>
-    </>
   );
 }
 
