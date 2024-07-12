@@ -54,7 +54,7 @@
   height: 250px;
   width: 180px;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 5px;
 }
 
 .anime-details-description {
