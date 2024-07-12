@@ -54,8 +54,14 @@
 }
 
 .pages-container {
-  width: 40%;
+  width: 50%;
   height: auto;
   display: flex;
   flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+  .pages-container {
+    width: 100%;
+  }
 }

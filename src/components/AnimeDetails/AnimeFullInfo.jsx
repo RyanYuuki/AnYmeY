@@ -4,6 +4,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const AnimeFullInfo = ({ data, Months, isManga }) => {
+  // if(data.type.toLowerCase() == "manga") {
+  //   isManga = true;
+  // }
+  // else {
+  //   isManga = false;
+  // }
   let totalPages = 0;
   let averagePages = 0;
   if(isManga) {
@@ -19,9 +25,9 @@ const AnimeFullInfo = ({ data, Months, isManga }) => {
           <button>
             <Link
               style={{ textDecoration: "none" }}
-              to={isManga ? `/manga/read/${data.id}` : `/watch/${data.id}`}
+              to={isManga ? `/manga/read/${data.chapters[0].id}/${data.title.english || data.title.romaji}/${data.chapters[0].chapterNumber}/` : `/watch/${data.id}`}
             >
-              {isManga ? "Read Now" : "WATCH NOW"}
+              {isManga ? "READ NOW" : "WATCH NOW"}
             </Link>
           </button>
           <button>TRAILER</button>

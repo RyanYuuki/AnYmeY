@@ -7,11 +7,11 @@ import React, { createContext, useContext, useState } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState('light');
     const [toggleSearch, setToggleSearch] = useState(false);
     const [toggleHeader, setToggleHeader] = useState(true);
+    const [contentType, setContentType] = useState('Anime');
     return (
-        <ThemeContext.Provider value={{ theme, setTheme, toggleSearch, setToggleSearch, toggleHeader, setToggleHeader }}>
+        <ThemeContext.Provider value={{toggleSearch, setToggleSearch, toggleHeader, setToggleHeader, contentType, setContentType }}>
             {children}
         </ThemeContext.Provider>
     );
