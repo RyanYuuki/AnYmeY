@@ -5,8 +5,12 @@ import { Link } from "react-router-dom";
 
 const AnimeFullInfo = ({ data, Months, isManga }) => {
   let totalPages = 0;
-  data.chapters.map((chapter) => (totalPages += chapter.pages));
-  const averagePages = totalPages / data.chapters.length;
+  let averagePages = 0;
+  if(isManga) {
+    data.chapters.map((chapter) => (totalPages += chapter.pages));
+    averagePages = totalPages / data.chapters.length;
+  }
+  
   return (
     <>
       <div className="anime-details-info">

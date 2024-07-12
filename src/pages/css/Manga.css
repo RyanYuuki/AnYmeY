@@ -8,10 +8,10 @@
 }
 
 .chapters-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: var(--global-secondary-bg);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--global-secondary-bg);
 }
 
 .search-input {
@@ -41,22 +41,21 @@
 }
 
 .chapter:hover {
-    background-color: var(--primary-accent);
+  background-color: var(--primary-accent);
 }
 
 .reading-body {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-direction: column;
-    padding: 20px 0;
-    background-color: var(--global-secondary-bg);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  padding: 20px 0;
+  background-color: var(--global-secondary-bg);
 }
 
-
 .pages-container {
-    width: auto;
-    height: auto;
-    display: flex;
-    flex-direction: column;
+  width: 40%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
