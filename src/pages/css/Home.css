@@ -72,3 +72,15 @@
 .home-body .manga-bg {
     left: 0;
 }
+
+@media screen and (max-width: 768px) {
+    .home-body h1 {
+        font-size: 20px;
+    }
+    .home-body span {
+        font-size: 30px;
+    }
+    .home-body {
+        text-align: center;
+    }
+}
