@@ -4,18 +4,20 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../pages/css/Manga.css";
 
-function Chapters({ data, title }) {
+function Chapters({ data }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredChapters = data.chapters.filter((chapter) =>
-    chapter.chapterNumber.toString().includes(searchTerm)
-  );
-
-  const renderedChapters = new Set();
+  const filteredChapters = data.chapters
+    ? data.chapters.filter(
+        (chapter) =>
+          chapter.chapterNumber &&
+          chapter.chapterNumber.toString().includes(searchTerm)
+      )
+    : [];
 
   return (
     <div className="chapters-body">
@@ -30,20 +32,18 @@ function Chapters({ data, title }) {
         />
       </div>
       <div className="chapters">
-        {filteredChapters.map((chapter) => {
-          if (renderedChapters.has(chapter.chapterNumber)) {
-            return null; 
-          }
-          renderedChapters.add(chapter.chapterNumber);
-          return (
+        {filteredChapters.length > 0 ? (
+          filteredChapters.map((chapter) => (
             <Link
               key={chapter.id}
               to={`/manga/read/${chapter.id}/ChapterId/${data.id}/${chapter.chapterNumber}`}
             >
               <p className="chapter">{chapter.chapterNumber}</p>
             </Link>
-          );
-        })}
+          ))
+        ) : (
+          <p>No chapters available.</p>
+        )}
       </div>
     </div>
   );

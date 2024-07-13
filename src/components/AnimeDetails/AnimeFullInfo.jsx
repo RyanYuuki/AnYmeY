@@ -3,29 +3,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AnimeFullInfo = ({ data, Months, isManga }) => {
-  // if(data.type.toLowerCase() == "manga") {
-  //   isManga = true;
-  // }
-  // else {
-  //   isManga = false;
-  // }
+const AnimeFullInfo = ({ data, Months }) => {
+  if (!data) {
+    return <p>Data is not available.</p>;
+  }
+
+  let isManga = data.type === "MANGA";
   let totalPages = 0;
   let averagePages = 0;
-  if(isManga) {
+
+  if (isManga && data.chapters) {
     data.chapters.map((chapter) => (totalPages += chapter.pages));
     averagePages = totalPages / data.chapters.length;
   }
-  
+
   return (
     <>
       <div className="anime-details-info">
         <div className="anime-details-row">
-          <img src={data.image || ""} alt="" />
+          <img src={data.image || ""} alt={data.title?.english || "Image"} />
           <button>
             <Link
               style={{ textDecoration: "none" }}
-              to={isManga ? `/manga/read/${data.chapters[0].id}/${data.title.english || data.title.romaji}/${data.chapters[0].chapterNumber}/` : `/watch/${data.id}`}
+              to={
+                isManga && data.chapters && data.chapters.length > 0
+                  ? `/manga/read/${data.chapters[0].id}/${data.title?.english || data.title?.romaji}/${data.chapters[0].chapterNumber}/`
+                  : `/watch/${data.id}`
+              }
             >
               {isManga ? "READ NOW" : "WATCH NOW"}
             </Link>
@@ -38,7 +42,7 @@ const AnimeFullInfo = ({ data, Months, isManga }) => {
         </div>
         <div className="anime-details-row">
           <h2>
-            {data.title.english || "??"}{" "}
+            {data.title?.english || "??"}{" "}
             <p
               style={{
                 color: data.color || "inherit",
@@ -47,13 +51,13 @@ const AnimeFullInfo = ({ data, Months, isManga }) => {
               }}
             >
               {"["}
-              {data.title.romaji || "??"}
+              {data.title?.romaji || "??"}
               {"]"}
             </p>
           </h2>
           <div className="anime-details-description">
             {(data.description && data.description.replace(/<[^>]*>?/gm, "")) ||
-              "??"}
+              "Description not available"}
           </div>
           <div className="anime-details-fullInfo">
             <div className="full-info-row">
@@ -63,7 +67,9 @@ const AnimeFullInfo = ({ data, Months, isManga }) => {
               <p>
                 Season:{" "}
                 <span>
-                  {(data.season && data.season + data.startDate?.year) || "??"}
+                  {data.season && data.startDate?.year
+                    ? `${data.season} ${data.startDate.year}`
+                    : "??"}
                 </span>
               </p>
               <p>
@@ -83,12 +89,12 @@ const AnimeFullInfo = ({ data, Months, isManga }) => {
                 {isManga ? "Avg Pages:" : "Premiered:"}{" "}
                 <span>
                   {isManga
-                    ? Math.floor(averagePages)
+                    ? Math.floor(averagePages) || "??"
                     : data.startDate?.year +
                         " " +
-                        Months[data.startDate?.month - 1] +
+                        (Months[data.startDate?.month - 1] || "??") +
                         " " +
-                        +data.startDate?.day || "??"}
+                        (data.startDate?.day || "??")}
                 </span>
               </p>
             </div>
@@ -97,7 +103,7 @@ const AnimeFullInfo = ({ data, Months, isManga }) => {
                 {isManga ? "Chapters:" : "Episodes:"}{" "}
                 <span>
                   {isManga
-                    ? data.chapters.length - 1
+                    ? (data.chapters && data.chapters.length - 1) || "??"
                     : data.totalEpisodes || "??"}
                 </span>{" "}
               </p>
@@ -105,7 +111,7 @@ const AnimeFullInfo = ({ data, Months, isManga }) => {
                 {isManga ? "Popularity" : "Duration:"}{" "}
                 <span>
                   {isManga
-                    ? data.popularity
+                    ? data.popularity || "??"
                     : data.duration
                     ? `${data.duration} Min`
                     : "??"}
@@ -139,7 +145,7 @@ const AnimeFullInfo = ({ data, Months, isManga }) => {
       </div>
       <div className="anime-details-description-mobile">
         {(data.description && data.description.replace(/<[^>]*>?/gm, "")) ||
-          "??"}
+          "Description not available"}
       </div>
     </>
   );

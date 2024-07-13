@@ -12,7 +12,6 @@ export default function MangaHome() {
     setContentType("Manga");
     return () => {
       document.title = "AnymeY";
-      setContentType("Anime");
     };
   });
 

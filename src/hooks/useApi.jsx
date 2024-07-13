@@ -78,37 +78,46 @@ export const GetMangaSearch = async (query, count) => {
   return data.results;
 };
 
-export const GetMangaNew = async (count) => {
+export const GetMangaNew = async (count, page = 1) => {
   const response = await fetch(
     apiLink +
-      `/meta/anilist/advanced-search?type=MANGA&sort=["POPULARITY_DESC"]&status=RELEASING&perPage=${count}`
+      `/meta/anilist/advanced-search?type=MANGA&sort=["POPULARITY_DESC"]&status=RELEASING&perPage=${count}&page=${page}`
   );
   const data = await response.json();
   return data.results;
 };
 
-export const GetMangaTrending = async (count) => {
+export const GetMangaFavorites = async (count, page = 1) => {
   const response = await fetch(
     apiLink +
-      `/meta/anilist/advanced-search?type=MANGA&sort=["TRENDING_DESC"]&perPage=${count}`
+      `/meta/anilist/advanced-search?type=MANGA&sort=["FAVOURITES_DESC"]&perPage=${count}&page=${page}`
   );
   const data = await response.json();
   return data.results;
 };
 
-export const GetMangaPopular = async (count) => {
+export const GetMangaTrending = async (count, page = 1) => {
   const response = await fetch(
     apiLink +
-      `/meta/anilist/advanced-search?type=MANGA&sort=["POPULARITY_DESC"]&perPage=${count}`
+      `/meta/anilist/advanced-search?type=MANGA&sort=["TRENDING_DESC"]&perPage=${count}&page=${page}`
   );
   const data = await response.json();
   return data.results;
 };
 
-export const GetMangaTop = async (count) => {
+export const GetMangaPopular = async (count, page = 1) => {
   const response = await fetch(
     apiLink +
-      `/meta/anilist/advanced-search?type=MANGA&sort=["SCORE_DESC"]&perPage=${count}`
+      `/meta/anilist/advanced-search?type=MANGA&sort=["POPULARITY_DESC"]&perPage=${count}&page=${page}`
+  );
+  const data = await response.json();
+  return data.results;
+};
+
+export const GetMangaTop = async (count, page = 1) => {
+  const response = await fetch(
+    apiLink +
+      `/meta/anilist/advanced-search?type=MANGA&sort=["SCORE_DESC"]&perPage=${count}&page=${page}`
   );
   const data = await response.json();
   return data.results;

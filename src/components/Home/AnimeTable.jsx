@@ -9,6 +9,8 @@ import {
   GetMangaNew,
   GetMangaPopular,
   GetMangaTop,
+  GetMangaFavorites,
+  GetMangaTrending
 } from "../../hooks/useApi";
 import { SkeletonCard } from "../General/Skeleton";
 export default function AnimeTable({ isManga }) {
@@ -21,10 +23,10 @@ export default function AnimeTable({ isManga }) {
     const fetchData = async () => {
       try {
         if (isManga) {
-          const TopAiringData = await GetMangaTop(5);
+          const TopAiringData = await GetMangaTrending(5);
           const MostPopularData = await GetMangaPopular(5);
-          const FavouriteData = await GetMangaNew(5);
-          const LatestCompletedData = await GetMangaTop(5);
+          const FavouriteData = await GetMangaFavorites(5, 3);
+          const LatestCompletedData = await GetMangaTop(5, 2);
           setTopAiringData(TopAiringData);
           setMostPopularData(MostPopularData);
           setFavouriteData(FavouriteData);
