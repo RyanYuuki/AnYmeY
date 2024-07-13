@@ -114,7 +114,7 @@ function Carousel({ isManga }) {
                 </p>
               </div>
               <div className="buttons-group">
-                <Link to={ isManga ? `/manga/read/${anime.id}` : `/watch/${anime.id}`}>
+                <Link to={ isManga ? `/manga/read/${anime.id}/MangaId` : `/watch/${anime.id}`}>
                   <button>
                     <FontAwesomeIcon icon={isManga ? faBook : faPlayCircle} />
                     {"  "}

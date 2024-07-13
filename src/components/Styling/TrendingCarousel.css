@@ -28,9 +28,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    height: auto;
-    width: calc(20% - 1em); 
-    max-width: 300px;
+    aspect-ratio: 2/3;
     text-align: center;
     padding: 20px;
     border-radius: 15px;
