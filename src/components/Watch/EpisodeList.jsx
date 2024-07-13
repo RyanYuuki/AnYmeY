@@ -13,22 +13,21 @@ const EpisodeList = ({
   isLoading,
 }) => {
   const filteredEpisodes = data?.filter((episode) => {
-    return (
-      episode.title.toLowerCase().includes(searchTerm) ||
-      episode.number.toString().includes(searchTerm)
-
-    );
+    return episode.title
+      ? episode.title.toLowerCase().includes(searchTerm) ||
+        episode.number.toString().includes(searchTerm)
+      : episode.number.toString().includes(searchTerm);
   });
 
   return (
     <>
       <div className="streaming-episodes-header">
         <div className="episodes-select-box">
-        <select style={{ width: '100%', height: '100%' }} >
-          <option value={`${data[0].number} - ${data.length}`}>
-            Episodes{` ${data[0].number} - ${data.length}`}
-          </option>
-        </select>
+          <select style={{ width: "100%", height: "100%" }}>
+            <option value={`${data[0].number} - ${data.length}`}>
+              Episodes{` ${data[0].number} - ${data.length}`}
+            </option>
+          </select>
         </div>
         <div className="streaming-input-box">
           <input
@@ -57,12 +56,12 @@ const EpisodeList = ({
             <span className="episode-tag">Ep {episode.number}</span>
             <div className="textContainer">
               <span>Episode {episode.number}</span>{" "}
-              <p>{episode.title || episode.id}</p>
+              <p>{(episode.title && episode?.title) || episode?.id || ""}</p>
             </div>
           </div>
         )
       )}
-      </>
+    </>
   );
 };
 

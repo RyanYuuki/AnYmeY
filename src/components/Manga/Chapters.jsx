@@ -15,7 +15,6 @@ function Chapters({ data, title }) {
     chapter.chapterNumber.toString().includes(searchTerm)
   );
 
-  // Use a set to track rendered chapter numbers
   const renderedChapters = new Set();
 
   return (
@@ -33,7 +32,7 @@ function Chapters({ data, title }) {
       <div className="chapters">
         {filteredChapters.map((chapter) => {
           if (renderedChapters.has(chapter.chapterNumber)) {
-            return null; // Skip rendering duplicate chapters
+            return null; 
           }
           renderedChapters.add(chapter.chapterNumber);
           return (
