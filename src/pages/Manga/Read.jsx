@@ -98,11 +98,9 @@ function Read() {
       </div>
       <div onClick={handleClick} className="chapters-navigator">
         {currentChapterData && (
-          currentChapterData.pages > 0 ?
           <Link to={`/manga/read/${currentChapterData.id}/${title}`}>
             <button>Chapter {chapter + 1} &gt;</button>
           </Link>
-          : null
         )}
       </div>
       <button onClick={handleSideBar} className="sidebar-toggle">
@@ -117,9 +115,11 @@ function Read() {
       >
         <h2>Chapters</h2>
         {metaData?.chapters.map((chapterItem, index) => (
+          chapterItem.pages > 0 ?
           <Link to={`/manga/read/${chapterItem.id}/ChapterId/${metaData.id}/${chapterItem.chapterNumber}`} >
           <button key={chapterItem.id}>{chapterItem.chapterNumber || index}</button>
           </Link>
+          : null
         ))}
       </div>
     </div>
