@@ -5,8 +5,9 @@ import { Link, useParams } from "react-router-dom";
 import { GetMangaDetails, GetMangaPages } from "../../hooks/useApi";
 import { fetchTheme } from "../../providers/ThemeProvider";
 import ChapterNavigator from "../../components/Manga/ChapterNavigator";
+
 function Read() {
-  const { id, method } = useParams();
+  const { id, method, mangaId, mangaChapter } = useParams();
   const [data, setData] = useState(null);
   const [metaData, setMetaData] = useState(null);
   const { toggleHeader, setToggleHeader } = fetchTheme();
@@ -26,11 +27,23 @@ function Read() {
             setTitle(
               MetaData.title.english ||
                 MetaData.title.romaji ||
-                MetaData.title.userPreffered ||
+                MetaData.title.userPreferred ||
                 "??"
             );
             setChapter(parseInt(MetaData.chapters[0].chapterNumber));
           }
+        } else if (method === "ChapterId") {
+          const Mangadata = await GetMangaPages(id);
+          const MetaData = await GetMangaDetails(mangaId);
+          setTitle(
+            MetaData.title.english ||
+              MetaData.title.romaji ||
+              MetaData.title.userPreferred ||
+              "??"
+          );
+          setData(Mangadata);
+          setMetaData(MetaData);
+          setChapter(parseInt(mangaChapter));
         } else {
           const Mangadata = await GetMangaPages(id);
           setTitle(method);
@@ -73,10 +86,8 @@ function Read() {
           ))}
       </div>
       <div onClick={handleClick} className="chapters-navigator">
-        <Link
-          to={`/manga/read/${metaData.chapters[Chapter + 1].id}/${title}`}
-        >
-          <button>Chapter {Chapter + 1 + ' >'}</button>
+        <Link to={`/manga/read/${metaData.chapters[Chapter + 1].id}/${title}`}>
+          <button>Chapter {Chapter + 1 + " >"}</button>
         </Link>
       </div>
     </div>

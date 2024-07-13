@@ -67,6 +67,7 @@
     border-radius: 30px;
     background-color: var(--global-primary-bg-tr);
     color: var(--global-text);
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .buttons-group {

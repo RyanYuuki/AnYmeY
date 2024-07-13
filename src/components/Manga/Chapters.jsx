@@ -11,7 +11,7 @@ function Chapters({ data, title }) {
     setSearchTerm(event.target.value);
   };
 
-  const filteredChapters = data.filter((chapter) =>
+  const filteredChapters = data.chapters.filter((chapter) =>
     chapter.chapterNumber.toString().includes(searchTerm)
   );
 
@@ -38,7 +38,7 @@ function Chapters({ data, title }) {
           return (
             <Link
               key={chapter.id}
-              to={`/manga/read/${chapter.id}/${title}/${chapter.chapterNumber}/`}
+              to={`/manga/read/${chapter.id}/ChapterId/${data.id}/${chapter.chapterNumber}`}
             >
               <p className="chapter">{chapter.chapterNumber}</p>
             </Link>

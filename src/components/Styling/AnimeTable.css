@@ -10,14 +10,15 @@
   flex: 1 1 25%;
   padding: 20px;
   border-radius: 10px;
-  background-color: var(--global-card-bg);
+  background-color: var(--global-secondary-bg);
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .anime-item {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: var(--global-button-bg);
+  background-color: var(--global-tertiary-bg);
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;

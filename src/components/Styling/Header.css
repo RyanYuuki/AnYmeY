@@ -83,13 +83,13 @@
 input {
   width: 100%;
   padding: 10px;
-  background-color: var(--global-secondary-bg);
+  background-color: var(--global-div-tr);
   border-radius: 5px;
   border: 1px solid var(--global-border);
   font-size: 1em;
   outline: none;
   color: var(--global-text);
-  box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 input::placeholder {
@@ -150,8 +150,7 @@ input::placeholder {
 }
 
 .action-buttons button {
-  color: var(--global-text);
-  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .action-button {
@@ -190,8 +189,8 @@ input::placeholder {
   overflow-y: scroll;
   scrollbar-width: none;
   background-color: var(--global-secondary-bg);
-  z-index: 999;
   padding: 20px;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .search-items-active {

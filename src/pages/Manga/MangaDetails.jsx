@@ -71,7 +71,7 @@ function MangaDetails() {
     <div className="anime-details-body">
       <AnimeCover cover={data.cover} />
       <AnimeFullInfo isManga={true} data={data} Months={Months} />
-      <Chapters data={data.chapters} title={data.title.english || data.title.romaji} />
+      <Chapters data={data} title={data.title.english || data.title.romaji} />
       <CharactersSection characters={data.characters} />
       <RelatedSection relations={data.relations} />
       <RecommendationSection recommendations={data.recommendations} />

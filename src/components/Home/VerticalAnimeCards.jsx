@@ -1,12 +1,22 @@
 import "../Styling/VerticalAnimeCards.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClosedCaptioning, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faClosedCaptioning, faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function VerticalAnimeCards({ data }) {
+  const [isManga, setIsManga] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [hoverPosition, setHoverPosition] = useState("below");
+
+  useEffect(() => {
+    if(Array.isArray(data)) {
+      setIsManga(data[0].type === 'MANGA');
+    }
+    else {
+      setIsManga(data.type === "MANGA");
+    }
+  },[])
 
   useEffect(() => {
     const handleResize = () => {
@@ -14,7 +24,6 @@ export default function VerticalAnimeCards({ data }) {
         setHoveredIndex(null);
       }
     };
-
     window.addEventListener("resize", handleResize);
     handleResize();
 
@@ -40,7 +49,7 @@ export default function VerticalAnimeCards({ data }) {
     setHoveredIndex(index);
   };
 
-  return data.map((anime, index, isManga) =>
+  return data.map((anime, index) =>
     index > 4 ? null : (
       <div
         key={anime.mal_id}
@@ -79,8 +88,8 @@ export default function VerticalAnimeCards({ data }) {
           </p>
           <div className="row">
             <div className="anime-info-item item1">
-              <FontAwesomeIcon icon={faClosedCaptioning} />
-              {anime.totalEpisodes || '??'}
+              <FontAwesomeIcon icon={isManga ? faHeart : faClosedCaptioning} />
+              {isManga ? anime.popularity : anime.totalEpisodes || '??'}
             </div>
             <div className="anime-info-item item2">
               <FontAwesomeIcon icon={faStar} />

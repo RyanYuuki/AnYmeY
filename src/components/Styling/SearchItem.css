@@ -7,10 +7,11 @@
     background-color: var(--global-tertiary-bg);
     gap: 30px;
     padding: 10px;
+    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);   
 }
 
 .search-item-container:hover {
-    background-color: var(--primary-accent);
+    background-color: var(--primary-accent-bg);
     margin-bottom: 10px;
 }
 

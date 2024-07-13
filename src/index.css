@@ -92,6 +92,11 @@ select,
   color: var(--text-50);
 }
 
+button, input, select {
+  color: var(--global-text);
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
 button:active {
   transform: scale(0.8);
 }
