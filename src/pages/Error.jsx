@@ -6,7 +6,7 @@ export default function Error() {
   return (
     <div style={styles.container}>
       <img style={styles.error} src={errorImage} />
-      <button style={styles.button} ><a href="/home/#/anime/home/">Go To HomePage</a></button>
+      <button style={styles.button} ><a href="/home#/anime/home/">Go To HomePage</a></button>
     </div>
   );
 }

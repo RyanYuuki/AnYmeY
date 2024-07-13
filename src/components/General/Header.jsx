@@ -88,14 +88,14 @@ function Header() {
       </h1>
       <div className="nav-links">
         <div className="nav-item">
-          <Link to={"/anime/home"}>
+          <a href={"#/anime/home"}>
             <FontAwesomeIcon icon={faFilm} /> Anime
-          </Link>
+          </a>
         </div>
         <div className="nav-item">
-          <Link to={"/manga/home"}>
+          <a href={"#/manga/home"}>
             <FontAwesomeIcon icon={faBook} /> Manga
-          </Link>
+          </a>
         </div>
       </div>
       <div className="inputBox">
