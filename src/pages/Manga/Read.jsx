@@ -98,9 +98,11 @@ function Read() {
       </div>
       <div onClick={handleClick} className="chapters-navigator">
         {currentChapterData && (
+          currentChapterData.pages > 0 ?
           <Link to={`/manga/read/${currentChapterData.id}/${title}`}>
             <button>Chapter {chapter + 1} &gt;</button>
           </Link>
+          : null
         )}
       </div>
       <button onClick={handleSideBar} className="sidebar-toggle">
