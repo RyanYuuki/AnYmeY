@@ -34,12 +34,13 @@ function Chapters({ data }) {
       <div className="chapters">
         {filteredChapters.length > 0 ? (
           filteredChapters.map((chapter) => (
+            chapter.pages > 0 ?
             <Link
               key={chapter.id}
               to={`/manga/read/${chapter.id}/ChapterId/${data.id}/${chapter.chapterNumber}`}
             >
               <p className="chapter">{chapter.chapterNumber}</p>
-            </Link>
+            </Link> : null
           ))
         ) : (
           <p>No chapters available.</p>
