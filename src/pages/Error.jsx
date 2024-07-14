@@ -8,7 +8,7 @@ export default function Error() {
     <div className="error-body">
       <img src={errorImage} alt="" />
       <h1>Sorry, The content you are looking for is Unavailable.</h1>
-      <h1>Please Try again Later</h1>
+      <h1>Please try again later.</h1>
       <a href="/anime/home/"><button className="error-button" >Go To HomePage</button></a>
     </div>
   );
