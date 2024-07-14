@@ -14,6 +14,7 @@ const AnimeDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     const loadData = async () => {
       try {
         if (id === "random") {
@@ -34,7 +35,7 @@ const AnimeDetails = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [id]);
+  }, [id, isLoading]);
 
   if (isLoading) {
     return (
