@@ -10,23 +10,29 @@ const AnimeList = ({ title, data, style }) => {
     <div style={style} className="streaming-related-section">
       <h2>{title}</h2>
       {data?.length > 0 ? (
-        data.map((anime) => (
-          <Link key={anime.mal_id} to={`/anime/${anime.id}`}>
-            <div className="related-anime">
-              <img src={anime.image} alt={anime.title.english || "??"} />
-              <div className="related-anime-details">
-                <h4>{anime.title.english || "??"}</h4>
-                <p>
-                  <span>{anime.type}</span>
-                  <span>
-                    <FontAwesomeIcon icon={faStar} />
-                    {anime.rating || '??'}
-                  </span>
-                </p>
+        data.map((anime) => {
+          const isManga = anime.type === "MANGA";
+          return (
+            <Link
+              key={anime.mal_id}
+              to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}
+            >
+              <div className="related-anime">
+                <img src={anime.image} alt={anime.title.english || "??"} />
+                <div className="related-anime-details">
+                  <h4>{anime.title.english || "??"}</h4>
+                  <p>
+                    <span>{anime.type}</span>
+                    <span>
+                      <FontAwesomeIcon icon={faStar} />
+                      {anime.rating || "??"}
+                    </span>
+                  </p>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))
+            </Link>
+          );
+        })
       ) : (
         <p>No {title} Available...</p>
       )}

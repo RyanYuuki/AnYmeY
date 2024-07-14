@@ -29,8 +29,8 @@ const EpisodeList = ({
       <div className="streaming-episodes-header">
         <div className="episodes-select-box">
           <select style={{ width: "100%", height: "100%" }}>
-            <option value={`${data[0].number} - ${data.length}`}>
-              Episodes{` ${data[0].number} - ${data.length}`}
+            <option value={`${data[0]?.number || 1} - ${data?.length}`}>
+              Episodes{` ${data[0]?.number || 1} - ${data?.length}`}
             </option>
           </select>
         </div>
@@ -46,24 +46,28 @@ const EpisodeList = ({
         </div>
       </div>
 
-      {isLoading
-        ? Skeleton.map(() => <SkeletonEpisodes />)
-        : filteredEpisodes?.map((episode) => (
-            <div
-              key={episode.id}
-              className={`episode ${
-                currentEpisode === episode.number ? "episode-active" : ""
-              }`}
-              onClick={() => handleEpisode(episode)}
-            >
-              <img src={episode?.image} alt={episode.fallback} />
-              <span className="episode-tag">Ep {episode?.number}</span>
-              <div className="textContainer">
-                <span>Episode {episode?.number}</span>{" "}
-                <p>{(episode?.title && episode?.title) || episode?.id || ""}</p>
-              </div>
+      {isLoading ? (
+        Skeleton.map(() => <SkeletonEpisodes />)
+      ) : filteredEpisodes.length > 0 ? (
+        filteredEpisodes?.map((episode) => (
+          <div
+            key={episode.id}
+            className={`episode ${
+              currentEpisode === episode.number ? "episode-active" : ""
+            }`}
+            onClick={() => handleEpisode(episode)}
+          >
+            <img src={episode?.image} alt={episode.fallback} />
+            <span className="episode-tag">Ep {episode?.number}</span>
+            <div className="textContainer">
+              <span>Episode {episode?.number}</span>{" "}
+              <p>{(episode?.title && episode?.title) || episode?.id || ""}</p>
             </div>
-          ))}
+          </div>
+        ))
+      ) : (
+        <p>No episodes found.</p>
+      )}
     </>
   );
 };

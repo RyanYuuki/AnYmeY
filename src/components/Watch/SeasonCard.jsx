@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import '../Styling/SeasonCard.css';
 
 function SeasonCard({ data }) {
+  const isManga = data.type === "MANGA";
   return (
     <div className="season-card">
-      <Link to={`/anime/${data.id}`}>
+      <Link to={isManga ? `/manga/details/${data.id}` : `/anime/${data.id}`}>
         <img 
           className="season-card-image" 
           src={data.image} 
