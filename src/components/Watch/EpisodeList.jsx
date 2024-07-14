@@ -3,7 +3,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { SkeletonCard, SkeletonSlide } from "../General/Skeleton";
+import {
+  SkeletonCard,
+  SkeletonEpisodes,
+  SkeletonSlide,
+} from "../General/Skeleton";
 const EpisodeList = ({
   data,
   currentEpisode,
@@ -11,11 +15,12 @@ const EpisodeList = ({
   searchTerm,
   handleInputChange,
   isLoading,
+  Skeleton,
 }) => {
   const filteredEpisodes = data?.filter((episode) => {
     return episode.title
       ? episode.title.toLowerCase().includes(searchTerm) ||
-        episode.number.toString().includes(searchTerm)
+          episode.number.toString().includes(searchTerm)
       : episode.number.toString().includes(searchTerm);
   });
 
@@ -41,26 +46,24 @@ const EpisodeList = ({
         </div>
       </div>
 
-      {filteredEpisodes?.map((episode) =>
-        isLoading ? (
-          <SkeletonCard key={episode.id} />
-        ) : (
-          <div
-            key={episode.id}
-            className={`episode ${
-              currentEpisode === episode.number ? "episode-active" : ""
-            }`}
-            onClick={() => handleEpisode(episode)}
-          >
-            <img src={episode.image} alt={episode.fallback} />
-            <span className="episode-tag">Ep {episode.number}</span>
-            <div className="textContainer">
-              <span>Episode {episode.number}</span>{" "}
-              <p>{(episode.title && episode?.title) || episode?.id || ""}</p>
+      {isLoading
+        ? Skeleton.map(() => <SkeletonEpisodes />)
+        : filteredEpisodes?.map((episode) => (
+            <div
+              key={episode.id}
+              className={`episode ${
+                currentEpisode === episode.number ? "episode-active" : ""
+              }`}
+              onClick={() => handleEpisode(episode)}
+            >
+              <img src={episode?.image} alt={episode.fallback} />
+              <span className="episode-tag">Ep {episode?.number}</span>
+              <div className="textContainer">
+                <span>Episode {episode?.number}</span>{" "}
+                <p>{(episode?.title && episode?.title) || episode?.id || ""}</p>
+              </div>
             </div>
-          </div>
-        )
-      )}
+          ))}
     </>
   );
 };

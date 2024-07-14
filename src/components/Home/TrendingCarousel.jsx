@@ -106,7 +106,7 @@ export default function TrendingCarousel({ isManga }) {
             anime?.title?.userPreferred ||
             "??";
           return (
-            <SwiperSlide key={index} className="carousel-item">
+            <SwiperSlide key={index} className="carousel-item animated">
               <Link to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
                 <img src={anime.image} draggable="false" alt={title} />
               </Link>

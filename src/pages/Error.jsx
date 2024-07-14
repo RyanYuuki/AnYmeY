@@ -1,34 +1,15 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Link, useRouteError } from "react-router-dom";
-import errorImage from "../assets/404.png";
+import errorImage from "../assets/error.gif";
+import './css/Error.css';
 export default function Error() {
   return (
-    <div style={styles.container}>
-      <img style={styles.error} src={errorImage} />
-      <button style={styles.button} ><a href="/anime/home/">Go To HomePage</a></button>
+    <div className="error-body">
+      <img src={errorImage} alt="" />
+      <h1>Sorry, The content you are looking for is Unavailable.</h1>
+      <h1>Please Try again Later</h1>
+      <a href="/anime/home/"><button className="error-button" >Go To HomePage</button></a>
     </div>
   );
 }
-
-const styles = {
-  container: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-  error : {
-    objectFit: 'cover',
-    width: 'fit-content',
-    height: '600px',
-  },
-  button : {
-    padding: '10px 20px',
-    backgroundColor: 'deeppink',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '10px',
-    marginLeft: '30px',
-  }
-};

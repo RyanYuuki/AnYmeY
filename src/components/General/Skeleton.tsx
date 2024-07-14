@@ -63,6 +63,12 @@ const SkeletonCards = styled(BaseSkeleton)`
   margin-bottom: 5.1rem;
   ${animationMixin};
 `;
+const SkeletonFrame = styled(BaseSkeleton)`
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  ${animationMixin};
+`;
 
 const SkeletonCarouselCards = styled(BaseSkeleton)`
   width: 100%;
@@ -87,6 +93,12 @@ export const SkeletonCard = React.memo(() => (
     <SkeletonDetails />
     <SkeletonDetails />
   </SkeletonCards>
+));
+
+export const SkeletonEpisodes = React.memo(() => (
+  <SkeletonFrame>
+    <SkeletonEpisodeImage/>
+  </SkeletonFrame>
 ));
 
 const SkeletonSlides = styled(BaseSkeleton)<{ loading?: boolean }>`
@@ -142,4 +154,9 @@ export const SkeletonPlayer = React.memo(() => (
 const SkeletonImage = styled(BaseSkeleton)`
   width: 100%;
   height: 100%;
+`;
+const SkeletonEpisodeImage = styled(BaseSkeleton)`
+  width: 35%;
+  height: 100%;
+  background-color: rgb(255,255,255,0.1);
 `;

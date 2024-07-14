@@ -17,6 +17,7 @@ import {
   SkeletonPlayer,
   SkeletonCard,
   SkeletonSlide,
+  SkeletonEpisodes,
 } from "../../components/General/Skeleton";
 import CurrentEpisode from "../../components/Watch/CurrentEpisode";
 
@@ -82,6 +83,8 @@ const Streaming = () => {
     setSearchTerm(event.target.value.toLowerCase());
   };
 
+  const Skeleton = ['','','','','','']
+
   const Months = [
     "January",
     "February",
@@ -126,7 +129,7 @@ const Streaming = () => {
         </div>
         <div className="streaming-episodes">
           {isLoading ? (
-            Months.map((index) => <SkeletonSlide key={index} />)
+            Skeleton.map((index) => <SkeletonEpisodes key={index} />)
           ) : (
             <EpisodeList
               data={data || [{ fallback: animeData.cover }]}
@@ -135,6 +138,7 @@ const Streaming = () => {
               searchTerm={searchTerm}
               handleInputChange={handleInputChange}
               isLoading={episodeLoading}
+              Skeleton={Skeleton}
             />
           )}
         </div>
@@ -154,7 +158,6 @@ const Streaming = () => {
             </div>
             <div className="right-streaming-row">
               <AnimeList title="Related" data={animeData?.relations || []} />
-
               <AnimeList
                 style={{ marginTop: "40px" }}
                 title="Recommendation"

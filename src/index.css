@@ -126,3 +126,18 @@ button {
 button:active {
   transform: scale(0.8);
 }
+
+.animated {
+  animation: slideIn 0.5s forwards ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
