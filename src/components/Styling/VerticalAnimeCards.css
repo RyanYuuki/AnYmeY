@@ -9,7 +9,7 @@
   box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
-.anime-item img {
+.anime-image {
   height: 100px;
   object-fit: contain;
   border-radius: 10px;
@@ -68,8 +68,8 @@
   border-bottom-left-radius: 4px;
 }
 
-.item2  {
-    background-color:#b9e7ff;
+.item2 {
+  background-color: #b9e7ff;
 }
 
 .anime-item-hover {
@@ -80,8 +80,8 @@
   width: fit-content;
   background-image: linear-gradient(
     120deg,
-    rgba(255, 255, 255, 0.1),
-    rgba(0, 0, 0, 0.1)
+    var(--global-div-tr),
+    var(--global-div)
   );
   backdrop-filter: blur(15px);
   border-radius: 14px;
@@ -90,18 +90,19 @@
   scale: 0;
   transition: all 0.5s ease;
   pointer-events: none;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .anime-item-hover.below {
-  transform: translate(20%, 50%);
+  transform: translate(10%, 50%);
 }
 
 .anime-item-hover.above {
-  transform: translate(20%, -50%);
+  transform: translate(10%, -50%);
 }
 
-.anime-item.hover .anime-item-hover {
-  scale: 1;
+.anime-link:hover ~ .anime-item-hover {
+  scale: 0.9;
   pointer-events: auto;
 }
 
@@ -116,22 +117,22 @@
   padding: 5px 10px;
   border-radius: 10px;
   background-color: var(--primary-accent);
+  color: white;
 }
-
 .anime-description {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  color: var(--global-description);
   font-weight: 400;
 }
 
 .anime-other-info p {
   font-size: 15px;
-  color: white;
+  color: var(--global-text);
   font-weight: 600;
 }
 
 .anime-other-info span {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--global-description);
   font-size: 13px;
 }
 

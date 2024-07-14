@@ -12,6 +12,7 @@
 }
 
 body[data-theme="light"] {
+  --global-description: rgb(0,0,0,0.6);
   --global-primary-bg: #f5f5f5;
   --global-primary-bg-tr: rgba(245, 245, 245, 0.8);
   --global-secondary-bg: #e0e0e0;
@@ -42,6 +43,7 @@ body[data-theme="light"] {
   --default-indicator-color: #808080;
 }
 body[data-theme="dark"] {
+  --global-description: rgb(255,255,255,0.6);
   --global-primary-bg: #080808;
   --global-primary-bg-tr: rgba(8, 8, 8, 0.9);
   --global-secondary-bg: #141414;

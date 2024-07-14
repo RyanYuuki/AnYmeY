@@ -38,7 +38,7 @@ export default function VerticalAnimeCards({ data }) {
     const hoverItemTop = event.currentTarget.getBoundingClientRect().top;
     const spaceAbove = hoverItemTop;
     const spaceBelow =
-      window.innerHeight - (hoverItemTop + event.currentTarget.offsetHeight);
+      window.innerHeight - ((hoverItemTop + 100) + event.currentTarget.offsetHeight);
 
     if (spaceBelow < hoverItemHeight && spaceAbove > hoverItemHeight) {
       setHoverPosition("above");
@@ -57,7 +57,7 @@ export default function VerticalAnimeCards({ data }) {
         onMouseEnter={(event) => handleMouseEnter(index, event)}
         onMouseLeave={() => setHoveredIndex(null)}
       >
-        <Link to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
+        <Link className="anime-link" to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
           <img
             className="anime-image"
             src={anime.image}
