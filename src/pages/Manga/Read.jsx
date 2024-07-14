@@ -91,7 +91,7 @@ function Read() {
   return (
     <div className="reading-body">
       <h1>{title}</h1>
-      <h3>Chapter {chaptersData[chapter - 1].chapterNumber}</h3>
+      <h3>Chapter {chapter}</h3>
       <div className="chapters-navigator">
         <div className="prevbutton">
           <Link
