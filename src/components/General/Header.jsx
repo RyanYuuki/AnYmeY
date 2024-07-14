@@ -13,8 +13,8 @@ import {
   faSun,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { FetchRandomAnime, GetMangaSearch, SearchAnime } from "../../hooks/useApi";
-import { Link, useNavigate } from "react-router-dom";
+import { GetMangaSearch, SearchAnime } from "../../hooks/useApi";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import SearchItem from "../General/SearchItem";
 import { fetchTheme } from "../../providers/ThemeProvider";
 import debounce from "lodash.debounce";
@@ -25,13 +25,22 @@ function Header() {
     setToggleSearch,
     toggleHeader,
     setToggleHeader,
-    contentType,
   } = fetchTheme();
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isDarkMode, setDarkMode] = useState(true);
+  const [contentType, setContentType] = useState("Anime"); 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.includes("manga")) {
+      setContentType("Manga");
+    } else {
+      setContentType("Anime");
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
@@ -55,7 +64,7 @@ function Header() {
         setIsLoading(false);
       }
     }, 300),
-    []
+    [contentType]
   );
 
   const handleInput = (e) => {
@@ -105,7 +114,7 @@ function Header() {
           onChange={handleInput}
           className={toggleSearch ? "input-active" : "input"}
           type="text"
-          placeholder={contentType == 'Anime' ? "Search Anime..." : "Search Manga..." }
+          placeholder={contentType === 'Anime' ? "Search Anime..." : "Search Manga..." }
           onKeyDown={handleEnter}
         />
         <div
@@ -113,7 +122,7 @@ function Header() {
             toggleSearch && data.length > 0 ? "search-items-active" : ""
           } `}
         >
-          {isLoading && data.length == 0 ? (
+          {isLoading && data.length === 0 ? (
             <div>Loading...</div>
           ) : (
             data.map((anime, index) => <SearchItem key={index} data={anime} />)
@@ -173,7 +182,7 @@ function Header() {
             onChange={handleInput}
             type="text"
             onKeyDown={handleEnter}
-            placeholder="Search anime..."
+            placeholder={contentType === 'Anime' ? "Search Anime..." : "Search Manga..."}
           />
 
           <div
@@ -182,7 +191,7 @@ function Header() {
             }}
             className="search-items-mobile"
           >
-            {isLoading && data.length == 0 ? (
+            {isLoading && data.length === 0 ? (
               <div>Loading...</div>
             ) : (
               data.map((anime, index) => (
