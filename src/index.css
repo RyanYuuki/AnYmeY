@@ -119,6 +119,10 @@ select,
   color: var(--text-50);
 }
 
+button {
+  color: var(--global-text);
+}
+
 button:active {
   transform: scale(0.8);
 }
