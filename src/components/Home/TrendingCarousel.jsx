@@ -63,7 +63,7 @@ export default function TrendingCarousel({ isManga }) {
   }
 
   return (
-    <div className="body">
+    <div className="body animated">
       <h2 className="carousel-heading">Trending {isManga ? "Manga" : "Anime"}</h2>
       <Swiper
         className="carousel-container"

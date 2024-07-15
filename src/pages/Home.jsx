@@ -7,15 +7,15 @@ function Home() {
   return (
     <div className="home-body">
       <div className="left-side">
-        <img className="anime-bg" src={animeImage} alt="Anime background" />
-        <img className="manga-bg" src={mangaImage} alt="Manga background" />
+        <img className="anime-bg animated" src={animeImage} alt="Anime background" />
+        <img className="manga-bg animated" src={mangaImage} alt="Manga background" />
       </div>
-      <div className="right-side">
+      <div className="right-side animated">
         <h1>
           Welcome to An<span>Y</span>mey
         </h1>
         <span>
-          Your one-stop solution for finding anime, manga, and movies.
+          Your one-stop solution for finding anime, manga.
         </span>
         <div className="button-group">
           <Link to={"/anime/home"}>

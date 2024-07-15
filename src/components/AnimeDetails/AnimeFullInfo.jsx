@@ -19,7 +19,7 @@ const AnimeFullInfo = ({ data, Months }) => {
 
   return (
     <>
-      <div className="anime-details-info">
+      <div className="anime-details-info animated">
         <div className="anime-details-row">
           <img src={data.image || ""} alt={data.title?.english || "Image"} />
           <button>

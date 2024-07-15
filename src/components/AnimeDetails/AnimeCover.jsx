@@ -3,7 +3,7 @@
 import React from "react";
 
 const AnimeCover = ({ cover }) => (
-  <div className="anime-cover-container">
+  <div className="anime-cover-container animated">
     <img src={cover || ""} alt="" className="anime-details-cover" />
   </div>
 );

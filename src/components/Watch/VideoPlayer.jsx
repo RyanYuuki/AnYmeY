@@ -28,7 +28,7 @@ const VideoPlayer = ({
         <SkeletonPlayer />
       ) : (
         <MediaPlayer
-          className="player"
+          className="player animated"
           aspectRatio="16/9"
           title={currentEpisodeTitle}
           src={streamingData[4]?.url}

@@ -20,17 +20,13 @@ import { fetchTheme } from "../../providers/ThemeProvider";
 import debounce from "lodash.debounce";
 
 function Header() {
-  const {
-    toggleSearch,
-    setToggleSearch,
-    toggleHeader,
-    setToggleHeader,
-  } = fetchTheme();
+  const { toggleSearch, setToggleSearch, toggleHeader, setToggleHeader } =
+    fetchTheme();
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isDarkMode, setDarkMode] = useState(true);
-  const [contentType, setContentType] = useState("Anime"); 
+  const [contentType, setContentType] = useState("Anime");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -89,23 +85,23 @@ function Header() {
   };
 
   return (
-    <nav style={{ display: toggleHeader ? "flex" : "none" }} className="header">
+    <nav style={{ display: toggleHeader ? "flex" : "none" }} className="header animated">
       <h1 className="logo">
         <Link to={"/"}>
           An<span>Y</span>meY{" "}
         </Link>
       </h1>
       <div className="nav-links">
-        <div className="nav-item">
-          <a href={"/anime/home"}>
+        <a href={"/anime/home"}>
+          <div className="nav-item">
             <FontAwesomeIcon icon={faFilm} /> Anime
-          </a>
-        </div>
+          </div>
+        </a>
+        <a href={"/manga/home"}>
         <div className="nav-item">
-          <a href={"/manga/home"}>
             <FontAwesomeIcon icon={faBook} /> Manga
-          </a>
         </div>
+        </a>
       </div>
       <div className="inputBox">
         <input
@@ -114,7 +110,9 @@ function Header() {
           onChange={handleInput}
           className={toggleSearch ? "input-active" : "input"}
           type="text"
-          placeholder={contentType === 'Anime' ? "Search Anime..." : "Search Manga..." }
+          placeholder={
+            contentType === "Anime" ? "Search Anime..." : "Search Manga..."
+          }
           onKeyDown={handleEnter}
         />
         <div
@@ -182,7 +180,9 @@ function Header() {
             onChange={handleInput}
             type="text"
             onKeyDown={handleEnter}
-            placeholder={contentType === 'Anime' ? "Search Anime..." : "Search Manga..."}
+            placeholder={
+              contentType === "Anime" ? "Search Anime..." : "Search Manga..."
+            }
           />
 
           <div

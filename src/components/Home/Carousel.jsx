@@ -64,7 +64,7 @@ function Carousel({ isManga }) {
     );
 
   return (
-    <div className="carouselContainer">
+    <div className="carouselContainer animated">
       <Swiper
         grabCursor={true}
         centeredSlides={true}

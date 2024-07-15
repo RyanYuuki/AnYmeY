@@ -14,7 +14,7 @@ export default function ReusableCarousel({ title, data = [] }) {
   }
 
   return (
-    <div className="reusable-carousel-container">
+    <div className="reusable-carousel-container animated">
       <h2>{title}</h2>
       <Swiper
         className="reusable-carousel"

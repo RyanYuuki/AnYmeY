@@ -8,7 +8,7 @@ import AnimeList from "./AnimeList";
 const AnimeDetails = ({ animeData, Months }) => {
   return (
     <>
-      <div className="streaming-details-container">
+      <div className="streaming-details-container animated">
         <div className="streaming-details-row first-row">
           <img src={animeData.image || ""} alt="" />
           <button style={{ width: "100%" }}>INFO</button>
