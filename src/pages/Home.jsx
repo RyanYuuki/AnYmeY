@@ -14,14 +14,16 @@ function Home() {
         <h1>
           Welcome to An<span>Y</span>mey
         </h1>
-        <span>Your one-stop solution for finding anime, manga, and movies.</span>
+        <span>
+          Your one-stop solution for finding anime, manga, and movies.
+        </span>
         <div className="button-group">
-          <button className="Anime">
-            <Link to={"/anime/home"}>Anime</Link>
-          </button>
-          <button className="Manga">
-            <Link to={"/manga/home"}>Manga</Link>
-          </button>
+          <Link to={"/anime/home"}>
+            <button className="Anime">Anime</button>
+          </Link>
+          <Link to={"/manga/home"}>
+            <button className="Manga">Manga</button>
+          </Link>
         </div>
       </div>
     </div>
