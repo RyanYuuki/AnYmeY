@@ -66,6 +66,7 @@ body[data-theme="dark"] {
   --global-shadow: rgba(255, 255, 255, 0.08);
   --primary-accent: #8080cf;
   --primary-accent-bg: #595991;
+  --primary-accent-radial: #5959912b;
 }
 
 body {

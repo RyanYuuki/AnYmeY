@@ -1,87 +1,101 @@
 .home-body {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--global-secondary-bg);
-    height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--global-primary-bg);
+  position: relative; 
+  overflow: hidden; 
+  height: 100vh;
 }
 
-.home-container {
-    position: relative;
-    width: 80%;
-    height: 60%;
-    background-color: rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 30px;
-    z-index: 2;
-    padding: 20px; 
-    border-radius: 10px; 
-    overflow: hidden;
+.home-body::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    var(--primary-accent-radial) 10%,
+    transparent 40%
+  );
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  filter: blur(20px); 
 }
 
-.home-container h1 {
-    font-size: 48px;
+.left-side {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 75%;
+  width: 40%;
 }
 
-.home-body span {
-    font-size: 60px;
-    color: var(--primary-accent);
+.left-side img {
+  width: fit-content;
+  height: 350px;
+  scale: 1.1;
+  object-fit: contain;
+  border-radius: 20px;
+  margin: 0 5px 0 30px;
+}
+
+.left-side img:first-child {
+  margin-bottom: 60px;
+}
+
+.left-side img:last-child {
+  margin-top: 40px;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 80px 50px 50px 50px;
+  height: 75%;
+  width: 40%;
+}
+
+.right-side h1 span {
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--primary-accent);
+}
+
+.right-side h1 {
+    font-size: 35px;
+}
+
+.right-side span {
+    font-size: 35px;
+    font-weight: 500;
 }
 
 .button-group {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
-    gap: 20px;
-    padding: 10px;
+    justify-content: center;
+    height: 30%;
+    width: 70%;
+    gap: 50px;
 }
 
-.button-group button {
-    padding: 20px 40px;
-    font-size: 18px;
-    border-radius: 10px;
-    border: 1px solid var(--global-border);
-    background-color: var(--global-div-tr);
+.right-side button {
+    padding: 18px 40px;
+    background-color: rgb(0,0,0,0.3);
     backdrop-filter: blur(10px);
-    cursor: pointer; 
+    border-radius: 10px;
+    box-shadow: inset 0 0 1px var(--global-div-tr);
+    border: 1px solid var(--global-border);
+    cursor: pointer;
+    font-size: 18px;
 }
 
-
-.button-group button:hover {
-    transform: scale(1.1);
-    background-color: var(--primary-accent);
-}
-
-.bg-image {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(10px);
-    z-index: -1;
-}
-
-.home-body .anime-bg {
-    right: 0;
-}
-
-.home-body .manga-bg {
-    left: 0;
-}
-
-@media screen and (max-width: 768px) {
-    .home-body h1 {
-        font-size: 20px;
-    }
-    .home-body span {
-        font-size: 30px;
-    }
-    .home-body {
-        text-align: center;
-    }
+.right-side button:hover {
+    background-color: rgb(0,0,0,0.9);
 }
