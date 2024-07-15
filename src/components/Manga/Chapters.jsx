@@ -34,10 +34,10 @@ function Chapters({ data }) {
       </div>
       <div className="chapters">
         {filteredChapters.length > 0 ? (
-          filteredChapters.map((chapter) => (
+          filteredChapters.map((chapter, index) => (
             <Link
               key={chapter.id}
-              to={`/manga/read/${chapter.id}/ChapterId/${data.id}/${chapter.chapterNumber}`}
+              to={`/manga/read/${chapter.id}/ChapterId/${data.id}/${index+1}`}
             >
               <p className="chapter">{chapter.chapterNumber}</p>
             </Link>

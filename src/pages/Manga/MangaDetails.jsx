@@ -14,6 +14,7 @@ function MangaDetails() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     const loadData = async () => {
       try {
         if (id === "random") {

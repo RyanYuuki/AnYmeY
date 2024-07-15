@@ -27,7 +27,7 @@ const AnimeFullInfo = ({ data, Months }) => {
               style={{ textDecoration: "none" }}
               to={
                 isManga && data.chapters && data.chapters.length > 0
-                  ? `/manga/read/${data.chapters[0].id}/ChapterId/${data.id}/${data.chapters[0].chapterNumber}`
+                  ? `/manga/read/${data.chapters[0].id}/ChapterId/${data.id}/${1}`
                   : `/watch/${data.id}`
               }
             >
