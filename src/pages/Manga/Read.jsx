@@ -7,6 +7,7 @@ import { faBars, faSignOut, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 function Read() {
   const { id, method, mangaId, mangaChapter } = useParams();
+  let mangaArr = parseInt(mangaChapter) - 1;
   const [data, setData] = useState(null);
   const [metaData, setMetaData] = useState(null);
   const { toggleHeader, setToggleHeader } = fetchTheme();
@@ -26,37 +27,34 @@ function Read() {
           const metaData = await GetMangaDetails(id);
           setMetaData(metaData);
           if (metaData) {
-            const mangaData = await GetMangaPages(metaData.chapters[0].id);
+            const filteredData = metaData.chapters.filter((ch) => ch.pages > 0);
+            const mangaData = await GetMangaPages(filteredData[0].id);
             setData(mangaData);
             setTitle(
               metaData.title.english ||
-              metaData.title.romaji ||
-              metaData.title.userPreferred ||
-              "??"
+                metaData.title.romaji ||
+                metaData.title.userPreferred ||
+                "??"
             );
-            setChapter(parseInt(metaData.chapters[0].chapterNumber));
-            setChaptersData(metaData.chapters.filter(e => e.pages > 0));
+            setChapter(parseInt(filteredData[0].chapterNumber));
+            setChaptersData(filteredData);
           }
         } else if (method === "ChapterId") {
           const MangaData = await GetMangaPages(id);
           const MetaData = await GetMangaDetails(mangaId);
+          const filteredData = MetaData.chapters.filter((e) => e.pages > 0);
           if (MetaData && MangaData) {
             setTitle(
               MetaData.title.english ||
-              MetaData.title.romaji ||
-              MetaData.title.userPreferred ||
-              "??"
+                MetaData.title.romaji ||
+                MetaData.title.userPreferred ||
+                "??"
             );
             setData(MangaData);
             setMetaData(MetaData);
-            setChapter(parseInt(mangaChapter));
-            setChaptersData(MetaData.chapters.filter(e => e.pages > 0));
+            setChapter(parseInt(filteredData[mangaArr].chapterNumber));
+            setChaptersData(filteredData);
           }
-        } else {
-          const mangaData = await GetMangaPages(id);
-          setTitle(method);
-          setData(mangaData);
-          setChapter(parseInt(mangaChapter));
         }
       } catch (error) {
         setError("Failed to load manga data. Please try again later.");
@@ -71,6 +69,7 @@ function Read() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    console.log(chapter, '\n chaptersData: ', chaptersData);
   }, [title, chapter]);
 
   const handleSideBar = () => {
@@ -79,9 +78,12 @@ function Read() {
 
   const SkeletonLoader = () => (
     <div className="skeleton-container">
-      {Array.from({ length: chaptersData?.[chapter - 1]?.pages || 0 }, (_, index) => (
-        <div key={index} className="skeleton-page"></div>
-      ))}
+      {Array.from(
+        { length: chaptersData?.[chapter - 1]?.pages || 0 },
+        (_, index) => (
+          <div key={index} className="skeleton-page"></div>
+        )
+      )}
     </div>
   );
 
@@ -95,12 +97,14 @@ function Read() {
       <div className="chapters-navigator">
         <div className="prevbutton">
           <Link
-            to={`/manga/read/${metaData.chapters[chapter - 2]?.id}/ChapterId/${
+            to={`/manga/read/${chaptersData[chapter - 2]?.id}/ChapterId/${
               metaData.id
-            }/${chapter - 1}`}
+            }/${parseInt(chapter) - 1}`}
           >
             <button
-              onClick={() => setChapter(chapter - 1)}
+              onClick={() =>
+                setChapter((prevChapter) => parseInt(prevChapter) - 1)
+              }
               disabled={chapter < 2}
               style={{
                 filter: chapter < 2 ? "brightness(0.4)" : "brightness(1)",
@@ -113,16 +117,18 @@ function Read() {
 
         <div className="nextbutton">
           <Link
-            to={`/manga/read/${metaData.chapters[chapter]?.id}/ChapterId/${
+            to={`/manga/read/${chaptersData[chapter]?.id}/ChapterId/${
               metaData.id
-            }/${chapter + 1}`}
+            }/${parseInt(chapter) + 1}`}
           >
             <button
-              onClick={() => setChapter(chapter + 1)}
-              disabled={chapter >= metaData.chapters.length}
+              onClick={() =>
+                setChapter((prevChapter) => parseInt(prevChapter) + 1)
+              }
+              disabled={parseInt(chapter) >= chaptersData.length}
               style={{
                 filter:
-                  chapter >= metaData.chapters.length
+                  parseInt(chapter) >= chaptersData.length
                     ? "brightness(0.4)"
                     : "brightness(1)",
               }}
@@ -138,10 +144,15 @@ function Read() {
         ) : (
           data?.map((chapterPage, index) => (
             <img
-              className={`${index == 0 ? 'top-rounded' : (index == data.length - 1 ? 'bottom-rounded' : '')}`}
+              className={`${
+                index === 0
+                  ? "top-rounded"
+                  : index === data.length - 1
+                  ? "bottom-rounded"
+                  : ""
+              }`}
               key={chapterPage.page}
               src={chapterPage.img}
-              alt={index}
             />
           ))
         )}
@@ -149,12 +160,14 @@ function Read() {
       <div className="chapters-navigator">
         <div className="prevbutton">
           <Link
-            to={`/manga/read/${metaData.chapters[chapter - 2]?.id}/ChapterId/${
+            to={`/manga/read/${chaptersData[chapter]?.id}/ChapterId/${
               metaData.id
-            }/${chapter - 1}`}
+            }/${parseInt(chapter) - 1}`}
           >
             <button
-              onClick={() => setChapter(chapter - 1)}
+              onClick={() =>
+                setChapter((prevChapter) => parseInt(prevChapter) - 1)
+              }
               disabled={chapter < 2}
               style={{
                 filter: chapter < 2 ? "brightness(0.4)" : "brightness(1)",
@@ -167,16 +180,18 @@ function Read() {
 
         <div className="nextbutton">
           <Link
-            to={`/manga/read/${metaData.chapters[chapter]?.id}/ChapterId/${
+            to={`/manga/read/${chaptersData[chapter]?.id}/ChapterId/${
               metaData.id
-            }/${chapter + 1}`}
+            }/${parseInt(chapter) + 1}`}
           >
             <button
-              onClick={() => setChapter(chapter + 1)}
-              disabled={chapter >= metaData.chapters.length}
+              onClick={() =>
+                setChapter((prevChapter) => parseInt(prevChapter) + 1)
+              }
+              disabled={parseInt(chapter) >= chaptersData.length}
               style={{
                 filter:
-                  chapter >= metaData.chapters.length
+                  parseInt(chapter) >= chaptersData.length
                     ? "brightness(0.4)"
                     : "brightness(1)",
               }}
@@ -196,7 +211,11 @@ function Read() {
         }}
         className="sidebar"
       >
-        <FontAwesomeIcon onClick={() => navigate(`/manga/details/${metaData.id}`)} className="exit" icon={faSignOut} />
+        <FontAwesomeIcon
+          onClick={() => navigate(`/manga/details/${metaData.id}`)}
+          className="exit"
+          icon={faSignOut}
+        />
         <h2>Chapters</h2>
         {chaptersData?.map((chapterItem, index) => (
           <Link
