@@ -1,6 +1,10 @@
 import "../Styling/VerticalAnimeCards.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClosedCaptioning, faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+import {
+  faClosedCaptioning,
+  faHeart,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -10,13 +14,12 @@ export default function VerticalAnimeCards({ data }) {
   const [hoverPosition, setHoverPosition] = useState("below");
 
   useEffect(() => {
-    if(Array.isArray(data)) {
-      setIsManga(data[0].type === 'MANGA');
-    }
-    else {
+    if (Array.isArray(data)) {
+      setIsManga(data[0].type === "MANGA");
+    } else {
       setIsManga(data.type === "MANGA");
     }
-  },[])
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,7 +41,8 @@ export default function VerticalAnimeCards({ data }) {
     const hoverItemTop = event.currentTarget.getBoundingClientRect().top;
     const spaceAbove = hoverItemTop;
     const spaceBelow =
-      window.innerHeight - ((hoverItemTop + 100) + event.currentTarget.offsetHeight);
+      window.innerHeight -
+      (hoverItemTop + 100 + event.currentTarget.offsetHeight);
 
     if (spaceBelow < hoverItemHeight && spaceAbove > hoverItemHeight) {
       setHoverPosition("above");
@@ -57,11 +61,20 @@ export default function VerticalAnimeCards({ data }) {
         onMouseEnter={(event) => handleMouseEnter(index, event)}
         onMouseLeave={() => setHoveredIndex(null)}
       >
-        <Link className="anime-link" to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
+        <Link
+          className="anime-link"
+          to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}
+        >
           <img
             className="anime-image"
             src={anime.image}
-            alt={anime.title.english || anime.title.romaji || anime.title.userPreferred || anime.title.native || '??'}
+            alt={
+              anime.title.english ||
+              anime.title.romaji ||
+              anime.title.userPreferred ||
+              anime.title.native ||
+              "??"
+            }
           />
         </Link>
         <div className="anime-info">
@@ -71,62 +84,69 @@ export default function VerticalAnimeCards({ data }) {
               anime.title.romaji ||
               anime.title.userPreferred ||
               anime.title.native ||
-              '??'
+              "??"
             ).length > 60
               ? (
-                anime.title.english ||
-                anime.title.romaji ||
-                anime.title.userPreferred ||
-                anime.title.native ||
-                '??'
-              ).substring(0, 60) + "..."
+                  anime.title.english ||
+                  anime.title.romaji ||
+                  anime.title.userPreferred ||
+                  anime.title.native ||
+                  "??"
+                ).substring(0, 60) + "..."
               : anime.title.english ||
                 anime.title.romaji ||
                 anime.title.userPreferred ||
                 anime.title.native ||
-                '??'}
+                "??"}
           </p>
           <div className="row">
             <div className="anime-info-item item1">
               <FontAwesomeIcon icon={isManga ? faHeart : faClosedCaptioning} />
-              {isManga ? anime.popularity : anime.totalEpisodes || '??'}
+              {isManga ? anime.popularity : anime.totalEpisodes || "??"}
             </div>
             <div className="anime-info-item item2">
               <FontAwesomeIcon icon={faStar} />
-              {anime.rating || '??'}
+              {anime.rating || "??"}
             </div>
             <p className="anime-info-type">{" " + anime.type}</p>
           </div>
         </div>
         <div className={`anime-item-hover ${hoverPosition}`}>
           <h4 className="anime-title">
-            {anime.title.english || anime.title.romaji || anime.title.userPreferred || anime.title.native || '??'}
+            {anime.title.english ||
+              anime.title.romaji ||
+              anime.title.userPreferred ||
+              anime.title.native ||
+              "??"}
           </h4>
           <div className="anime-tags">
             <p className="anime-rating">
               <FontAwesomeIcon color="yellow" icon={faStar} />{" "}
-              {(anime.rating ? anime.rating / 10 : '??')}
+              {anime.rating ? anime.rating / 10 : "??"}
             </p>
             <p className="tag">HD</p>
-            <p className="tag">{anime.totalEpisodes || '??'}</p>
-            <p className="tag">{anime.type || '??'}</p>
+            <p className="tag">{anime.totalEpisodes || "??"}</p>
+            <p className="tag">{anime.type || "??"}</p>
           </div>
           <div className="anime-description">
-            {(anime.description ? anime.description.replace(/<[^>]*>?/gm, "").substring(0, 100) + "..." : '??')}
+            {anime.description
+              ? anime.description.replace(/<[^>]*>?/gm, "").substring(0, 100) +
+                "..."
+              : "??"}
           </div>
           <div className="anime-other-info">
             <p>
-              <span>Japanese: </span> {anime.title.native || '??'}
+              <span>Japanese: </span> {anime.title.native || "??"}
             </p>
             <p>
-              <span>Release Date: </span> {anime.releaseDate || '??'}
+              <span>Release Date: </span> {anime.releaseDate || "??"}
             </p>
             <p>
-              <span>Status: </span> {anime.status || '??'}
+              <span>Status: </span> {anime.status || "??"}
             </p>
             <p>
-              <span>Genres: </span> {anime.genres[0] || ''} {anime.genres[1] || ''}{" "}
-              {anime.genres[2] || ""}
+              <span>Genres: </span> {anime.genres[0] || ""}{" "}
+              {anime.genres[1] || ""} {anime.genres[2] || ""}
             </p>
           </div>
         </div>

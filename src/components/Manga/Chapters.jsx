@@ -14,6 +14,7 @@ function Chapters({ data }) {
   const filteredChapters = data.chapters
     ? data.chapters.filter(
         (chapter) =>
+          chapter.pages > 0 && 
           chapter.chapterNumber &&
           chapter.chapterNumber.toString().includes(searchTerm)
       )
@@ -34,13 +35,12 @@ function Chapters({ data }) {
       <div className="chapters">
         {filteredChapters.length > 0 ? (
           filteredChapters.map((chapter) => (
-            chapter.pages > 0 ?
             <Link
               key={chapter.id}
               to={`/manga/read/${chapter.id}/ChapterId/${data.id}/${chapter.chapterNumber}`}
             >
               <p className="chapter">{chapter.chapterNumber}</p>
-            </Link> : null
+            </Link>
           ))
         ) : (
           <p>No chapters available.</p>

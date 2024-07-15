@@ -141,7 +141,7 @@ function Read() {
               className={`${index == 0 ? 'top-rounded' : (index == data.length - 1 ? 'bottom-rounded' : '')}`}
               key={chapterPage.page}
               src={chapterPage.img}
-              alt={`Page ${chapterPage.page}`}
+              alt={index}
             />
           ))
         )}
