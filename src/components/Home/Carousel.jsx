@@ -30,12 +30,12 @@ function Carousel({ isManga }) {
       setIsLoading(true);
       try {
         if (!isManga) {
-          const result = await FetchTrendingAnime(2, 5);
+          const result = await FetchTrendingAnime(3, 5);
           if (result) {
             setData(result);
             const mappedData = {};
             for (const anime of result) {
-              const mappedAnime = await MapAnimeByTitle(anime.title.english || anime.title.romaji || anime.title.native);
+              const mappedAnime = await MapAnimeByTitle(anime.title.english || anime.title.romaji);
               if (mappedAnime) {
                 mappedData[anime.id] = mappedAnime.id;
               }

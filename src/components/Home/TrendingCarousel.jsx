@@ -19,7 +19,7 @@ export default function TrendingCarousel({ isManga }) {
           const result = await GetMangaPopular(10);
           setData(result);
         } else {
-          const result = await FetchTrendingAnime(1);
+          const result = await FetchTrendingAnime(1, 10);
           setData(result);
         }
       } catch (error) {

@@ -5,7 +5,7 @@ const ANIWATCH_URL = "https://aniwatch-ryan.vercel.app/anime/";
 // eslint-disable-next-line no-unused-vars
 const FALLBACK_URL = "https://api.jikan.moe/v4/";
 // ANIME
-export const FetchTrendingAnime = async (page = 1, perPage) => {
+export const FetchTrendingAnime = async (page = 1, perPage = 10) => {
     const response = await fetch(`${BASE_URL}trending?page=${page}&perPage=${perPage}`);
     const data = await response.json();
     return data.results;
