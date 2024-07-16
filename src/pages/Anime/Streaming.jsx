@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   FetchAnimeByID,
+  FetchEpisodeLinksByMappedID,
+  FetchEpisodesByMappedID,
   FetchEpisodesData,
   FetchStreamingData,
 } from "../../hooks/useApi";
@@ -21,14 +23,17 @@ import {
 } from "../../components/General/Skeleton";
 import CurrentEpisode from "../../components/Watch/CurrentEpisode";
 import error from "../../assets/error.gif";
+import ErrorPlayer from "../../components/Shared/ErrorPlayer";
 
 const Streaming = () => {
-  const { id } = useParams();
+  const { id, mappedId } = useParams();
   const [data, setData] = useState(null);
   const [animeData, setAnimeData] = useState(null);
   const [streamingData, setStreamingData] = useState(null);
   const [currentEpisode, setCurrentEpisode] = useState(1);
   const [currentEpisodeID, setCurrentEpisodeID] = useState(null);
+  const [server, setServer] = useState('vidstreaming');
+  const [category, setCategory] = useState('sub');
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [episodeLoading, setEpisodeLoading] = useState(true);
@@ -43,10 +48,12 @@ const Streaming = () => {
       setEpisodesError(null);
       try {
         const AnimeData = await FetchAnimeByID(id);
-        const EpisodesData = await FetchEpisodesData(id);
+        // const EpisodesData = await FetchEpisodesData(id);
+        const EpisodesData = await FetchEpisodesByMappedID(mappedId);
         setAnimeData(AnimeData);
-        setData(EpisodesData);
-        setCurrentEpisodeID((EpisodesData && EpisodesData[0]?.id) || "NA");
+        setData(EpisodesData.episodes);
+        // setCurrentEpisodeID((EpisodesData && EpisodesData[0].id) || "NA");
+        setCurrentEpisodeID((EpisodesData && EpisodesData.episodes[0].episodeId) || "NA");
       } catch (err) {
         setAnimeError("Failed to load anime data.");
         setEpisodesError("Failed to load episodes.");
@@ -68,7 +75,8 @@ const Streaming = () => {
           setStreamingError('Error');
         }
         else {
-          const StreamingData = await FetchStreamingData(currentEpisodeID);
+          // const StreamingData = await FetchStreamingData(currentEpisodeID);
+          const StreamingData = await FetchEpisodeLinksByMappedID(currentEpisodeID, server, category);
           setStreamingData(StreamingData);
         }
         
@@ -80,12 +88,20 @@ const Streaming = () => {
       }
     };
     loadStreamingData();
-  }, [currentEpisodeID]);
+  }, [currentEpisodeID, server, category]);
 
   const handleEpisode = (episode) => {
     setCurrentEpisode(episode.number);
-    setCurrentEpisodeID(episode.id);
+    // setCurrentEpisodeID(episode.id);
+    setCurrentEpisodeID(episode.episodeId);
   };
+
+  const handleEpisodeContexts = (server, category) => {
+    const newServer = server.toString().toLowerCase();
+    setServer(newServer);
+    setCategory(category);
+  }
+
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -126,10 +142,11 @@ const Streaming = () => {
           {episodeLoading ? (
             <SkeletonPlayer />
           ) : (
+            !streamingData ? <ErrorPlayer/> :
             <VideoPlayer
               streamingData={streamingData || []}
               currentEpisodeTitle={data[currentEpisode - 1]?.title || "??"}
-              currentEpisodeImage={data[currentEpisode - 1]?.image || "??"}
+              currentEpisodeImage={data[currentEpisode - 1]?.image || animeData.cover}
               episodeLoading={episodeLoading}
               streamingError={streamingError}
             />
@@ -140,7 +157,8 @@ const Streaming = () => {
             Skeleton.map((index) => <SkeletonEpisodes key={index} />)
           ) : (
             <EpisodeList
-              data={data || [{ fallback: animeData.cover }]}
+              data={data}
+              image={animeData.image}
               currentEpisode={currentEpisode}
               handleEpisode={handleEpisode}
               searchTerm={searchTerm}
@@ -160,6 +178,7 @@ const Streaming = () => {
               <CurrentEpisode
                 data={data[currentEpisode - 1] || []}
                 title={animeData.title.english}
+                handleEpisodeContexts={handleEpisodeContexts}
               />
               <AnimeDetails animeData={animeData || []} Months={Months} />
               <SeasonsList relations={animeData?.relations || []} />

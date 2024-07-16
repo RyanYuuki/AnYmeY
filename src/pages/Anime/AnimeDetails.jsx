@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { FetchAnimeByID, FetchRandomAnime } from "../../hooks/useApi";
+import {
+  FetchAnimeByID,
+  FetchRandomAnime,
+  MapAnimeByTitle,
+} from "../../hooks/useApi";
 import AnimeCover from "../../components/AnimeDetails/AnimeCover";
 import AnimeFullInfo from "../../components/AnimeDetails/AnimeFullInfo";
 import CharactersSection from "../../components/AnimeDetails/CharactersSection";
@@ -12,7 +16,7 @@ const AnimeDetails = () => {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [mappedId, setMappedId] = useState(null);
   useEffect(() => {
     setIsLoading(true);
     const loadData = async () => {
@@ -21,11 +25,15 @@ const AnimeDetails = () => {
           const data = await FetchRandomAnime();
           setData(data);
         } else {
-          const data = await FetchAnimeByID(id);
-          setData(data);
+          const MetaData = await FetchAnimeByID(id);
+          setData(MetaData);
+          if (MetaData) {
+            const mappedData = await MapAnimeByTitle(MetaData.title.english);
+            setMappedId(mappedData.id);
+          }
         }
       } catch (error) {
-        console.error('error: ', error);
+        console.error("error: ", error);
       } finally {
         setIsLoading(false);
       }
@@ -39,7 +47,15 @@ const AnimeDetails = () => {
 
   if (isLoading) {
     return (
-      <div style={{ width: '100%', height: '100%', marginTop: '90px', padding: '0 10%', borderRadius: '10px' }} >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          marginTop: "90px",
+          padding: "0 10%",
+          borderRadius: "10px",
+        }}
+      >
         <SkeletonCard />
       </div>
     );
@@ -63,7 +79,7 @@ const AnimeDetails = () => {
   return (
     <div className="anime-details-body">
       <AnimeCover cover={data.cover} />
-      <AnimeFullInfo data={data} Months={Months} />
+      <AnimeFullInfo data={data} id={mappedId} Months={Months} />
       <CharactersSection characters={data.characters} />
       <RelatedSection relations={data.relations} />
       <RecommendationSection recommendations={data.recommendations} />

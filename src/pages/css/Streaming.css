@@ -378,23 +378,27 @@ a {
   padding: 5px 15px;
   background-color: var(--global-tertiary-bg);
   border-radius: 5px;
-  /* background-color:  #8080cf; */
+  color: var(--global-text);
 }
 
 .server-active {
   padding: 5px 15px;
   border-radius: 5px;
-  background-color: var(--primary-accent-bg);
+  background-color: var(--primary-accent);
   color: white;
 }
 
+.server:active {
+  transform: scale(0.9);
+}
+
 .episodes-row:first-child {
-  width: 58%;
-  padding: 20px;
+  width: 50%;
+  padding: 10px 20px;
 }
 
 .episodes-row:last-child {
-  width: 40%;
+  width: 49%;
 }
 
 .label {

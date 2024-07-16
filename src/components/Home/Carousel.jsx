@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import { FetchTrendingAnime, GetMangaTrending } from "../../hooks/useApi";
+import { FetchTrendingAnime, GetMangaTrending, MapAnimeByTitle } from "../../hooks/useApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -22,38 +22,38 @@ import { SkeletonCarousel } from "../General/Skeleton";
 function Carousel({ isManga }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [mappedIds, setMappedIds] = useState({});
 
   useEffect(() => {
-    if (!isManga) {
-      const loadTrendingAnime = async () => {
-        try {
-          const result = await FetchTrendingAnime(2);
+    const loadTrendingAnime = async () => {
+      setIsLoading(true);
+      try {
+        if (!isManga) {
+          const result = await FetchTrendingAnime(1);
           if (result) {
             setData(result);
+            const mappedData = {};
+            for (const anime of result) {
+              const mappedAnime = await MapAnimeByTitle(anime.title.english || anime.title.romaji || anime.title.native);
+              if (mappedAnime) {
+                mappedData[anime.id] = mappedAnime.id;
+              }
+            }
+            setMappedIds(mappedData);
           }
-        } catch (error) {
-          console.log("Error while fetching data!", error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      loadTrendingAnime();
-    } else {
-      const loadTrendingManga = async () => {
-        try {
+        } else {
           const result = await GetMangaTrending(10);
-          console.log(result);
           if (result) {
             setData(result);
           }
-        } catch (error) {
-          console.log("Error while fetching data!", error);
-        } finally {
-          setIsLoading(false);
         }
-      };
-      loadTrendingManga();
-    }
+      } catch (error) {
+        console.log("Error while fetching data!", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadTrendingAnime();
   }, [isManga]);
 
   if (isLoading)
@@ -78,7 +78,7 @@ function Carousel({ isManga }) {
               <img
                 className="carouselImage"
                 src={anime.cover || anime.image}
-                alt={anime.title.english}
+                alt={anime.title.english || anime.title.romaji || anime.title.native || "??"}
               />
             </div>
             <div className="gradient-overlay" />
@@ -86,7 +86,7 @@ function Carousel({ isManga }) {
               <h1>
                 {anime.title.english ||
                   anime.title.romaji ||
-                  anime.title.userPreffered ||
+                  anime.title.userPreferred ||
                   anime.title.native ||
                   "??"}
               </h1>
@@ -96,11 +96,15 @@ function Carousel({ isManga }) {
                 </p>
                 <p>
                   <FontAwesomeIcon icon={faClock} />{" "}
-                  {isManga ? anime.status : anime.duration && anime.duration + "M" || "??"}
+                  {isManga
+                    ? anime.status
+                    : (anime.duration && anime.duration + "M") || "??"}
                 </p>
                 <p>
                   <FontAwesomeIcon icon={isManga ? faHeart : faCalendar} />{" "}
-                  {isManga ? anime.popularity : anime.releaseDate && anime.releaseDate || "??"}
+                  {isManga
+                    ? anime.popularity
+                    : (anime.releaseDate && anime.releaseDate) || "??"}
                 </p>
                 <p>
                   <FontAwesomeIcon icon={faStar} /> {anime.rating || "??"}
@@ -114,14 +118,26 @@ function Carousel({ isManga }) {
                 </p>
               </div>
               <div className="buttons-group">
-                <Link to={ isManga ? `/manga/read/${anime.id}/MangaId` : `/watch/${anime.id}`}>
+                <Link
+                  to={
+                    isManga
+                      ? `/manga/read/${anime.id}/MangaId`
+                      : `/watch/${anime.id}/${mappedIds[anime.id]}`
+                  }
+                >
                   <button>
                     <FontAwesomeIcon icon={isManga ? faBook : faPlayCircle} />
                     {"  "}
                     {isManga ? "Read Now" : "Watch Now"}
                   </button>
                 </Link>
-                <Link to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
+                <Link
+                  to={
+                    isManga
+                      ? `/manga/details/${anime.id}`
+                      : `/anime/${anime.id}`
+                  }
+                >
                   <button>Detail {">"}</button>
                 </Link>
               </div>

@@ -1,38 +1,49 @@
 /* eslint-disable react/prop-types */
-
+import { useState } from "react";
 import {
   faClosedCaptioning,
   faMicrophone,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-/* eslint-disable no-unused-vars */
-function CurrentEpisode({ data, title }) {
-
-  const dubServers = [
-    { name: 'Zoro', url: 'https://zoro.example.com' },
-    { name: 'Gogo', url: 'https://gogo.example.com' },
-    { name: 'Vidstream', url: 'https://vidstream.example.com' },
-  ]
+function CurrentEpisode({ data, title, handleEpisodeContexts }) {
+  const servers = ["VidStream", "MegaCloud", "StreamSb"];
+  const [currentServer, setCurrentServer] = useState("VidStream");
 
   return (
     <div className="current-episode-container">
-      <div className="episodes-row">
+      <div className="episodes-row episodes-row1">
         <p>
-          You{`'`}re Watching <span style={{ fontWeight: '600' }} >Episode {data.number || '?'}</span>
+          You{`'`}re Watching{" "}
+          <span style={{ fontWeight: "600" }}>
+            Episode {data.number || "?"}
+          </span>
         </p>
-        <p>if current server {"doesn't"} then you can switch to different server.</p>
+        <p>
+          if current server {"doesn't"} work, you can switch to a different server.
+        </p>
       </div>
-      <div className="episodes-row">
+      <div className="episodes-row episode-row2">
         <div className="sub">
           <p className="label">
             <FontAwesomeIcon icon={faClosedCaptioning} />
             Sub
           </p>
           <div className="servers">
-            <p className="server">Zoro</p>
-            <p className="server-active">Gogo</p>
-            <p className="server">Vidstream</p>
+            {servers.map((server) => (
+              <p
+                key={server}
+                className={`${
+                  currentServer == server ? "server-active" : "server"
+                }`}
+                onClick={() => {
+                  setCurrentServer(server);
+                  handleEpisodeContexts(server, "sub");
+                }}
+              >
+                {server}
+              </p>
+            ))}
           </div>
         </div>
         <div className="dub">
@@ -41,9 +52,20 @@ function CurrentEpisode({ data, title }) {
             Dub
           </p>
           <div className="servers">
-            <p className="server">Zoro</p>
-            <p className="server">Gogo</p>
-            <p className="server">Vidstream</p>
+            {servers.map((server) => (
+              <p
+                key={server}
+                className={`server ${
+                  currentServer === server ? "server-active" : ""
+                }`}
+                onClick={() => {
+                  setCurrentServer(server);
+                  handleEpisodeContexts(server, "dub");
+                }}
+              >
+                {server}
+              </p>
+            ))}
           </div>
         </div>
       </div>

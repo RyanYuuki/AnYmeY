@@ -3,7 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AnimeFullInfo = ({ data, Months }) => {
+const AnimeFullInfo = ({ data, Months, id }) => {
   if (!data) {
     return <p>Data is not available.</p>;
   }
@@ -28,7 +28,7 @@ const AnimeFullInfo = ({ data, Months }) => {
               to={
                 isManga && data.chapters && data.chapters.length > 0
                   ? `/manga/read/${data.chapters[0].id}/ChapterId/${data.id}/${1}`
-                  : `/watch/${data.id}`
+                  : `/watch/${data.id}/${id}`
               }
             >
               {isManga ? "READ NOW" : "WATCH NOW"}

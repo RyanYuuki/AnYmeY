@@ -26,7 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/anime/home" element={<AnimeHome />} />
           <Route path="/anime/:id" element={<AnimeDetails />} />
-          <Route path="/watch/:id" element={<Streaming />} />
+          <Route path="/watch/:id/:mappedId?" element={<Streaming />} />
           <Route path="/manga/home" element={<MangaHome />} />
           <Route path="/manga/details/:id" element={<MangaDetails />} />
           <Route path="/manga/read/:id/:method?/:mangaId?/:mangaChapter?" element={<Read />} />

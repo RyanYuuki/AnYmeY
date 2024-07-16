@@ -15,7 +15,6 @@ const VideoPlayer = ({
   streamingData,
   currentEpisodeTitle,
   currentEpisodeImage,
-  episodeLoading,
   streamingError,
 }) => {
   if (streamingError || streamingData.length < 1)
@@ -28,7 +27,7 @@ const VideoPlayer = ({
       className="player animated"
       aspectRatio="16/9"
       title={currentEpisodeTitle}
-      src={streamingData[4]?.url || ""}
+      src={streamingData?.sources[0]?.url || ""}
       playsInline
       crossOrigin
       streamType="on-demand"

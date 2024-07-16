@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const apiLink = "https://consumet-api-two-nu.vercel.app";
 const BASE_URL = "https://consumet-api-two-nu.vercel.app/meta/anilist/";
+const ANIWATCH_URL = "https://aniwatch-ryan.vercel.app/anime/";
 // eslint-disable-next-line no-unused-vars
 const FALLBACK_URL = "https://api.jikan.moe/v4/";
 // ANIME
@@ -122,3 +123,60 @@ export const GetMangaTop = async (count, page = 1) => {
   const data = await response.json();
   return data.results;
 };
+
+export const MapAnimeByTitle = async (title) => {
+  try {
+    const response = await fetch(
+      `${ANIWATCH_URL}search?q=${title}`
+    );
+
+    const data = await response.json();
+
+    const normalizedTitle = title.toLowerCase();
+    let mappedResult = data.animes.find(
+      (item) => item.name && item.name.toLowerCase() === normalizedTitle
+    );
+
+    if (!mappedResult) {
+      const modifiedTitle = title
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/-\d+$/, "")
+        .replace(/-$/, "");
+      console.log("Modified title:", modifiedTitle);
+
+      mappedResult = data.animes.find((item) => {
+        const itemName = item.name
+          ?.toLowerCase()
+          .replace(/\s+/g, "-")
+          .replace(/-\d+$/, "")
+          .replace(/-$/, "");
+        return itemName === modifiedTitle;
+      });
+    }
+
+    if (!mappedResult) {
+      mappedResult = data.animes.find((item) =>
+        item.name?.toLowerCase().includes(normalizedTitle)
+      );
+    }
+
+    console.log("mappedResult:", mappedResult);
+    return mappedResult || null; 
+  } catch (error) {
+    console.error("Error in MapAnimeByTitle:", error);
+    return null;
+  }
+};
+
+export const FetchEpisodesByMappedID = async (id) => {
+  const response = await fetch(`${ANIWATCH_URL}episodes/${id}`);
+  const data = await response.json();
+  return data;
+};
+
+export const FetchEpisodeLinksByMappedID = async (id, server = 'vidstreaming', category = 'sub') => {
+  const response = await fetch(`${ANIWATCH_URL}episode-srcs?id=${id}?server=${server}&category=${category}`);
+  const data = await response.json();
+  return data;
+}

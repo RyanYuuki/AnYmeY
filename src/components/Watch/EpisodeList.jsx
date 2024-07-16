@@ -10,6 +10,7 @@ import {
 } from "../General/Skeleton";
 const EpisodeList = ({
   data,
+  image,
   currentEpisode,
   handleEpisode,
   searchTerm,
@@ -62,7 +63,7 @@ const EpisodeList = ({
             }`}
             onClick={() => handleEpisode(episode)}
           >
-            <img src={episode?.image} alt={episode.fallback} />
+            <img src={episode?.image || image} alt={episode.fallback} />
             <span className="episode-tag">Ep {episode?.number}</span>
             <div className="textContainer">
               <span>Episode {episode?.number}</span>{" "}
