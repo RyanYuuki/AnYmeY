@@ -20,6 +20,7 @@ import {
   SkeletonEpisodes,
 } from "../../components/General/Skeleton";
 import CurrentEpisode from "../../components/Watch/CurrentEpisode";
+import error from "../../assets/error.gif";
 
 const Streaming = () => {
   const { id } = useParams();
@@ -59,10 +60,12 @@ const Streaming = () => {
 
   useEffect(() => {
     const loadStreamingData = async () => {
+      setEpisodeLoading(true);
       if (!currentEpisodeID) return;
       setStreamingError(null);
       try {
         const StreamingData = await FetchStreamingData(currentEpisodeID);
+        console.log(StreamingData);
         setStreamingData(StreamingData);
       } catch (err) {
         setStreamingError("Failed to load streaming data.");
@@ -115,8 +118,11 @@ const Streaming = () => {
     <div className="streaming-body">
       <div className="streaming-section">
         <div className="video-player-container">
-          {episodeLoading ? (
-            <SkeletonPlayer />
+          {!streamingData && !isLoading ? (
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', height: '92%' }} >
+                  <img src={error} alt="" />
+                  <h2>Episode Data Not Found</h2>
+                </div>
           ) : (
             <VideoPlayer
               streamingData={streamingData || []}

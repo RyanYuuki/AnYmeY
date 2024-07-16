@@ -24,6 +24,11 @@ const EpisodeList = ({
       : episode.number.toString().includes(searchTerm);
   });
 
+  if (data.length < 1)
+    return (
+        <h3 style={{ padding: '20px 0', justifyContent: 'center' }} className="episode">No Episodes Available</h3>
+    );
+
   return (
     <>
       <div className="streaming-episodes-header">
