@@ -36,7 +36,7 @@ body[data-theme="light"] {
   --global-border-radius: 0.3rem;
   --primary-accent: #000;
   --primary-accent-color: white;
-  --primary-accent-bg: #595991;
+  --primary-accent-bg: #000000bc;
   --primary-accent-tr: #00000074;
   --ongoing-dot-color: #aaff00;
   --completed-indicator-color: #00aaff;
@@ -103,7 +103,7 @@ body[data-theme="blue-moon"] {
   --global-shadow: rgba(255, 255, 255, 0.08);
   --primary-accent: #36678c;
   --primary-accent-color: white;
-  --primary-accent-bg: #595991;
+  --primary-accent-bg: #36678c90;
   --primary-accent-tr: #36678c85;
   --primary-accent-radial: #5959912b;
 }

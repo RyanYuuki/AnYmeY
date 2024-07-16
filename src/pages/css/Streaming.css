@@ -161,6 +161,7 @@
   background-color: var(--global-div-tr);
   font-size: 14px;
   font-weight: 600;
+  color: var(--global-text);
 }
 
 .streaming-anime-details {
