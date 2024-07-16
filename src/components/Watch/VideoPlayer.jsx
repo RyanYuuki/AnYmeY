@@ -1,7 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from "react";
-import { MediaPlayer, MediaProvider, Poster } from "@vidstack/react";
+import {
+  MediaPlayer,
+  MediaProvider,
+  Poster,
+  Thumbnail,
+  Track,
+} from "@vidstack/react";
 import {
   defaultLayoutIcons,
   DefaultVideoLayout,
@@ -16,12 +22,14 @@ const VideoPlayer = ({
   currentEpisodeTitle,
   currentEpisodeImage,
   streamingError,
+  captionsData,
 }) => {
-  if (streamingError || streamingData.length < 1)
-    return (
-        <ErrorPlayer />
-    );
-
+  if (streamingError || streamingData.length < 1) return <ErrorPlayer />;
+  const captions = captionsData.filter((caption) => caption.kind == "captions");
+  const thumbnails = captionsData.filter(
+    (caption) => caption.kind == "thumbnails"
+  );
+  console.log(thumbnails)
   return (
     <MediaPlayer
       className="player animated"
@@ -37,8 +45,19 @@ const VideoPlayer = ({
     >
       <MediaProvider>
         <Poster className="vds-poster" src={currentEpisodeImage} />
+
+        {captions.map((c) => (
+          <Track
+            src={c?.file}
+            label={c?.label}
+            kind={c?.kind}
+            language="en-us"
+            type={"vtt"}
+            default={c?.default}
+          />
+        ))}
       </MediaProvider>
-      <DefaultVideoLayout icons={defaultLayoutIcons} />
+      <DefaultVideoLayout thumbnails={thumbnails[0]?.file} icons={defaultLayoutIcons} />
     </MediaPlayer>
   );
 };

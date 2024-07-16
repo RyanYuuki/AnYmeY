@@ -111,7 +111,7 @@ body[data-theme='light'] .right-side button {
 }
 
 body[data-theme='light'] .right-side button:hover {
-  background-color: var(--global-secondary-bg);
+  background-color: rgba(128, 128, 128, 0.638);
   color: black;
 }
 
@@ -126,6 +126,7 @@ body[data-theme='light'] .right-side button:hover {
     flex-direction: column;
   }
   .right-side {
+    padding-top: 40px;
     width: 100%;
     align-items: center;
     text-align: center;

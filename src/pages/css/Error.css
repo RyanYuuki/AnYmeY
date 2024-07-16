@@ -8,7 +8,7 @@
 }
 
 .error-body img {
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 .error-button {
@@ -22,7 +22,7 @@
 }
 
 .error-button:hover {
-    background-color: var(--primary-accent-bg);
-    cursor: pointer;
-    transform: scale(1.1);
+  background-color: var(--primary-accent-bg);
+  cursor: pointer;
+  transform: scale(1.1);
 }

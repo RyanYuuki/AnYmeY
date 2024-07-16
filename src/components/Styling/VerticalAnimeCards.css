@@ -125,6 +125,14 @@
   font-weight: 400;
 }
 
+.anime-rating {
+  width: fit-content;
+  background-color: var(--primary-accent);
+  padding: 7px 10px;
+  border-radius: 10px;
+  color: var(--primary-accent-color);
+}
+
 .anime-other-info p {
   font-size: 15px;
   color: var(--global-text);

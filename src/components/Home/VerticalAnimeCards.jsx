@@ -121,7 +121,7 @@ export default function VerticalAnimeCards({ data }) {
           </h4>
           <div className="anime-tags">
             <p className="anime-rating">
-              <FontAwesomeIcon color="yellow" icon={faStar} />{" "}
+              <FontAwesomeIcon icon={faStar} />{" "}
               {anime.rating ? anime.rating / 10 : "??"}
             </p>
             <p className="tag">HD</p>

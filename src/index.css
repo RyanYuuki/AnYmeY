@@ -71,7 +71,7 @@ body[data-theme="dark"] {
   --primary-accent-color: white;
   --primary-accent-bg: #595991;
   --primary-accent-radial: #5959912b;
-  --primary-accent-tr: #59599174;
+  --primary-accent-tr: #59599196;
 }
 
 body[data-theme="blue-moon"] {
@@ -105,7 +105,7 @@ body[data-theme="blue-moon"] {
   --primary-accent-color: white;
   --primary-accent-bg: #36678c90;
   --primary-accent-tr: #36678c85;
-  --primary-accent-radial: #5959912b;
+  --primary-accent-radial: #59599181;
 }
 
 body {

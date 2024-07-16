@@ -40,7 +40,6 @@ const Streaming = () => {
   const [animeError, setAnimeError] = useState(null);
   const [episodesError, setEpisodesError] = useState(null);
   const [streamingError, setStreamingError] = useState(null);
-
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
@@ -142,13 +141,14 @@ const Streaming = () => {
           {episodeLoading ? (
             <SkeletonPlayer />
           ) : (
-            !streamingData ? <ErrorPlayer/> :
+            !streamingData.sources ? <ErrorPlayer/> :
             <VideoPlayer
               streamingData={streamingData || []}
               currentEpisodeTitle={data[currentEpisode - 1]?.title || "??"}
               currentEpisodeImage={data[currentEpisode - 1]?.image || animeData.cover}
               episodeLoading={episodeLoading}
               streamingError={streamingError}
+              captionsData={streamingData.tracks}
             />
           )}
         </div>
