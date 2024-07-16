@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
@@ -40,6 +38,8 @@ const Streaming = () => {
   const [animeError, setAnimeError] = useState(null);
   const [episodesError, setEpisodesError] = useState(null);
   const [streamingError, setStreamingError] = useState(null);
+  const [episodeData, setEpisodeData] = useState(null);
+
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
@@ -47,12 +47,19 @@ const Streaming = () => {
       setEpisodesError(null);
       try {
         const AnimeData = await FetchAnimeByID(id);
-        // const EpisodesData = await FetchEpisodesData(id);
+        const EpisodesImagesData = await FetchEpisodesData(id);
         const EpisodesData = await FetchEpisodesByMappedID(mappedId);
         setAnimeData(AnimeData);
-        setData(EpisodesData.episodes);
-        // setCurrentEpisodeID((EpisodesData && EpisodesData[0].id) || "NA");
-        setCurrentEpisodeID((EpisodesData && EpisodesData.episodes[0].episodeId) || "NA");
+        setData(
+          EpisodesData.episodes.map((episode, index) => ({
+            ...episode,
+            image: EpisodesImagesData[index]?.image, // Assume the order matches
+          }))
+        );
+        setEpisodeData(EpisodesImagesData);
+        setCurrentEpisodeID(
+          (EpisodesData && EpisodesData.episodes[0].episodeId) || "NA"
+        );
       } catch (err) {
         setAnimeError("Failed to load anime data.");
         setEpisodesError("Failed to load episodes.");
@@ -70,15 +77,16 @@ const Streaming = () => {
       if (!currentEpisodeID) return;
       setStreamingError(null);
       try {
-        if(currentEpisode == "NA") {
-          setStreamingError('Error');
-        }
-        else {
-          // const StreamingData = await FetchStreamingData(currentEpisodeID);
-          const StreamingData = await FetchEpisodeLinksByMappedID(currentEpisodeID, server, category);
+        if (currentEpisode == "NA") {
+          setStreamingError("Error");
+        } else {
+          const StreamingData = await FetchEpisodeLinksByMappedID(
+            currentEpisodeID,
+            server,
+            category
+          );
           setStreamingData(StreamingData);
         }
-        
       } catch (err) {
         setStreamingError("Failed to load streaming data.");
         console.error(err);
@@ -91,7 +99,6 @@ const Streaming = () => {
 
   const handleEpisode = (episode) => {
     setCurrentEpisode(episode.number);
-    // setCurrentEpisodeID(episode.id);
     setCurrentEpisodeID(episode.episodeId);
   };
 
@@ -99,8 +106,7 @@ const Streaming = () => {
     const newServer = server.toString().toLowerCase();
     setServer(newServer);
     setCategory(category);
-  }
-
+  };
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
@@ -140,8 +146,9 @@ const Streaming = () => {
         <div className="video-player-container">
           {episodeLoading ? (
             <SkeletonPlayer />
+          ) : !streamingData.sources ? (
+            <ErrorPlayer />
           ) : (
-            !streamingData.sources ? <ErrorPlayer/> :
             <VideoPlayer
               streamingData={streamingData || []}
               currentEpisodeTitle={data[currentEpisode - 1]?.title || "??"}

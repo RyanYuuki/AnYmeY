@@ -30,7 +30,7 @@ function Carousel({ isManga }) {
       setIsLoading(true);
       try {
         if (!isManga) {
-          const result = await FetchTrendingAnime(3, 5);
+          const result = await FetchTrendingAnime(4, 5);
           if (result) {
             setData(result);
             const mappedData = {};

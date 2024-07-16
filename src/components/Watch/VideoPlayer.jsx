@@ -45,7 +45,6 @@ const VideoPlayer = ({
     >
       <MediaProvider>
         <Poster className="vds-poster" src={currentEpisodeImage} />
-
         {captions.map((c) => (
           <Track
             src={c?.file}
