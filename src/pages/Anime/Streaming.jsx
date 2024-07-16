@@ -86,7 +86,7 @@ const Streaming = () => {
     setSearchTerm(event.target.value.toLowerCase());
   };
 
-  const Skeleton = ['','','','','','']
+  const Skeleton = ["", "", "", "", "", ""];
 
   const Months = [
     "January",
@@ -118,11 +118,8 @@ const Streaming = () => {
     <div className="streaming-body">
       <div className="streaming-section">
         <div className="video-player-container">
-          {!streamingData && !isLoading ? (
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', height: '92%' }} >
-                  <img src={error} alt="" />
-                  <h2>Episode Data Not Found</h2>
-                </div>
+          {episodeLoading ? (
+            <SkeletonPlayer />
           ) : (
             <VideoPlayer
               streamingData={streamingData || []}
