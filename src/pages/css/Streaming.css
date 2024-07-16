@@ -311,7 +311,8 @@
   gap: 10px;
   padding: 5px 12px;
   border-radius: 5px;
-  background-color: var(--global-div);
+  background-color: var(--primary-accent);
+  color: var(--primary-accent-color);
 }
 
 a {
@@ -515,5 +516,12 @@ a {
   }
   .current-episode-container .episodes-row {
     width: 100%;
+  }
+  .servers {
+    font-size: 12px;
+  }
+  .label {
+    margin: 0;
+    font-size: 12px;
   }
 }

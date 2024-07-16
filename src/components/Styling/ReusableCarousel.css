@@ -21,7 +21,6 @@
 .reusable-carousel {
     display: flex;
     width: 100%;
-    background-color: var(--background-800);
 }
 
 .reusable-carousel-item {

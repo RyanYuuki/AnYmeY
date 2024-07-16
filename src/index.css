@@ -35,7 +35,9 @@ body[data-theme="light"] {
   --global-shadow: rgba(0, 0, 0, 0.1);
   --global-border-radius: 0.3rem;
   --primary-accent: #000;
+  --primary-accent-color: white;
   --primary-accent-bg: #595991;
+  --primary-accent-tr: #00000074;
   --ongoing-dot-color: #aaff00;
   --completed-indicator-color: #00aaff;
   --cancelled-indicator-color: #ff0000;
@@ -66,8 +68,10 @@ body[data-theme="dark"] {
   --global-genre-button-bg: #222222;
   --global-shadow: rgba(255, 255, 255, 0.08);
   --primary-accent: #8080cf;
+  --primary-accent-color: white;
   --primary-accent-bg: #595991;
   --primary-accent-radial: #5959912b;
+  --primary-accent-tr: #59599174;
 }
 
 body[data-theme="blue-moon"] {
@@ -82,7 +86,7 @@ body[data-theme="blue-moon"] {
   --vp-c-gray-soft: rgba(101, 117, 133, .16);
   --vp-c-gray-soft: rgba(142, 150, 170, .14);
   --global-div: #141414;
-  --global-div-tr: #1b1b1f9a;
+  --global-div-tr: #36678c25;
   --global-border: rgba(245, 245, 245, 0.1);
   --global-text: #e8e8e8;
   --global-text-muted: #696969;
@@ -98,7 +102,9 @@ body[data-theme="blue-moon"] {
   --global-genre-button-bg: #222222;
   --global-shadow: rgba(255, 255, 255, 0.08);
   --primary-accent: #36678c;
+  --primary-accent-color: white;
   --primary-accent-bg: #595991;
+  --primary-accent-tr: #36678c85;
   --primary-accent-radial: #5959912b;
 }
 

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
   faCalendar,
+  faCircleInfo,
   faClock,
   faHeart,
   faPlayCircle,
@@ -29,7 +30,7 @@ function Carousel({ isManga }) {
       setIsLoading(true);
       try {
         if (!isManga) {
-          const result = await FetchTrendingAnime(1);
+          const result = await FetchTrendingAnime(3, 5);
           if (result) {
             setData(result);
             const mappedData = {};
@@ -125,7 +126,7 @@ function Carousel({ isManga }) {
                       : `/watch/${anime.id}/${mappedIds[anime.id]}`
                   }
                 >
-                  <button>
+                  <button className="button1" >
                     <FontAwesomeIcon icon={isManga ? faBook : faPlayCircle} />
                     {"  "}
                     {isManga ? "Read Now" : "Watch Now"}
@@ -138,7 +139,7 @@ function Carousel({ isManga }) {
                       : `/anime/${anime.id}`
                   }
                 >
-                  <button>Detail {">"}</button>
+                  <button className="button2" ><FontAwesomeIcon icon={faCircleInfo} />{' '} Detail</button>
                 </Link>
               </div>
             </div>
