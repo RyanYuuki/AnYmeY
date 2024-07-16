@@ -177,7 +177,7 @@ const Streaming = () => {
             <div className="left-streaming-row">
               <CurrentEpisode
                 data={data[currentEpisode - 1] || []}
-                title={animeData.title.english}
+                title={animeData?.title?.english}
                 handleEpisodeContexts={handleEpisodeContexts}
               />
               <AnimeDetails animeData={animeData || []} Months={Months} />

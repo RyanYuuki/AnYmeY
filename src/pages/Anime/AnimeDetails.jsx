@@ -25,8 +25,14 @@ const AnimeDetails = () => {
           const data = await FetchRandomAnime();
           setData(data);
         } else {
-          const MetaData = await FetchAnimeByID(id);
-          setData(MetaData);
+          let MetaData;
+          if (id == 21) {
+            MetaData = await FetchAnimeByID(id, "data");
+            setData(MetaData);
+          } else {
+            MetaData = await FetchAnimeByID(id, "info");
+            setData(MetaData);
+          }
           if (MetaData) {
             const mappedData = await MapAnimeByTitle(MetaData.title.english);
             setMappedId(mappedData.id);

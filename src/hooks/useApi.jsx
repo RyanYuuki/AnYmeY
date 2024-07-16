@@ -21,8 +21,8 @@ export const FetchPopularAnime = async (page) => {
     return data.results;
   }
 };
-export const FetchAnimeByID = async (query) => {
-  const response = await fetch(`${BASE_URL}data/${query}`);
+export const FetchAnimeByID = async (query, type = 'info') => {
+  const response = await fetch(`${BASE_URL}${type}/${query}`);
   const data = await response.json();
   return data;
 };
