@@ -1,0 +1,28 @@
+.error-player {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+.error-player img {
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .error-player{ 
+        gap: 60px;
+        padding-bottom: 30px;
+    }
+    .error-player img {
+        width: 90%;
+        height: auto;
+    }
+    .error-player h1 {
+        font-size: 20px;
+        text-align: center;
+    }
+}

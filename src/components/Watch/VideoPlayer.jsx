@@ -9,7 +9,7 @@ import {
 import "@vidstack/react/player/styles/default/theme.css";
 import "@vidstack/react/player/styles/default/layouts/video.css";
 import { SkeletonPlayer } from "../General/Skeleton";
-import error from "../../assets/error.gif";
+import ErrorPlayer from "../Shared/ErrorPlayer";
 
 const VideoPlayer = ({
   streamingData,
@@ -18,10 +18,12 @@ const VideoPlayer = ({
   episodeLoading,
   streamingError,
 }) => {
-  if (streamingError) return <h1>{streamingError}</h1>;
-  return episodeLoading ? (
-    <SkeletonPlayer />
-  ) : (
+  if (streamingError || streamingData.length < 1)
+    return (
+        <ErrorPlayer />
+    );
+
+  return (
     <MediaPlayer
       className="player animated"
       aspectRatio="16/9"

@@ -46,7 +46,7 @@ const Streaming = () => {
         const EpisodesData = await FetchEpisodesData(id);
         setAnimeData(AnimeData);
         setData(EpisodesData);
-        setCurrentEpisodeID(EpisodesData[0]?.id || null);
+        setCurrentEpisodeID((EpisodesData && EpisodesData[0]?.id) || "NA");
       } catch (err) {
         setAnimeError("Failed to load anime data.");
         setEpisodesError("Failed to load episodes.");
@@ -64,9 +64,14 @@ const Streaming = () => {
       if (!currentEpisodeID) return;
       setStreamingError(null);
       try {
-        const StreamingData = await FetchStreamingData(currentEpisodeID);
-        console.log(StreamingData);
-        setStreamingData(StreamingData);
+        if(currentEpisode == "NA") {
+          setStreamingError('Error');
+        }
+        else {
+          const StreamingData = await FetchStreamingData(currentEpisodeID);
+          setStreamingData(StreamingData);
+        }
+        
       } catch (err) {
         setStreamingError("Failed to load streaming data.");
         console.error(err);
@@ -140,7 +145,7 @@ const Streaming = () => {
               handleEpisode={handleEpisode}
               searchTerm={searchTerm}
               handleInputChange={handleInputChange}
-              isLoading={episodeLoading}
+              isLoading={isLoading}
               Skeleton={Skeleton}
             />
           )}
