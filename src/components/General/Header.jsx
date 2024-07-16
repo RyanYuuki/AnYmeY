@@ -10,6 +10,7 @@ import {
   faMagnifyingGlass,
   faMoon,
   faShuffle,
+  faStarAndCrescent,
   faSun,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
@@ -25,10 +26,12 @@ function Header() {
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isDarkMode, setDarkMode] = useState(true);
-  const [contentType, setContentType] = useState("Anime");
+  const [themeIndex, setThemeIndex] = useState(0);
   const navigate = useNavigate();
   const location = useLocation();
+  const [contentType, setContentType] = useState('Anime');
+  const themes = ["dark", "light", "blue-moon"];
+  const themeIcons = [faMoon, faSun, faStarAndCrescent];
 
   useEffect(() => {
     if (location.pathname.includes("manga")) {
@@ -39,8 +42,8 @@ function Header() {
   }, [location.pathname]);
 
   useEffect(() => {
-    document.body.setAttribute("data-theme", isDarkMode ? "dark" : "light");
-  }, [isDarkMode]);
+    document.body.setAttribute("data-theme", themes[themeIndex]);
+  }, [themeIndex]);
 
   const debouncedSearch = useCallback(
     debounce(async (query) => {
@@ -74,7 +77,7 @@ function Header() {
   };
 
   const toggleTheme = () => {
-    setDarkMode(!isDarkMode);
+    setThemeIndex((prevIndex) => (prevIndex + 1) % themes.length);
   };
 
   const handleEnter = (e) => {
@@ -92,16 +95,16 @@ function Header() {
         </Link>
       </h1>
       <div className="nav-links">
-        <a href={"/anime/home"}>
+        <Link to={"/anime/home"}>
           <div className="nav-item">
             <FontAwesomeIcon icon={faFilm} /> Anime
           </div>
-        </a>
-        <a href={"/manga/home"}>
-        <div className="nav-item">
+        </Link>
+        <Link to={"/manga/home"}>
+          <div className="nav-item">
             <FontAwesomeIcon icon={faBook} /> Manga
-        </div>
-        </a>
+          </div>
+        </Link>
       </div>
       <div className="inputBox">
         <input
@@ -159,7 +162,7 @@ function Header() {
           </Link>
         </button>
         <button onClick={toggleTheme} className="action-button">
-          <FontAwesomeIcon icon={isDarkMode ? faSun : faMoon} />
+          <FontAwesomeIcon icon={themeIcons[themeIndex]} />
         </button>
         <button className="login-button">
           <Link to={`/anime/${Math.floor(Math.random() * 100) + 1}`}>

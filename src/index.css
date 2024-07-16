@@ -34,7 +34,7 @@ body[data-theme="light"] {
   --global-genre-button-bg: #d4d4d4;
   --global-shadow: rgba(0, 0, 0, 0.1);
   --global-border-radius: 0.3rem;
-  --primary-accent: #8080cf;
+  --primary-accent: #000;
   --primary-accent-bg: #595991;
   --ongoing-dot-color: #aaff00;
   --completed-indicator-color: #00aaff;
@@ -66,6 +66,38 @@ body[data-theme="dark"] {
   --global-genre-button-bg: #222222;
   --global-shadow: rgba(255, 255, 255, 0.08);
   --primary-accent: #8080cf;
+  --primary-accent-bg: #595991;
+  --primary-accent-radial: #5959912b;
+}
+
+body[data-theme="blue-moon"] {
+  --global-description: rgb(255,255,255,0.6);
+  --global-primary-bg: #1b1b1f;
+  --global-primary-bg-tr: rgba(101, 117, 133, 0.871);
+  --global-secondary-bg: #202127;
+  --global-tertiary-bg:rgba(101, 117, 133, .16);
+  --vp-c-gray-1: #515c67;
+  --vp-c-gray-2: #414853;
+  --vp-c-gray-3: #32363f;
+  --vp-c-gray-soft: rgba(101, 117, 133, .16);
+  --vp-c-gray-soft: rgba(142, 150, 170, .14);
+  --global-div: #141414;
+  --global-div-tr: #1b1b1f9a;
+  --global-border: rgba(245, 245, 245, 0.1);
+  --global-text: #e8e8e8;
+  --global-text-muted: #696969;
+  --global-card-bg: #181818;
+  --global-card-title-bg: #151515;
+  --global-card-shadow: rgba(0, 0, 0, 0.6);
+  --global-primary-skeleton: rgba(85, 85, 85, 0.1);
+  --global-secondary-skeleton: rgba(85, 85, 85, 0.3);
+  --global-button-bg: #202020;
+  --global-button-hover-bg: #292929;
+  --global-button-shadow: rgba(0, 0, 0, 0.6);
+  --global-button-text: #ebebeb;
+  --global-genre-button-bg: #222222;
+  --global-shadow: rgba(255, 255, 255, 0.08);
+  --primary-accent: #36678c;
   --primary-accent-bg: #595991;
   --primary-accent-radial: #5959912b;
 }
