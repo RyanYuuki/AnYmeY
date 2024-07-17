@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDiscord,
   faFacebook,
+  faGithub,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { faX } from "@fortawesome/free-solid-svg-icons";
@@ -24,14 +25,7 @@ export const Footer = () => {
         </div>
         <div className="social-media">
           <a
-            href="https://www.facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faFacebook} />
-          </a>
-          <a
-            href="https://www.twitter.com"
+            href="https://www.twitter.com/RyanYuuki2"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -50,6 +44,13 @@ export const Footer = () => {
             rel="noopener noreferrer"
           >
             <FontAwesomeIcon icon={faDiscord} />
+          </a>
+          <a
+            href="https://www.github.com/RyanYuuki/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faGithub} />
           </a>
         </div>
       </div>
