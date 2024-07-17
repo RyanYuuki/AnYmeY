@@ -23,24 +23,15 @@ import { SkeletonCarousel } from "../General/Skeleton";
 function Carousel({ isManga }) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [mappedIds, setMappedIds] = useState({});
 
   useEffect(() => {
     const loadTrendingAnime = async () => {
       setIsLoading(true);
       try {
         if (!isManga) {
-          const result = await FetchTrendingAnime(4, 5);
+          const result = await FetchTrendingAnime(2, 5);
           if (result) {
             setData(result);
-            const mappedData = {};
-            for (const anime of result) {
-              const mappedAnime = await MapAnimeByTitle(anime.title.english || anime.title.romaji);
-              if (mappedAnime) {
-                mappedData[anime.id] = mappedAnime.id;
-              }
-            }
-            setMappedIds(mappedData);
           }
         } else {
           const result = await GetMangaTrending(10);
@@ -123,7 +114,7 @@ function Carousel({ isManga }) {
                   to={
                     isManga
                       ? `/manga/read/${anime.id}/MangaId`
-                      : `/watch/${anime.id}/${mappedIds[anime.id]}`
+                      : `/watch/${anime.id}/`
                   }
                 >
                   <button className="button1" >

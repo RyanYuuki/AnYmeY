@@ -5,6 +5,7 @@ import {
   FetchEpisodeLinksByMappedID,
   FetchEpisodesByMappedID,
   FetchEpisodesData,
+  MapAnimeByTitle,
 } from "../../hooks/useApi";
 import VideoPlayer from "../../components/Watch/VideoPlayer";
 import EpisodeList from "../../components/Watch/EpisodeList";
@@ -43,17 +44,27 @@ const Streaming = () => {
       setEpisodesError(null);
       try {
         let AnimeData;
-        if (id == "21" || 21) {
+        let EpisodesData;
+  
+        if (id === "21" || id === 21) {
           AnimeData = await FetchAnimeByID(id, "data");
         } else {
           AnimeData = await FetchAnimeByID(id);
         }
+  
+        if (AnimeData && !mappedId) {
+          const fallback = await MapAnimeByTitle(AnimeData.title.english);
+          EpisodesData = await FetchEpisodesByMappedID(fallback.id);
+        } else {
+          EpisodesData = await FetchEpisodesByMappedID(mappedId);
+        }
+  
         const EpisodesImagesData = await FetchEpisodesData(id);
-        const EpisodesData = await FetchEpisodesByMappedID(mappedId);
+  
         if (AnimeData) {
           setAnimeData(AnimeData);
         }
-
+  
         if (EpisodesData && EpisodesImagesData) {
           setData(
             EpisodesData.episodes.map((episode, index) => ({
@@ -62,17 +73,20 @@ const Streaming = () => {
             }))
           );
           setCurrentEpisodeID(EpisodesData.episodes[0]?.episodeId || "NA");
+        } else {
+          setEpisodesError("Failed to load episodes data.");
         }
       } catch (err) {
         setAnimeError("Failed to load anime data.");
-        setEpisodesError("Failed to load episodes.");
         console.error(err);
       } finally {
         setIsLoading(false);
       }
     };
+  
     loadData();
   }, [id, mappedId]);
+  
 
   useEffect(() => {
     const loadStreamingData = async () => {
@@ -96,6 +110,7 @@ const Streaming = () => {
         setEpisodeLoading(false);
       }
     };
+
     if (currentEpisodeID) {
       loadStreamingData();
     }
@@ -154,7 +169,7 @@ const Streaming = () => {
           ) : (
             <VideoPlayer
               streamingData={streamingData || []}
-              currentEpisodeTitle={data[currentEpisode - 1]?.title || "??"}
+              currentEpisodeTitle={data[currentEpisode - 1]?.title || "???"}
               currentEpisodeImage={
                 data[currentEpisode - 1]?.image || animeData.cover
               }
