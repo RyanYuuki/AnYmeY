@@ -27,8 +27,8 @@ const Streaming = () => {
   const [streamingData, setStreamingData] = useState(null);
   const [currentEpisode, setCurrentEpisode] = useState(1);
   const [currentEpisodeID, setCurrentEpisodeID] = useState(null);
-  const [server, setServer] = useState('vidstreaming');
-  const [category, setCategory] = useState('sub');
+  const [server, setServer] = useState("vidstreaming");
+  const [category, setCategory] = useState("sub");
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [episodeLoading, setEpisodeLoading] = useState(true);
@@ -42,12 +42,18 @@ const Streaming = () => {
       setAnimeError(null);
       setEpisodesError(null);
       try {
-        const AnimeData = await FetchAnimeByID(id);
+        let AnimeData;
+        if (id == "21" || 21) {
+          AnimeData = await FetchAnimeByID(id, "data");
+        } else {
+          AnimeData = await FetchAnimeByID(id);
+        }
         const EpisodesImagesData = await FetchEpisodesData(id);
         const EpisodesData = await FetchEpisodesByMappedID(mappedId);
-        
-        setAnimeData(AnimeData);
-        
+        if (AnimeData) {
+          setAnimeData(AnimeData);
+        }
+
         if (EpisodesData && EpisodesImagesData) {
           setData(
             EpisodesData.episodes.map((episode, index) => ({
@@ -149,7 +155,9 @@ const Streaming = () => {
             <VideoPlayer
               streamingData={streamingData || []}
               currentEpisodeTitle={data[currentEpisode - 1]?.title || "??"}
-              currentEpisodeImage={data[currentEpisode - 1]?.image || animeData.cover}
+              currentEpisodeImage={
+                data[currentEpisode - 1]?.image || animeData.cover
+              }
               episodeLoading={episodeLoading}
               streamingError={streamingError}
               captionsData={streamingData?.tracks}

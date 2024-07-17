@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { jaroWinklerDistance } from './jaro-winkler';
 const apiLink = "https://consumet-api-two-nu.vercel.app";
 const BASE_URL = "https://consumet-api-two-nu.vercel.app/meta/anilist/";
 const ANIWATCH_URL = "https://aniwatch-ryan.vercel.app/anime/";
@@ -118,41 +119,44 @@ export const GetMangaTop = async (count, page = 1) => {
   return data.results;
 };
 
+
+
 export const MapAnimeByTitle = async (title) => {
   try {
     const response = await fetch(
-      `${ANIWATCH_URL}search?q=${title}`
+      `${ANIWATCH_URL}search?q=${encodeURIComponent(title)}`
     );
 
     const data = await response.json();
 
-    const normalizedTitle = title.toLowerCase();
-    let mappedResult = data.animes.find(
+    const normalizedTitle = title.trim().toLowerCase();
+    let mappedResult = null;
+    let maxScore = 0;
+
+    // Function to calculate Jaro-Winkler similarity
+    const calculateSimilarity = (itemName) => {
+      const itemNameNormalized = itemName.trim().toLowerCase();
+      const score = jaroWinklerDistance(normalizedTitle, itemNameNormalized);
+      return score;
+    };
+
+    // Find exact match first
+    mappedResult = data.animes.find(
       (item) => item.name && item.name.toLowerCase() === normalizedTitle
     );
 
+    // If no exact match, find closest match using Jaro-Winkler distance
     if (!mappedResult) {
-      const modifiedTitle = title
-        .toLowerCase()
-        .replace(/\s+/g, "-")
-        .replace(/-\d+$/, "")
-        .replace(/-$/, "");
-      console.log("Modified title:", modifiedTitle);
-
-      mappedResult = data.animes.find((item) => {
-        const itemName = item.name
-          ?.toLowerCase()
-          .replace(/\s+/g, "-")
-          .replace(/-\d+$/, "")
-          .replace(/-$/, "");
-        return itemName === modifiedTitle;
+      data.animes.forEach((item) => {
+        const itemName = item.name;
+        if (itemName) {
+          const score = calculateSimilarity(itemName);
+          if (score > maxScore) {
+            maxScore = score;
+            mappedResult = item;
+          }
+        }
       });
-    }
-
-    if (!mappedResult) {
-      mappedResult = data.animes.find((item) =>
-        item.name?.toLowerCase().includes(normalizedTitle)
-      );
     }
 
     console.log("mappedResult:", mappedResult);
@@ -162,6 +166,7 @@ export const MapAnimeByTitle = async (title) => {
     return null;
   }
 };
+
 
 export const FetchEpisodesByMappedID = async (id) => {
   const response = await fetch(`${ANIWATCH_URL}episodes/${id}`);

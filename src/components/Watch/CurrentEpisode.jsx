@@ -7,20 +7,34 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function CurrentEpisode({ data, title, handleEpisodeContexts }) {
-  const servers = ["VidStream", "MegaCloud", "StreamSb"];
-  const [currentServer, setCurrentServer] = useState("VidStream");
+  const servers = [
+    {
+      name: "VidStream",
+      types: ["dub", "sub"],
+    },
+    {
+      name: "MegaCloud",
+      types: ["dub", "sub"],
+    },
+    {
+      name: "StreamSb",
+      types: ["dub", "sub"],
+    }
+  ];
+
+  const [currentServer, setCurrentServer] = useState({ name: "VidStream", type: "sub" });
 
   return (
     <div className="current-episode-container">
       <div className="episodes-row episodes-row1">
         <p>
-          You{`'`}re Watching{" "}
+          You{"'"}re Watching{" "}
           <span style={{ fontWeight: "600" }}>
             Episode {data.number || "?"}
           </span>
         </p>
         <p>
-          if current server {"doesn't"} work, you can switch to a different server.
+          If current server doesn{"'"}t work, you can switch to a different server.
         </p>
       </div>
       <div className="episodes-row episode-row2">
@@ -31,18 +45,18 @@ function CurrentEpisode({ data, title, handleEpisodeContexts }) {
           </p>
           <div className="servers">
             {servers.map((server) => (
-              <p
-                key={server}
-                className={`${
-                  currentServer == server ? "server-active" : "server"
-                }`}
-                onClick={() => {
-                  setCurrentServer(server);
-                  handleEpisodeContexts(server, "sub");
-                }}
-              >
-                {server}
-              </p>
+              server.types.includes("sub") && (
+                <p
+                  key={server.name}
+                  className={`${currentServer.name === server.name && currentServer.type === "sub" ? "server-active" : "server"}`}
+                  onClick={() => {
+                    setCurrentServer({ name: server.name, type: "sub" });
+                    handleEpisodeContexts(server.name, "sub");
+                  }}
+                >
+                  {server.name}
+                </p>
+              )
             ))}
           </div>
         </div>
@@ -53,18 +67,18 @@ function CurrentEpisode({ data, title, handleEpisodeContexts }) {
           </p>
           <div className="servers">
             {servers.map((server) => (
-              <p
-                key={server}
-                className={`server ${
-                  currentServer === server ? "server-active" : ""
-                }`}
-                onClick={() => {
-                  setCurrentServer(server);
-                  handleEpisodeContexts(server, "dub");
-                }}
-              >
-                {server}
-              </p>
+              server.types.includes("dub") && (
+                <p
+                  key={server.name}
+                  className={`${currentServer.name === server.name && currentServer.type === "dub" ? "server-active" : "server"}`}
+                  onClick={() => {
+                    setCurrentServer({ name: server.name, type: "dub" });
+                    handleEpisodeContexts(server.name, "dub");
+                  }}
+                >
+                  {server.name}
+                </p>
+              )
             ))}
           </div>
         </div>

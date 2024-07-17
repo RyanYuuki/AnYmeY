@@ -56,7 +56,7 @@ export default function VerticalAnimeCards({ data }) {
   return data.map((anime, index) =>
     index > 4 ? null : (
       <div
-        key={anime.mal_id}
+        key={anime.title.romaji}
         className={`anime-item ${hoveredIndex === index ? "hover" : ""}`}
         onMouseEnter={(event) => handleMouseEnter(index, event)}
         onMouseLeave={() => setHoveredIndex(null)}
