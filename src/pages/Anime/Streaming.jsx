@@ -5,7 +5,6 @@ import {
   FetchEpisodeLinksByMappedID,
   FetchEpisodesByMappedID,
   FetchEpisodesData,
-  FetchStreamingData,
 } from "../../hooks/useApi";
 import VideoPlayer from "../../components/Watch/VideoPlayer";
 import EpisodeList from "../../components/Watch/EpisodeList";
@@ -16,11 +15,9 @@ import "../css/Streaming.css";
 import {
   SkeletonPlayer,
   SkeletonCard,
-  SkeletonSlide,
   SkeletonEpisodes,
 } from "../../components/General/Skeleton";
 import CurrentEpisode from "../../components/Watch/CurrentEpisode";
-import error from "../../assets/error.gif";
 import ErrorPlayer from "../../components/Shared/ErrorPlayer";
 
 const Streaming = () => {
@@ -38,7 +35,6 @@ const Streaming = () => {
   const [animeError, setAnimeError] = useState(null);
   const [episodesError, setEpisodesError] = useState(null);
   const [streamingError, setStreamingError] = useState(null);
-  const [episodeData, setEpisodeData] = useState(null);
 
   useEffect(() => {
     const loadData = async () => {
@@ -49,17 +45,18 @@ const Streaming = () => {
         const AnimeData = await FetchAnimeByID(id);
         const EpisodesImagesData = await FetchEpisodesData(id);
         const EpisodesData = await FetchEpisodesByMappedID(mappedId);
+        
         setAnimeData(AnimeData);
-        setData(
-          EpisodesData.episodes.map((episode, index) => ({
-            ...episode,
-            image: EpisodesImagesData[index]?.image, // Assume the order matches
-          }))
-        );
-        setEpisodeData(EpisodesImagesData);
-        setCurrentEpisodeID(
-          (EpisodesData && EpisodesData.episodes[0].episodeId) || "NA"
-        );
+        
+        if (EpisodesData && EpisodesImagesData) {
+          setData(
+            EpisodesData.episodes.map((episode, index) => ({
+              ...episode,
+              image: EpisodesImagesData[index]?.image,
+            }))
+          );
+          setCurrentEpisodeID(EpisodesData.episodes[0]?.episodeId || "NA");
+        }
       } catch (err) {
         setAnimeError("Failed to load anime data.");
         setEpisodesError("Failed to load episodes.");
@@ -69,15 +66,14 @@ const Streaming = () => {
       }
     };
     loadData();
-  }, [id]);
+  }, [id, mappedId]);
 
   useEffect(() => {
     const loadStreamingData = async () => {
       setEpisodeLoading(true);
-      if (!currentEpisodeID) return;
       setStreamingError(null);
       try {
-        if (currentEpisode == "NA") {
+        if (currentEpisodeID === "NA") {
           setStreamingError("Error");
         } else {
           const StreamingData = await FetchEpisodeLinksByMappedID(
@@ -94,7 +90,9 @@ const Streaming = () => {
         setEpisodeLoading(false);
       }
     };
-    loadStreamingData();
+    if (currentEpisodeID) {
+      loadStreamingData();
+    }
   }, [currentEpisodeID, server, category]);
 
   const handleEpisode = (episode) => {
@@ -103,8 +101,7 @@ const Streaming = () => {
   };
 
   const handleEpisodeContexts = (server, category) => {
-    const newServer = server.toString().toLowerCase();
-    setServer(newServer);
+    setServer(server.toString().toLowerCase());
     setCategory(category);
   };
 
@@ -146,7 +143,7 @@ const Streaming = () => {
         <div className="video-player-container">
           {episodeLoading ? (
             <SkeletonPlayer />
-          ) : !streamingData.sources ? (
+          ) : !streamingData?.sources ? (
             <ErrorPlayer />
           ) : (
             <VideoPlayer
@@ -155,17 +152,17 @@ const Streaming = () => {
               currentEpisodeImage={data[currentEpisode - 1]?.image || animeData.cover}
               episodeLoading={episodeLoading}
               streamingError={streamingError}
-              captionsData={streamingData.tracks}
+              captionsData={streamingData?.tracks}
             />
           )}
         </div>
         <div className="streaming-episodes">
           {isLoading ? (
-            Skeleton.map((index) => <SkeletonEpisodes key={index} />)
+            Skeleton.map((_, index) => <SkeletonEpisodes key={index} />)
           ) : (
             <EpisodeList
               data={data}
-              image={animeData.image}
+              image={animeData?.image}
               currentEpisode={currentEpisode}
               handleEpisode={handleEpisode}
               searchTerm={searchTerm}
