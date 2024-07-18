@@ -29,7 +29,7 @@ function Carousel({ isManga }) {
       setIsLoading(true);
       try {
         if (!isManga) {
-          const result = await FetchTrendingAnime(2, 5);
+          const result = await FetchTrendingAnime(1, 5);
           if (result) {
             setData(result);
           }

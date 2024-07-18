@@ -29,7 +29,6 @@ const VideoPlayer = ({
   const thumbnails = captionsData.filter(
     (caption) => caption.kind == "thumbnails"
   );
-  console.log(thumbnails)
   return (
     <MediaPlayer
       className="player animated"

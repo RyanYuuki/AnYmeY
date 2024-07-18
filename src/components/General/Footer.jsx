@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../Styling/Footer.css";
-import Logo from "../../assets/WebIcon.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faDiscord,
@@ -12,7 +11,7 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export const Footer = () => {
   return (
-    <div className="footer">
+    <footer className="footer">
       <div className="footer-content">
         <div className="logo-container">
           <h1 className="logo">
@@ -61,6 +60,6 @@ export const Footer = () => {
           <span>- Ryan Yuuki</span>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
