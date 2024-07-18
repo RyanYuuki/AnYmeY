@@ -139,6 +139,25 @@
   display: none;
 }
 
+.characters-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.characters-select-box {
+  height: 40px;
+  padding: 0px 20px;
+  border-radius: 5px;
+  background-color: var(--global-tertiary-bg);
+  border: none;
+}
+
+
+.characters-select-box li {
+  list-style: none;
+}
+
 @media screen and (max-width: 768px) {
   .anime-details-body {
     padding: 2.5%;

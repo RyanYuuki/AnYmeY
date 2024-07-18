@@ -21,6 +21,7 @@ export const Footer = () => {
             Anime and Manga streaming platform, featuring a wide variety of
             shows and movies.
           </p>
+          <p>Data Fetched from Consumet {'^_^'}</p>
           <div className="social-media">
             <a
               href="https://www.twitter.com/RyanYuuki2"
