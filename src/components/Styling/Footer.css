@@ -1,16 +1,22 @@
 .footer {
   display: flex;
   flex-direction: column;
+  padding: 5% 5% 2.5% 5%;
 }
 
 .footer-content {
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+  padding: 30px 0px;
+  border-top: 1px solid var(--global-border);
   border-bottom: 1px solid var(--global-border);
-  padding: 20px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .footer-content h1 {
@@ -29,14 +35,14 @@
   color: var(--global-description);
 }
 
-.footer-content a {
+.social-media a {
   background-color: var(--global-tertiary-bg);
   padding: 10px 15px;
   border-radius: 12px;
   text-decoration: none;
 }
 
-.footer-content a:hover {
+.social-media a:hover {
   transform: scale(1.1);
   background-color: var(--primary-accent);
   color: var(--primary-accent-color);
@@ -46,7 +52,28 @@
 .social-media {
   display: flex;
   gap: 15px;
-  margin: 0px 20px 0px 0px;
+  margin-top: 20px;
+}
+
+.footer-common {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.Pages,
+.Help,
+.Product {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.Pages a,
+.Help a,
+.Product a {
+  color: var(--global-description);
 }
 
 .footer-info {
@@ -54,20 +81,18 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  margin-top: 10px;
-  padding: 0px 20px;
-  margin-bottom: 15px;
+  margin-top: 20px;
   font-weight: 500;
 }
 
 .footer-container {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
 }
 
-
-.footer-info p, span {
+.footer-info p,
+span {
   margin: 5px 0;
   font-size: 14px;
 }
@@ -81,7 +106,7 @@
     align-items: normal;
     padding: 20px;
   }
-  .footer-content h1{
+  .footer-content h1 {
     font-size: 25px;
   }
   .footer-content p {

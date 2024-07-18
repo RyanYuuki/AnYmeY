@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../Styling/Footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,39 +18,69 @@ export const Footer = () => {
             An<span>Y</span>meY
           </h1>
           <p>
-            All media that you see on the website is not hosted by AnymeX, they
-            are all hosted on third party sources AnymeY is merely using those.
+            Anime and Manga streaming platform, featuring a wide variety of
+            shows and movies.
           </p>
+          <div className="social-media">
+            <a
+              href="https://www.twitter.com/RyanYuuki2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faX} />
+            </a>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faInstagram} />
+            </a>
+            <a
+              href="https://www.discord.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faDiscord} />
+            </a>
+            <a
+              href="https://www.github.com/RyanYuuki/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
+          </div>
         </div>
-        <div className="social-media">
-          <a
-            href="https://www.twitter.com/RyanYuuki2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faX} />
-          </a>
-          <a
-            href="https://www.instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faInstagram} />
-          </a>
-          <a
-            href="https://www.discord.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faDiscord} />
-          </a>
-          <a
-            href="https://www.github.com/RyanYuuki/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faGithub} />
-          </a>
+        <div className="footer-common">
+          <div className="Product">
+            <h4>Product</h4>
+            <a href="">Features</a>
+            <a href="">Support</a>
+            <a href="">Changelog</a>
+          </div>
+          <div className="Pages">
+            <h4>Pages</h4>
+            <a href="/" className="footer-nav-link">
+              Home
+            </a>
+            <a href="/anime" className="footer-nav-link">
+              Anime
+            </a>
+            <a href="/manga" className="footer-nav-link">
+              Manga
+            </a>
+          </div>
+          <div className="Help">
+            <h4>Help</h4>
+            <a href="">Terms and Services</a>
+            <a href="/about" className="footer-nav-link">
+              About
+            </a>
+            <a href="/contact" className="footer-nav-link">
+              Contact
+            </a>
+          </div>
         </div>
       </div>
       <div className="footer-info">
