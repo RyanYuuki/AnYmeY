@@ -37,17 +37,12 @@ export default function TrendingCarousel({ isManga }) {
   if (isLoading) {
     return (
       <div className="body">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            marginTop: "50px",
-          }}
-        >
-          {loadingSkeletons.map((index) => (
-            <SkeletonCarouselItem key={index} />
-          ))}
+        <div style={{ display: 'flex', flexDirection: 'row', gap: '10px' }}>
+          {loadingSkeletons.map((index) =>
+            index < 3 ? (
+                <SkeletonCarouselItem key={index} />
+            ) : null
+          )}
         </div>
       </div>
     );
@@ -56,7 +51,9 @@ export default function TrendingCarousel({ isManga }) {
   if (error) {
     return (
       <div className="body">
-      <h2 className="carousel-heading">Trending {isManga ? "Manga" : "Anime"}</h2>
+        <h2 className="carousel-heading">
+          Trending {isManga ? "Manga" : "Anime"}
+        </h2>
         <p>{error}</p>
       </div>
     );
@@ -64,7 +61,9 @@ export default function TrendingCarousel({ isManga }) {
 
   return (
     <div className="body animated">
-      <h2 className="carousel-heading">Trending {isManga ? "Manga" : "Anime"}</h2>
+      <h2 className="carousel-heading">
+        Trending {isManga ? "Manga" : "Anime"}
+      </h2>
       <Swiper
         className="carousel-container"
         breakpoints={{
@@ -107,7 +106,11 @@ export default function TrendingCarousel({ isManga }) {
             "??";
           return (
             <SwiperSlide key={index} className="carousel-item">
-              <Link to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
+              <Link
+                to={
+                  isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`
+                }
+              >
                 <img src={anime.image} draggable="false" alt={title} />
               </Link>
               <h4>

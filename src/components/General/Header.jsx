@@ -6,7 +6,9 @@ import "../Styling/Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
+  faDroplet,
   faFilm,
+  faLeaf,
   faMagnifyingGlass,
   faMoon,
   faShuffle,
@@ -32,6 +34,8 @@ function Header() {
   const [contentType, setContentType] = useState('Anime');
   const themes = ["dark", "light", "blue-moon"];
   const themeIcons = [faMoon, faSun, faStarAndCrescent];
+  // const themes = ["dark", "light", "blue-moon", "crimson-red"];
+  // const themeIcons = [faMoon, faSun, faStarAndCrescent, faDroplet];
 
   useEffect(() => {
     if (location.pathname.includes("manga")) {

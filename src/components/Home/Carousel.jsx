@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBook,
   faCalendar,
+  faCalendarDays,
   faCircleInfo,
   faClock,
   faHeart,
@@ -84,16 +85,15 @@ function Carousel({ isManga }) {
               </h1>
               <div className="misc-info">
                 <p>
-                  <FontAwesomeIcon icon={faTelevision} /> {anime.type || "??"}
+                  <FontAwesomeIcon icon={faPlayCircle} /> {anime.type || "??"}
                 </p>
-                <p>
-                  <FontAwesomeIcon icon={faClock} />{" "}
+                <p style={{ textTransform: 'uppercase', color: anime.color, fontWeight: 600 }} >
                   {isManga
                     ? anime.status
-                    : (anime.duration && anime.duration + "M") || "??"}
+                    : (anime.status && anime.status) || "??"}
                 </p>
                 <p>
-                  <FontAwesomeIcon icon={isManga ? faHeart : faCalendar} />{" "}
+                  <FontAwesomeIcon icon={isManga ? faHeart : faCalendarDays} />{" "}
                   {isManga
                     ? anime.popularity
                     : (anime.releaseDate && anime.releaseDate) || "??"}

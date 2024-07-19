@@ -86,10 +86,6 @@ export const Footer = () => {
       </div>
       <div className="footer-info">
         <p>© 2024 AnymeY | Made With Love ❤️</p>
-        <div className="footer-container">
-          <p>I mean it's not the best, but it's something </p>{" "}
-          <span>- Ryan Yuuki</span>
-        </div>
       </div>
     </footer>
   );

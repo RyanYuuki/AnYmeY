@@ -11,8 +11,8 @@ export const SkeletonCarousel = React.memo(() => (
 ));
 
 const SkeletonCarouselSlide = styled(BaseSkeleton)<{ loading?: boolean }>`
-  width: 30%;
-  height: 100%;
+  aspect-ratio : 2/3;
+  border-radius: 12px;
   ${({ loading }) => !loading && animationMixin}
   @media (max-width: 1000px) {
     height: 20rem;

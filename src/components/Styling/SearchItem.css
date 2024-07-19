@@ -11,8 +11,9 @@
 }
 
 .search-item-container:hover {
-    background-color: var(--primary-accent-bg);
+    background-color: var(--primary-accent);
     margin-bottom: 10px;
+    color: white;
 }
 
 .search-item-container:hover .search-item-row p {

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import VerticalCharacterCards from "./VerticalCharacterCards";
 
 const CharactersSection = ({ characters }) => {
-  const [voiceActorsLang, setVoiceActorsLang] = useState("English");
+  const [voiceActorsLang, setVoiceActorsLang] = useState("Japanese");
 
   const handleLanguageChange = (event) => {
     setVoiceActorsLang(event.target.value);

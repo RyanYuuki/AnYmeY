@@ -62,14 +62,11 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-    padding: 10px 20px;
+    padding: 5px 0px;
     width: max-content;
     border-radius: 12px;
-    background-color: var(--primary-accent);
     color: var(--primary-accent-color);
-    box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
-
 
 .buttons-group {
     display: flex;
@@ -78,16 +75,17 @@
 }
 
 .buttons-group button {
-    padding: 10px 25px;
+    padding: 8px 18px;
     border-radius: 12px;
     border: none;
-    font-size: 16px;
     color: var(--global-text);
-    border-radius: 25px;
+    border-radius: 30px;
+    align-items: center;
+    font-size: 15px;
 }
 
 .buttons-group .button1 {
-    background-color: var(--primary-accent);
+    background-color: var(--primary-accent-tr);
     color: var(--primary-accent-color);
 }
 
