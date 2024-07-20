@@ -158,7 +158,7 @@
   border-radius: 5px;
 }
 
-.episode:hover {
+.episode:hover, .episode-grid:hover, .episode-list:hover {
   filter: brightness(1.2);
   cursor: pointer;
   background-color: var(--primary-accent);
@@ -172,6 +172,8 @@
   flex-direction: column;
   gap: 10px;
   width: 100%;
+  font-style: italic;
+
 }
 
 .episode-list {
@@ -185,13 +187,6 @@
   color: var(--global-description);
 }
 
-.episode-list:hover {
-  background-color: var(--primary-accent);
-}
-.episode-list:hover span,
-.episode-list:hover p {
-  color: var(--primary-accent-color);
-}
 
 .episodes-Grid {
   display: grid;
@@ -239,7 +234,7 @@
   background-color: var(--primary-accent-tr);
   font-size: 14px;
   font-weight: 600;
-  color: var(--global-text);
+  color: var(--primary-accent-color);
 }
 
 .episode-active {
@@ -423,7 +418,6 @@ a {
   justify-content: space-evenly;
   padding: 10px;
   background-color: var(--global-secondary-bg);
-  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
 }
 
 .current-episode-container {

@@ -3,7 +3,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AnimeFullInfo = ({ data, Months, id }) => {
+const AnimeFullInfo = ({ data, Months, id, aniId }) => {
   if (!data) {
     return <p>Data is not available.</p>;
   }
@@ -36,8 +36,8 @@ const AnimeFullInfo = ({ data, Months, id }) => {
           </button>
           <button>TRAILER</button>
           <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
-            <button style={{ width: "45%" }}>A</button>
-            <button style={{ width: "45%" }}>MAL</button>
+            <button style={{ width: "45%" }}><a href={'https://anilist.co/anime/' + aniId}>A</a></button>
+            <button style={{ width: "45%" }}><a href={'https://myanimelist.net/anime/' + data.malId} >MAL</a></button>
           </div>
         </div>
         <div className="anime-details-row">

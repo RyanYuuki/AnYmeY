@@ -1,7 +1,8 @@
 .footer {
   display: flex;
   flex-direction: column;
-  padding: 5% 5% 2.5% 5%;
+  padding: 0% 5% 1% 5%;
+  background-color: var(--global-secondary-bg);
 }
 
 .footer-content {

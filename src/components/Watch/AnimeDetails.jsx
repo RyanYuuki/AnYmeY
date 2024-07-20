@@ -4,18 +4,24 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import AnimeList from "./AnimeList";
-
+import { Link } from "react-router-dom";
 const AnimeDetails = ({ animeData, Months }) => {
   return (
     <>
       <div className="streaming-details-container animated">
         <div className="streaming-details-row first-row">
           <img src={animeData.image || ""} alt="" />
-          <button style={{ width: "100%" }}>INFO</button>
+          <Link to={"/anime/" + animeData.id}>
+            <button style={{ width: "100%" }}>INFO</button>
+          </Link>
           <button style={{ width: "100%" }}>TRAILER</button>
           <div style={{ display: "flex", flexDirection: "row", gap: "10%" }}>
-            <button style={{ width: "45%" }}>A</button>
-            <button style={{ width: "45%" }}>MAL</button>
+            <button style={{ width: "45%" }}>
+              <a href={"https://anilist.co/anime/" + animeData.id}>A</a>
+            </button>
+            <button style={{ width: "45%" }}>
+              <a href={"https://myanimelist.net/anime/" + animeData.malId}>MAL</a>
+            </button>
           </div>
         </div>
         <div className="streaming-details-row second-row">

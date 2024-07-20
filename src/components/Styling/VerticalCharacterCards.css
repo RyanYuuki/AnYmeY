@@ -13,9 +13,26 @@
  
 .character-item img {
     height: 100px;
-    height: 100px;
-    object-fit: contain;
+    width: 67px;
+    object-fit: cover;
     border-radius: 10px;
+}
+
+.anime-image-hover {
+    position: absolute;
+    top: -10%;
+    left: 22%;
+    border-radius: 12px;
+    background-color: var(--global-tertiary-bg);
+    scale: 0;
+}
+
+.anime-image-hover p {
+    padding: 10px 15px;
+}
+
+.anime-image:hover ~ .anime-image-hover {
+    scale: 1;
 }
 
 .character-item p {

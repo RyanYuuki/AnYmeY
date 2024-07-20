@@ -85,7 +85,7 @@ const AnimeDetails = () => {
   return (
     <div className="anime-details-body">
       <AnimeCover cover={data.cover} />
-      <AnimeFullInfo data={data} id={mappedId} Months={Months} />
+      <AnimeFullInfo data={data} id={mappedId} Months={Months} aniId={id}/>
       <CharactersSection characters={data.characters} />
       <RelatedSection relations={data.relations} />
       <RecommendationSection recommendations={data.recommendations} />
