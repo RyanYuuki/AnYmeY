@@ -48,10 +48,14 @@
   --media-thumbnail-aspect-ratio: 16 / 9;
   /* Applies when scaling thumbnails up. */
   --media-thumbnail-min-width: 120px;
-  --media-thumbnail-min-height: calc(var(--media-thumbnail-min-width) / var(--aspect-ratio));
+  --media-thumbnail-min-height: calc(
+    var(--media-thumbnail-min-width) / var(--aspect-ratio)
+  );
   /* Applies when scaling thumbnails down. */
   --media-thumbnail-max-width: 180px;
-  --media-thumbnail-max-height: calc(var(--media-thumbnail-max-width) / var(--aspect-ratio));
+  --media-thumbnail-max-height: calc(
+    var(--media-thumbnail-max-width) / var(--aspect-ratio)
+  );
 }
 
 .player[data-view-type="audio"] .vds-poster {
@@ -73,6 +77,8 @@
   background-color: var(--global-secondary-bg);
   gap: 10px;
   width: 27%;
+  height: fit-content;
+  max-height: 100%;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
@@ -84,21 +90,40 @@
 .streaming-episodes-header {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 10px;
 }
 
 .streaming-episodes-header select {
   background-color: var(--global-tertiary-bg);
-  padding: 5px 10px;
+  padding: 10px 5px;
   border-radius: 5px;
-  width: 35%;
 }
 
-.streaming-episodes-header input {
-  width: 100%;
+.streaming-episodes-header .streaming-input-box {
+  width: 50%;
+}
+
+.streaming-input-box input {
   padding-left: 40px;
   background-color: var(--global-tertiary-bg);
   color: var(--global-text);
+}
+
+.streaming-episodes-header button {
+  padding: 10px 15px;
+  border: 1px solid var(--global-border);
+  background-color: var(--global-tertiary-bg);
+  border-radius: 5px;
+  box-shadow: inset 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.streaming-episodes-header button:hover {
+  background-color: var(--primary-accent-bg);
+}
+
+.streaming-episodes-header button:active {
+  transform: scale(0.8);
 }
 
 .streaming-input-box {
@@ -137,13 +162,54 @@
   filter: brightness(1.2);
   cursor: pointer;
   background-color: var(--primary-accent);
+  color: var(--primary-accent-color);
   transform: scale(1.05);
 }
 
-.episode-active {
-  background-color: var(--primary-accent-bg);
-  color: white;
-  filter: brightness(1.2);
+.episodes-List,
+.episodes-Cover {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.episode-list {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--global-tertiary-bg);
+  border-radius: 5px;
+  color: var(--global-description);
+}
+
+.episode-list:hover {
+  background-color: var(--primary-accent);
+}
+.episode-list:hover span,
+.episode-list:hover p {
+  color: var(--primary-accent-color);
+}
+
+.episodes-Grid {
+  display: grid;
+  place-items: center;
+  height: fit-content;
+  width: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: max-content;
+  gap: 10px;
+}
+
+.episode-grid {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 35px;
+  background-color: var(--global-tertiary-bg);
+  border-radius: 5px;
 }
 
 .episode .textContainer {
@@ -166,14 +232,20 @@
 
 .episode-tag {
   position: absolute;
-  bottom: 8px;
-  left: 8px;
+  bottom: 5px;
+  left: 5px;
   padding: 2px 10px;
   border-radius: 5px;
-  background-color: var(--global-div-tr);
+  background-color: var(--primary-accent-tr);
   font-size: 14px;
   font-weight: 600;
   color: var(--global-text);
+}
+
+.episode-active {
+  background-color: var(--primary-accent-bg);
+  color: white;
+  filter: brightness(1.2);
 }
 
 .streaming-anime-details {
@@ -295,7 +367,8 @@
 .related-anime:hover {
   border-radius: 15px;
   margin-bottom: 10px;
-  background-color: #8080cf;
+  background-color: var(--primary-accent);
+  color: var(--primary-accent-color);
 }
 
 .related-anime:active {
@@ -324,7 +397,7 @@
   gap: 10px;
   padding: 5px 12px;
   border-radius: 5px;
-  background-color: var(--primary-accent);
+  background-color: var(--primary-accent-bg);
   color: var(--primary-accent-color);
 }
 

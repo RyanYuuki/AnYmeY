@@ -132,6 +132,7 @@ span {
 select,
 .input {
   color: var(--text-50);
+  font-family: Poppins;
 }
 
 button {

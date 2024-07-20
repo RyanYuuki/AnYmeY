@@ -36,7 +36,7 @@ const Streaming = () => {
   const [animeError, setAnimeError] = useState(null);
   const [episodesError, setEpisodesError] = useState(null);
   const [streamingError, setStreamingError] = useState(null);
-
+  const [listType, setListType] = useState('Cover');
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
@@ -131,7 +131,7 @@ const Streaming = () => {
   };
 
   const Skeleton = ["", "", "", "", "", ""];
-
+  const listTypes = ['Cover', 'List', 'Grid']
   const Months = [
     "January",
     "February",
@@ -157,6 +157,12 @@ const Streaming = () => {
       </div>
     );
   }
+
+  const handleListTypeChange = () => {
+    const newType = listTypes % listTypes.length;
+    setListType(newType);
+    console.log(newType);
+  };
 
   return (
     <div className="streaming-body">
