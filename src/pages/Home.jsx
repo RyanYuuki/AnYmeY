@@ -7,8 +7,8 @@ function Home() {
   return (
     <div className="home-body">
       <div className="left-side">
-        <img className="anime-bg animated" src={animeImage} alt="Anime background" />
-        <img className="manga-bg animated" src={mangaImage} alt="Manga background" />
+        <img className="animated" src={animeImage} alt="Anime background" />
+        <img className="animated" src={mangaImage} alt="Manga background" />
       </div>
       <div className="right-side animated">
         <h1>

@@ -56,6 +56,7 @@ export default function ReusableCarousel({ title, data = [] }) {
             <SwiperSlide key={index} className="reusable-carousel-item">
               <Link to={isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`}>
                 <img
+                className='reusable-carousel-image'
                   src={anime.image || "/path/to/default-image.jpg"}
                   alt={
                     anime.title?.english ||

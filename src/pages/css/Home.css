@@ -35,10 +35,9 @@
 }
 
 .left-side img {
-  width: fit-content;
   height: 350px;
   transform: scale(1.1);
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 20px;
   margin: 0 5px 0 30px;
   position: relative;
