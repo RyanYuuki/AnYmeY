@@ -21,6 +21,7 @@
 .reusable-carousel {
     display: flex;
     width: 100%;
+    max-height: 400px;
 }
 
 .reusable-carousel-item {
@@ -50,9 +51,8 @@
     }
 }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1930px) {
     .reusable-carousel-image {
         height: 400px;
     }
-    
 }

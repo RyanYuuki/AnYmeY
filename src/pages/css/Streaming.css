@@ -606,12 +606,9 @@ a {
   }
 }
 
-@media screen and (min-width: 1300px) {
+@media screen and (min-width: 1930px) {
   .streaming-related-section img {
     height: max-content;
-  }
-  .video-player-container {
-    
   }
   .streaming-episodes-header .streaming-input-box {
     width: 60%;

@@ -95,7 +95,7 @@ export default function TrendingCarousel({ isManga }) {
             slidesPerView: 5,
             spaceBetween: 30,
           },
-          1300: {
+          1930: {
             slidesPerView: 6,
             spaceBetween: 30,
           },
