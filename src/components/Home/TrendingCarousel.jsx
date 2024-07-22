@@ -95,6 +95,10 @@ export default function TrendingCarousel({ isManga }) {
             slidesPerView: 5,
             spaceBetween: 30,
           },
+          1300: {
+            slidesPerView: 6,
+            spaceBetween: 30,
+          },
         }}
         style={{ cursor: "grab" }}
       >
@@ -105,7 +109,8 @@ export default function TrendingCarousel({ isManga }) {
             anime?.title?.userPreferred ||
             "??";
           return (
-            <SwiperSlide key={index} className="carousel-item">
+            <SwiperSlide key={index}>
+              <div className="carousel-item">
               <Link
                 to={
                   isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`
@@ -116,6 +121,8 @@ export default function TrendingCarousel({ isManga }) {
               <h4>
                 {title.length < 20 ? title : title.substring(0, 20) + "..."}
               </h4>
+              </div>
+              
             </SwiperSlide>
           );
         })}
