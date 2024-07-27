@@ -37,11 +37,9 @@ export default function TrendingCarousel({ isManga }) {
   if (isLoading) {
     return (
       <div className="body">
-        <div style={{ display: 'flex', flexDirection: 'row', gap: '10px' }}>
+        <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
           {loadingSkeletons.map((index) =>
-            index < 3 ? (
-                <SkeletonCarouselItem key={index} />
-            ) : null
+            index < 3 ? <SkeletonCarouselItem key={index} /> : null
           )}
         </div>
       </div>
@@ -81,7 +79,7 @@ export default function TrendingCarousel({ isManga }) {
           },
           400: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            spaceBetween: 10,
           },
           768: {
             slidesPerView: 3,
@@ -95,10 +93,6 @@ export default function TrendingCarousel({ isManga }) {
             slidesPerView: 5,
             spaceBetween: 30,
           },
-          1930: {
-            slidesPerView: 6,
-            spaceBetween: 30,
-          },
         }}
         style={{ cursor: "grab" }}
       >
@@ -109,8 +103,7 @@ export default function TrendingCarousel({ isManga }) {
             anime?.title?.userPreferred ||
             "??";
           return (
-            <SwiperSlide key={index}>
-              <div className="carousel-item">
+            <SwiperSlide className="carousel-item" key={index}>
               <Link
                 to={
                   isManga ? `/manga/details/${anime.id}` : `/anime/${anime.id}`
@@ -121,8 +114,6 @@ export default function TrendingCarousel({ isManga }) {
               <h4>
                 {title.length < 20 ? title : title.substring(0, 20) + "..."}
               </h4>
-              </div>
-              
             </SwiperSlide>
           );
         })}

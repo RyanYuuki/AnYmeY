@@ -605,15 +605,3 @@ a {
     font-size: 12px;
   }
 }
-
-@media screen and (min-width: 1930px) {
-  .streaming-related-section img {
-    height: max-content;
-  }
-  .streaming-episodes-header .streaming-input-box {
-    width: 60%;
-  }
-  .player[data-view-type="video"] {
-    height: 100%;
-  }
-}

@@ -42,17 +42,16 @@
 
 @media screen and (max-width: 768px) {
 
+    .reusable-carousel {
+        height: fit-content;
+    }
+
     .reusable-carousel-item {
         height: min-content;
     }
 
-    .reusable-carousel-item img {
-        display: none;
-    }
-}
-
-@media screen and (min-width: 1930px) {
     .reusable-carousel-image {
-        height: 400px;
+        height: 250px;
     }
+
 }
