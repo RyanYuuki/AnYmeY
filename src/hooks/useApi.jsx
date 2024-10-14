@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { jaroWinklerDistance } from "./jaro-winkler";
 const PROXY = "https://sup-proxy.zephex0-f6c.workers.dev/api-json?url=";
-const apiLink = "https://consumet-api-two-nu.vercel.app";
-const BASE_URL = "https://consumet-api-two-nu.vercel.app/meta/anilist/";
-const ANIWATCH_URL = "https://aniwatch-ryan.vercel.app/anime/";
+const apiLink = "https://consumet-ryan.vercel.app";
+const BASE_URL = "https://consumet-ryan.vercel.app/meta/anilist/";
+const ANIWATCH_URL = "https://hianime-ryan.vercel.app/anime/";
 const API_KEY = "e2f1fb12caa883224a8363dc0329b3bc";
 const BASE_MOVIE_URL = "https://api.themoviedb.org";
 
